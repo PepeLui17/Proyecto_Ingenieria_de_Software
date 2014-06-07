@@ -1,0 +1,11 @@
+/* 
+    Document   : estiloBotones
+    Created on : 05/05/2014, 04:12:10 PM
+    Author     : Usuario
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.ui-state-default .icon-delete{
+    background-image: url(../images/icons/delete.png);
+}

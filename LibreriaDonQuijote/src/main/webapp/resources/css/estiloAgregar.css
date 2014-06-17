@@ -78,4 +78,12 @@
     min-height:507px;
 }
 
-
+/*------------css para bloque del submenu ingresarLibro----------------*/
+#bloqueSubMenuIngresarLibros{
+    background-color: rgba(51,138,192,0.4);
+    display: inline-block;
+    vertical-align: top;
+    border: 0.08em solid;
+    min-width: 20%;
+    min-height:550px;
+}

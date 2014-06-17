@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Lista Empleados</title>
+        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
+        <link rel="Stylesheet" href="resources/css/estiloBotones.css"/>
+        <link rel="Stylesheet" href="resources/css/estiloListados.css"/>
+        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+    </h:head>
+    <h:body>
+        <header>
+            <ui:include src="/resources/templates/header.xhtml"/>
+        </header>
+
+        <nav>
+            <ui:include src="/resources/templates/nav.xhtml"/>
+        </nav>
+
+        <section>
+
+            <div id="bloqueSubMenuListados">
+                <h:form>
+
+                    <h:commandButton value="Lista de Empleados" class="btnsSubMenu" action="listaEmpleados.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Agregar Empleado" class="btnsSubMenu" action="agregarEmpleado.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Modificar Empleado" class="btnsSubMenu" action="buscarEmpleadoModificar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Eliminar Empleado" class="btnsSubMenu" action="buscarEmpleadoEliminar.xhtml">
+                    </h:commandButton><br/>
+
+
+                </h:form>
+            </div>
+
+            <div id="bloquePrincipalListados">
+
+                <h1 class="tituloPag">Lista de Empleados</h1>
+
+                <div id="bloqueListado">
+                    <h:form id="formDataTable">
+
+                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
+                        <p:dataTable id="Empleados" var="empleado"  style="width:135%;"
+                                     paginator="true" rows="10" paginatorPosition="bottom"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                            <p:column headerText="Id" style="width:5%; font-size: 0.8em" >
+                               
+                            </p:column>
+
+                            <p:column headerText="Nombre" style="width:24%; font-size: 0.8em"
+                                       filterMatchMode="contains">
+                                
+                            </p:column>
+
+                            <p:column headerText="Apellido" style="width:24%; font-size: 0.8em"
+                                      filterMatchMode="contains">
+                               
+                            </p:column>
+
+                            <p:column headerText="Cedula" style="width:24%; font-size: 0.8em"
+                                      filterMatchMode="contains">
+                               
+                            </p:column>
+
+                            <p:column headerText="Rol" style="width:24%; font-size: 0.8em">
+                                
+                            </p:column>
+
+                            <p:column style="width:4%">
+                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialog.show()" icon="ui-icon-search" title="Ver mas detalles del empleado" >
+                                    
+                                </p:commandButton>
+                            </p:column>
+                            
+                            <p:column style="width:4%">
+                                <p:commandButton id="btnDelete" update=":formDelete" oncomplete="empleadoDialogDelete.show()" icon="icon-delete" title="Eliminar" >
+                                    
+                                </p:commandButton>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
+
+                    
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <footer style='text-align: center'>Todos los derechos reservados</footer>
+    </h:body>
+</html>
+

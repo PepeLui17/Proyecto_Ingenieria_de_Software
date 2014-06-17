@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Agregar Libro</title>
+        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
+        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+    </h:head>
+
+    <h:body>
+
+        <header>
+            <ui:include src="/resources/templates/header.xhtml"/>
+        </header>
+
+        <nav>
+            <ui:include src="/resources/templates/nav.xhtml"/>
+        </nav>
+
+        <section>
+
+            <div id="bloqueSubMenu">
+                <h:form>
+                    <h:commandButton value="Lista de Libros" class="btnsSubMenu" action="listaLibros.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Agregar Libro" class="btnsSubMenu" action="agregarLibro.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Modificar Libro" class="btnsSubMenu" action="buscarLibroModificar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Eliminar Libro" class="btnsSubMenu" action="buscarLibroEliminar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Ingresar libros" class="btnsSubMenu" action="buscarLibroIngresar.xhtml">
+                    </h:commandButton>
+                </h:form>
+            </div>
+
+            <div id="bloquePrincipal">
+
+                <h1 class="tituloPag">Registrar Libro</h1>
+
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+
+                    <div id="bloqueLabels1">
+                        <h:outputLabel for="nombreLibro" value="Nombre Libro:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText id="nombreLibro" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="autor" value="Autor:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText id="autor" required="true" size="80" class="input" requiredMessage="Se necesita valor" />
+                        <br/>
+                        <h:outputLabel for="codigoISBN" value="Código ISBN:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText id="codigoISBN" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="precioUni" value="Precio Unitario:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText label="Precio Unitario" id="precioUni" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="pvp" value="PVP:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText label="pvp" id="pvp" required="true"  class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="categoria" value="Categoría:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText id="categoria" required="true" class="input" requiredMessage="Se necesita valor"/>
+
+                    </div>
+
+                    <div id="bloqueLabels2">
+                        <h:outputLabel for="editorial" value="Editorial:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText  id="editorial" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="edicion" value="Edicion:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText label="Edicion" id="edicion" required="true"  class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="anio" value="Año:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText label="Año" id="anio" required="true"  class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="stock" value="Stock mínimo:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText label="Stock Minimo" id="stock" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+                        <h:outputLabel for="descripcion" value="Descripción:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputTextarea id="descripcion" required="true" class="inputArea" requiredMessage="Se necesita valor"/>
+
+                    </div>
+                    <br/>
+
+                    <h:commandButton class="btnAceptar" value="Agregar Libro" >
+                    </h:commandButton>
+
+                </h:form>
+
+            </div>
+
+        </section>
+
+        <footer style='text-align: center'>Todos los derechos reservados</footer>
+    </h:body>
+
+</html>
+

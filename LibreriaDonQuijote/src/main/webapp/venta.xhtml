@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nueva Venta</title>
+        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
+        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <script type="text/jscript" src="script/scriptVentas.js"></script>
+    </h:head>
+
+    <h:body>
+
+        <header>
+            <ui:include src="/resources/templates/header.xhtml"/>
+        </header>
+
+        <nav>
+            <ui:include src="/resources/templates/nav.xhtml"/>
+        </nav>
+
+        <section>
+
+            <div id="bloqueNuevaVenta">
+                <div id="bloquePrincipal">
+
+                <h1 class="tituloPag">Nueva Factura Librería Don Quijote</h1>
+
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+
+                    <div id="bloqueLabels1">
+                        <div>
+                        <h:outputLabel for="label1" value="Cliente: " class="labels"></h:outputLabel>
+                        <h:outputLabel for="nombre" value="Juan Piguave" class="labels"></h:outputLabel>
+                        </div><br></br>
+                        <div>
+                        <h:outputLabel for="label2" value="Emisión: " class="labels"></h:outputLabel>
+                        <h:outputLabel for="fecha" value="#{session.lastAccessedTime}" class="labels"><f:convertDateTime pattern="dd/MM/yyyy" type="date" /></h:outputLabel>
+                        </div><br></br>
+                        <div>
+                        <h:outputLabel for="label3" value="Dirección: " class="labels"></h:outputLabel>
+                        <h:outputLabel for="direccion" value="Los Ríos y 9 de Octubre" class="labels"></h:outputLabel>
+                        </div>
+                        
+                    </div>
+                    <div id="bloqueLabels2">
+                        <div>
+                        <h:outputLabel for="label4" value="CEDULA/RUC: " class="labels"></h:outputLabel>
+                        <h:outputLabel for="identificacion" value="0000000000001" class="labels"></h:outputLabel>
+                        </div><br></br>
+                        <div>
+                        <h:outputLabel for="label5" value="Teléfono: " class="labels"></h:outputLabel>
+                        <h:outputLabel for="telefono" value="04-2345678" class="labels"></h:outputLabel>
+                        </div>
+                    </div>
+                    <div id="bloqueListado">
+                    <h:form id="formDataTable" >
+
+                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
+                        <p:dataTable id="items" var="libro" style="width:135%;"
+                                     paginator="true" rows="10" paginatorPosition="bottom"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                            <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em" 
+                                       filterMatchMode="contains">
+                                
+                            </p:column>
+
+                            <p:column headerText="Producto" style="width:24%; font-size: 0.8em"
+                                      filterMatchMode="contains">
+                             
+                            </p:column>
+
+                            <p:column headerText="P. Unitario" style="width:24%; font-size: 0.8em"
+                                      filterMatchMode="contains">
+                                
+                            </p:column>
+
+                            <p:column headerText="Valor Total" style="width:24%; font-size: 0.8em">
+                               
+                            </p:column>                            
+
+                            <p:column style="width:4%">
+                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="libroDialog.show()" icon="ui-icon-search" title="Ver mas detalles del libro" >
+                                    
+                                </p:commandButton>                                
+                            </p:column>
+                            
+                            <p:column style="width:4%">
+                                <p:commandButton id="btnDelete" update=":formDelete" oncomplete="libroDialogDelete.show()" icon="icon-delete" title="Eliminar" >
+                                  
+                                </p:commandButton>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
+                    </div>
+                    <br/>
+                    <button type="submit" onclick="linkNV" class="btnAceptar">Aceptar</button>                    
+                </h:form>
+            </div>
+            </div>
+
+        </section>
+
+        <footer style='text-align: center'>Todos los derechos reservados</footer>
+        
+    </h:body>
+</html>
+

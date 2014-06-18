@@ -2,11 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Nueva Venta</title>
         <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
         <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <script type="text/jscript" src="script/scriptVentas.js"></script>
     </h:head>
 
     <h:body>
@@ -22,7 +25,24 @@
         <section>
 
             <div id="bloqueNuevaVenta">
+                <div id="bloquePrincipal">
 
+                <h1 class="tituloPag">Realizar Nueva Venta</h1>
+
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+
+                    <div id="bloqueLabels1">
+                        <h:outputLabel for="identificacion" value="Ingrese CEDULA/RUC del cliente" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText id="identificacion" required="true" size="80"  class="input" requiredMessage="Este campo es necesario"/>
+                        <br/> 
+                        <h:outputLabel for="nameFound" value="" class="labels"></h:outputLabel><br/><br/>
+                        <br/> 
+                    </div>
+                    <br/>
+                    <button type="submit" onclick="linkNV" class="btnAceptar">Aceptar</button>
+                </h:form>
+            </div>
             </div>
 
         </section>

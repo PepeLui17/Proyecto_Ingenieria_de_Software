@@ -140,11 +140,28 @@ section {
 
 }
 
+#bloqueCentrado{
+    margin-left: 10%;
+    background-color: #ffe7d0;
+    display: inline-block;
+    vertical-align: top;
+    min-width: 79%;
+    min-height:500px;
+    border-bottom: 0.08em solid;
+
+}
+
 /*Bloque de listado*/
 #bloqueListado{
     width: 700px;
     margin-left: 0.5em;
     margin-right: 0.5em;
+}
+
+#bloqueListadoReporte{
+    width: 700px;
+    margin-top: 4%;
+    margin-left: 4%;    
 }
 
 

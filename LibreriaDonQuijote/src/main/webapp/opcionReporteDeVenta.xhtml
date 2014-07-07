@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Reporte de Ventas</title>
         <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
@@ -23,10 +24,58 @@
 
             <div id="bloqueSubMenu">
                 
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+                    <br/>
+                    <h:outputLabel for="fechaIni" value="Fecha Inicial:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
+                        <p:calendar id="popupButtonCalI" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 3%;"/>                      
+                    <br/><br/>
+                    <h:outputLabel for="fechaFin" value="Fecha Final:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
+                        <p:calendar id="popupButtonCalF" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 3%;"/> 
+                 <br/><br/>
+                    <h:commandButton class="btnAceptar" value="Consultar" style="margin-left: 30%;">
+                    </h:commandButton>
+
+                </h:form>                
             </div>
 
             <div id="bloquePrincipal">
+                <div id="bloqueListadoReporte">
+                    <br/><br/><br/><br/>
+                <h:form id="formDataTable" >
 
+                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
+                        <p:dataTable id="items" var="libro" style="width:135%;"
+                                     paginator="true" rows="10" paginatorPosition="bottom"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                            <p:column headerText="Fecha de Venta" style="width:21%; font-size: 0.8em" 
+                                       filterMatchMode="contains">
+                                
+                            </p:column>
+
+                            <p:column headerText="No. Factura" style="width:15%; font-size: 0.8em"
+                                      filterMatchMode="contains">
+                             
+                            </p:column>
+
+                            <p:column headerText="Vendedor" style="width:25%; font-size: 0.8em"
+                                      filterMatchMode="contains">
+                                
+                            </p:column>
+
+                            <p:column headerText="Cliente" style="width:25%; font-size: 0.8em">
+                               
+                            </p:column>
+                            
+                            <p:column headerText="Total Venta" style="width:15%; font-size: 0.8em">
+                               
+                            </p:column>
+
+
+                        </p:dataTable>
+                    </h:form>
+                </div>
             </div>
 
         </section>

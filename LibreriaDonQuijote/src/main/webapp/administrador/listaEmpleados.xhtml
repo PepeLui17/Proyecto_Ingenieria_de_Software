@@ -7,11 +7,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Lista Empleados</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloBotones.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloListados.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
+        <link rel="Stylesheet" href="resources/estiloBotones.css"/>
+        <link rel="Stylesheet" href="resources/estiloListados.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
     <h:body>
         <header>
@@ -27,16 +27,16 @@
             <div id="bloqueSubMenuListados">
                 <h:form>
 
-                    <h:commandButton value="Lista de Empleados" class="btnsSubMenu" action="listaEmpleados.xhtml">
+                    <h:commandButton value="Lista de Empleados" class="btnsSubMenu" action="/administrador/listaEmpleados.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Agregar Empleado" class="btnsSubMenu" action="agregarEmpleado.xhtml">
+                    <h:commandButton value="Agregar Empleado" class="btnsSubMenu" action="/administrador/agregarEmpleado.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Modificar Empleado" class="btnsSubMenu" action="buscarEmpleadoModificar.xhtml">
+                    <h:commandButton value="Modificar Empleado" class="btnsSubMenu" action="/administrador/buscarEmpleadoModificar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Eliminar Empleado" class="btnsSubMenu" action="buscarEmpleadoEliminar.xhtml">
+                    <h:commandButton value="Eliminar Empleado" class="btnsSubMenu" action="/administrador/buscarEmpleadoEliminar.xhtml">
                     </h:commandButton><br/>
 
 
@@ -55,7 +55,7 @@
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                            <p:column headerText="Id" style="width:5%; font-size: 0.8em" >
+                            <p:column  headerText="Id" style="width:5%; font-size: 0.8em" >
                                
                             </p:column>
 
@@ -64,7 +64,7 @@
                                 
                             </p:column>
 
-                            <p:column headerText="Apellido" style="width:24%; font-size: 0.8em"
+                            <p:column  headerText="Apellido" style="width:24%; font-size: 0.8em"
                                       filterMatchMode="contains">
                                
                             </p:column>
@@ -79,7 +79,7 @@
                             </p:column>
 
                             <p:column style="width:4%">
-                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialog.show()" icon="ui-icon-search" title="Ver mas detalles del empleado" >
+                                <p:commandButton   id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialog.show()" icon="ui-icon-search" title="Ver mas detalles del empleado" >
                                     
                                 </p:commandButton>
                             </p:column>

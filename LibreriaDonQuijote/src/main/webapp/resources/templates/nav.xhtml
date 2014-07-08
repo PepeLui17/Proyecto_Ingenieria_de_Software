@@ -4,6 +4,8 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ul id="nav_menu" >
+        <c:if test="#{loginBean.esAdministrador(request.getUserPrincipal().getName()) == true}">
+
             <li id="btnLibros" class="items"><b>Libros</b></li>
 
             <li id="btnEmpleados" class="items"><b>Empleados</b></li>
@@ -13,9 +15,17 @@
             <li id="btnNuevaVenta" class="items"><b>Nueva Venta</b></li>
 
             <li id="btnReporteVentas" class="items"><b>Reporte de Ventas</b></li>
-      
+        </c:if>
+
+        <c:if test="#{loginBean.esVendedor(request.getUserPrincipal().getName()) == true}">
+            <li id="btnLibros" class="items"><b>Libros</b></li>
+
+            <li id="btnClientes" class="items"><b>Clientes</b></li>
+
+            <li id="btnNuevaVenta" class="items"><b>Nueva Venta</b></li>
+        </c:if>
     </ul>
-    
+
     <h:form id="formSalir">
         <ul id="btnSalir">
             <li class="items"><h:commandLink  style=" text-decoration:none; color: #000000; font-weight: bold">Salir</h:commandLink></li>

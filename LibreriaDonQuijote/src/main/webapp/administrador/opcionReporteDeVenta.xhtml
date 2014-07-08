@@ -6,8 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Reporte de Ventas</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
 
     <h:body>
@@ -22,18 +23,18 @@
 
         <section>
 
-            <div id="bloqueSubMenu">
+            <div id="bloqueSubMenuReporteVenta">
                 
                 <h:form enctype="multipart/form-data">
                     <p:growl id="growl" showDetail="true" sticky="false"  /> 
                     <br/>
                     <h:outputLabel for="fechaIni" value="Fecha Inicial:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
-                        <p:calendar id="popupButtonCalI" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 3%;"/>                      
+                        <p:calendar id="popupButtonCalI" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/>                      
                     <br/><br/>
                     <h:outputLabel for="fechaFin" value="Fecha Final:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
-                        <p:calendar id="popupButtonCalF" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 3%;"/> 
+                        <p:calendar id="popupButtonCalF" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/> 
                  <br/><br/>
-                    <h:commandButton class="btnAceptar" value="Consultar" style="margin-left: 30%;">
+                    <h:commandButton value="Consultar" style="margin-left: 30%;">
                     </h:commandButton>
 
                 </h:form>                
@@ -49,7 +50,7 @@
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                            <p:column headerText="Fecha de Venta" style="width:21%; font-size: 0.8em" 
+                            <p:column headerText="Fecha de Venta" style="width:15%; font-size: 0.8em" 
                                        filterMatchMode="contains">
                                 
                             </p:column>
@@ -68,7 +69,7 @@
                                
                             </p:column>
                             
-                            <p:column headerText="Total Venta" style="width:15%; font-size: 0.8em">
+                            <p:column headerText="Total Venta" style="width:25%; font-size: 0.8em">
                                
                             </p:column>
 

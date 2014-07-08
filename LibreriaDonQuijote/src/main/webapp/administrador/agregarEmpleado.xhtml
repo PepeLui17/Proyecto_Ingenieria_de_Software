@@ -7,9 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Agregar Empleado</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
 
     <h:body>
@@ -26,16 +26,16 @@
 
             <div id="bloqueSubMenuAgregarEmpleado">
                 <h:form>
-                    <h:commandButton value="Lista de Empleados" class="btnsSubMenu" action="listaEmpleados.xhtml">
+                    <h:commandButton value="Lista de Empleados" class="btnsSubMenu" action="/administrador/listaEmpleados.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Agregar Empleado" class="btnsSubMenu" action="agregarEmpleado.xhtml">
+                    <h:commandButton value="Agregar Empleado" class="btnsSubMenu" action="/administrador/agregarEmpleado.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Modificar Empleado" class="btnsSubMenu" action="buscarEmpleadoModificar.xhtml">
+                    <h:commandButton value="Modificar Empleado" class="btnsSubMenu" action="/administrador/buscarEmpleadoModificar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Eliminar Empleado" class="btnsSubMenu" action="buscarEmpleadoEliminar.xhtml">
+                    <h:commandButton value="Eliminar Empleado" class="btnsSubMenu" action="/administrador/buscarEmpleadoEliminar.xhtml">
                     </h:commandButton><br/>
 
                 </h:form>

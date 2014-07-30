@@ -51,45 +51,45 @@
 
                     <div id="bloqueLabels1">
                         <h:outputLabel for="nombreLibro" value="Nombre Libro:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="nombreLibro" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="nombreLibro" required="true" size="80" value="#{libroBean.nombre}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="autor" value="Autor:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="autor" required="true" size="80" class="input" requiredMessage="Se necesita valor" />
+                        <h:inputText id="autor" required="true" size="80" value="#{libroBean.autor}" class="input" requiredMessage="Se necesita valor" />
                         <br/>
                         <h:outputLabel for="codigoISBN" value="Código ISBN:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="codigoISBN" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="codigoISBN" required="true" size="80" value="#{libroBean.codigoISBN}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="precioUni" value="Precio Unitario:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText label="Precio Unitario" id="precioUni" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText label="Precio Unitario" id="precioUni" required="true" size="80" value="#{libroBean.precioUnitario}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="pvp" value="PVP:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText label="pvp" id="pvp" required="true"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText label="pvp" id="pvp" required="true" value="#{libroBean.pvp}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="categoria" value="Categoría:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="categoria" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="categoria" required="true" class="input" value="#{libroBean.categoria}" requiredMessage="Se necesita valor"/>
 
                     </div>
 
                     <div id="bloqueLabels2">
                         <h:outputLabel for="editorial" value="Editorial:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText  id="editorial" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText  id="editorial" required="true" class="input" value="#{libroBean.editorial}" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="edicion" value="Edicion:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText label="Edicion" id="edicion" required="true"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText label="Edicion" id="edicion" required="true" value="#{libroBean.edicion}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="anio" value="Año:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText label="Año" id="anio" required="true"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText label="Año" id="anio" required="true" value="#{libroBean.anio}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="stock" value="Stock mínimo:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText label="Stock Minimo" id="stock" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText label="Stock Minimo" id="stock" required="true" value="#{libroBean.stock}" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="descripcion" value="Descripción:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputTextarea id="descripcion" required="true" class="inputArea" requiredMessage="Se necesita valor"/>
+                        <h:inputTextarea id="descripcion" required="true" class="inputArea" value="#{libroBean.descripcion}" requiredMessage="Se necesita valor"/>
 
                     </div>
                     <br/>
 
-                    <h:commandButton class="btnAceptar" value="Agregar Libro" >
+                    <h:commandButton class="btnAceptar" value="Agregar Libro" action="#{libroBean.insert()}">
                     </h:commandButton>
 
                 </h:form>

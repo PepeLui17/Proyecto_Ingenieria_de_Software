@@ -67,6 +67,15 @@
         </property>
     </bean>
     
+    <!-- DAOS -->
+    <bean id="libroDAO" class="com.donquijote.dao.LibroImplDAO">
+   	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <!-- BOS -->
+    <bean id="libroBO" class="com.donquijote.bo.LibroImplBO">
+        <property name="libroDAO" ref="libroDAO"></property>
+    </bean>
     
     <!-- ////////////////////////////////////////////   -->
     

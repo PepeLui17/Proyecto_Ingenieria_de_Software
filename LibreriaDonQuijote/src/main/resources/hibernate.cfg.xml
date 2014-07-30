@@ -7,11 +7,11 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Quijote</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">estudiante</property>
-    <mapping resource="com/donquijote/persistence/Users.hbm.xml"/>
+    <mapping resource="com/donquijote/persistence/DetalleFactura.hbm.xml"/>
     <mapping resource="com/donquijote/persistence/Cliente.hbm.xml"/>
+    <mapping resource="com/donquijote/persistence/Users.hbm.xml"/>
     <mapping resource="com/donquijote/persistence/Factura.hbm.xml"/>
     <mapping resource="com/donquijote/persistence/Authorities.hbm.xml"/>
-    <mapping resource="com/donquijote/persistence/DetalleFactura.hbm.xml"/>
     <mapping resource="com/donquijote/persistence/Libro.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

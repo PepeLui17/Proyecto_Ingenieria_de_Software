@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/07/2014 12:46:40 PM by Hibernate Tools 3.6.0 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/07/2014 10:56:36 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-  <class name="com.donquijote.persistence.Factura" schema="public" table="factura">
-    <id name="idfactura" type="int">
-      <column name="idfactura"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.donquijote.persistence.Users" fetch="select" name="users">
-      <column name="idusuario" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="com.donquijote.persistence.Cliente" fetch="select" name="cliente">
-      <column name="idcliente" not-null="true"/>
-    </many-to-one>
-    <property name="numerofactura" type="string">
-      <column length="64" name="numerofactura" not-null="true" unique="true"/>
-    </property>
-    <property name="iva" type="double">
-      <column name="iva" not-null="true" precision="17" scale="17"/>
-    </property>
-    <property name="fechacompra" type="date">
-      <column length="13" name="fechacompra" not-null="true"/>
-    </property>
-    <property name="estadoborrado" type="boolean">
-      <column name="estadoborrado" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="detalleFacturas" table="detalle_factura">
-      <key>
-        <column name="idfactura" not-null="true"/>
-      </key>
-      <one-to-many class="com.donquijote.persistence.DetalleFactura"/>
-    </set>
-  </class>
+    <class name="com.donquijote.persistence.Factura" table="factura" schema="public">
+        <id name="idfactura" type="int">
+            <column name="idfactura" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="users" class="com.donquijote.persistence.Users" fetch="select">
+            <column name="idusuario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cliente" class="com.donquijote.persistence.Cliente" fetch="select">
+            <column name="idcliente" not-null="true" />
+        </many-to-one>
+        <property name="numerofactura" type="string">
+            <column name="numerofactura" length="64" not-null="true" unique="true" />
+        </property>
+        <property name="iva" type="double">
+            <column name="iva" precision="17" scale="17" not-null="true" />
+        </property>
+        <property name="fechacompra" type="date">
+            <column name="fechacompra" length="13" not-null="true" />
+        </property>
+        <property name="estadoborrado" type="boolean">
+            <column name="estadoborrado" not-null="true" />
+        </property>
+        <set name="detalleFacturas" table="detalle_factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idfactura" not-null="true" />
+            </key>
+            <one-to-many class="com.donquijote.persistence.DetalleFactura" />
+        </set>
+    </class>
 </hibernate-mapping>

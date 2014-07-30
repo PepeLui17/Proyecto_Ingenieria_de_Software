@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/07/2014 12:46:40 PM by Hibernate Tools 3.6.0 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/07/2014 10:56:36 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-  <class name="com.donquijote.persistence.Cliente" schema="public" table="cliente">
-    <id name="idcliente" type="int">
-      <column name="idcliente"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="nombre" type="string">
-      <column length="30" name="nombre" not-null="true"/>
-    </property>
-    <property name="apellido" type="string">
-      <column length="30" name="apellido" not-null="true"/>
-    </property>
-    <property name="cedulaRuc" type="string">
-      <column length="15" name="cedula_ruc" not-null="true" unique="true"/>
-    </property>
-    <property name="ciudad" type="string">
-      <column length="30" name="ciudad" not-null="true"/>
-    </property>
-    <property name="direccion" type="string">
-      <column length="50" name="direccion" not-null="true"/>
-    </property>
-    <property name="telefono" type="string">
-      <column length="20" name="telefono" not-null="true"/>
-    </property>
-    <property name="estadoborrado" type="boolean">
-      <column name="estadoborrado" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="facturas" table="factura">
-      <key>
-        <column name="idcliente" not-null="true"/>
-      </key>
-      <one-to-many class="com.donquijote.persistence.Factura"/>
-    </set>
-  </class>
+    <class name="com.donquijote.persistence.Cliente" table="cliente" schema="public">
+        <id name="idcliente" type="int">
+            <column name="idcliente" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="30" not-null="true" />
+        </property>
+        <property name="cedulaRuc" type="string">
+            <column name="cedula_ruc" length="15" not-null="true" unique="true" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="30" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="20" not-null="true" />
+        </property>
+        <property name="estadoborrado" type="boolean">
+            <column name="estadoborrado" not-null="true" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcliente" not-null="true" />
+            </key>
+            <one-to-many class="com.donquijote.persistence.Factura" />
+        </set>
+    </class>
 </hibernate-mapping>

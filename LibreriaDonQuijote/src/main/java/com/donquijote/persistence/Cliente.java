@@ -1,5 +1,5 @@
 package com.donquijote.persistence;
-// Generated 29/07/2014 12:46:38 PM by Hibernate Tools 3.6.0
+// Generated 29/07/2014 10:56:33 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;

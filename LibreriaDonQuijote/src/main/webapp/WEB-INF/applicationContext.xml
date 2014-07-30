@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:sec="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:c="http://www.springframework.org/schema/c"
@@ -12,24 +11,26 @@
        xmlns:osgi="http://www.springframework.org/schema/osgi"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:util="http://www.springframework.org/schema/util"       
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/security
-       http://www.springframework.org/schema/security/spring-security-3.0.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-       http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
-       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
-       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.0.xsd
-       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.0.xsd
-       http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
-      
-     <!-- ////////////////////////////////////////////   -->
-     <!--
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:sec="http://www.springframework.org/schema/security"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+          http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+          http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+          http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.1.xsd
+          http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+          http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+       
+    
+         <!-- ////////////////////////////////////////////   -->
+
+ 
     <context:annotation-config/>
     <context:component-scan base-package="com.donquijote"/>
     
@@ -59,11 +60,14 @@
               <value>/com/donquijote/persistence/Authorities.hbm.xml</value>
               <value>/com/donquijote/persistence/Cliente.hbm.xml</value>
               <value>/com/donquijote/persistence/DetalleFactura.hbm.xml</value>
+              <value>/com/donquijote/persistence/Factura.hbm.xml</value>
+              <value>/com/donquijote/persistence/Libro.hbm.xml</value>
+              <value>/com/donquijote/persistence/Users.hbm.xml</value>
            </list>
         </property>
     </bean>
     
-    -->
+    
     <!-- ////////////////////////////////////////////   -->
     
     <!--
@@ -146,22 +150,9 @@
     <sec:user-service id="userServices">
         <sec:user name="admin" password="1234" authorities="ROLE_ADMIN, ROLE_VENDEDOR"></sec:user>
         <sec:user name="jlmj" password="1234" authorities="ROLE_VENDEDOR"></sec:user>
-    </sec:user-service>
-
+    </sec:user-service>        
     
-    <!--
-    <bean id="userServices" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
-        <property name="dataSource" ref="seguridadDataSource" />
-        <property name="enableAuthorities" value="true" />
-    </bean>
     
-    <bean id="seguridadDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/Quijote" />
-        <property name="username" value="postgres" />
-        <property name="password" value="estudiante" />
-    </bean>
-    -->
     
     
     <!--

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/07/2014 12:46:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class name="com.donquijote.persistence.Authorities" schema="public" table="authorities">
+    <id name="idauthority" type="int">
+      <column name="idauthority"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.donquijote.persistence.Users" fetch="select" name="users">
+      <column name="username" not-null="true"/>
+    </many-to-one>
+    <property name="authority" type="string">
+      <column length="50" name="authority" not-null="true"/>
+    </property>
+    <property name="estadoborrado" type="boolean">
+      <column name="estadoborrado" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

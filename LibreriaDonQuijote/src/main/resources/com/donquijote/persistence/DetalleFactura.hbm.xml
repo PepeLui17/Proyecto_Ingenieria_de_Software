@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/07/2014 12:46:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class name="com.donquijote.persistence.DetalleFactura" schema="public" table="detalle_factura">
+    <id name="iddetalleFactura" type="int">
+      <column name="iddetalle_factura"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.donquijote.persistence.Factura" fetch="select" name="factura">
+      <column name="idfactura" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.donquijote.persistence.Libro" fetch="select" name="libro">
+      <column name="idlibro" not-null="true"/>
+    </many-to-one>
+    <property name="cantidad" type="int">
+      <column name="cantidad" not-null="true"/>
+    </property>
+    <property name="estadoborrado" type="boolean">
+      <column name="estadoborrado" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

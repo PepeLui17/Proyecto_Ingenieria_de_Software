@@ -2,12 +2,69 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:sec="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:flow="http://www.springframework.org/schema/webflow-config"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"       
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/security
-       http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-       
+       http://www.springframework.org/schema/security/spring-security-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.0.xsd
+       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.0.xsd
+       http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+      
+     <!-- ////////////////////////////////////////////   -->
+     <!--
+    <context:annotation-config/>
+    <context:component-scan base-package="com.donquijote"/>
+    
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+	<property name="url" value="jdbc:postgresql://localhost:5432/Quijote"/>
+	<property name="username" value="postgres"/>
+	<property name="password" value="estudiante"/>
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+          <ref bean="dataSource"/>
+        </property>
+
+        <property name="hibernateProperties">
+           <props>
+             <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+             <prop key="hibernate.show_sql">true</prop>
+           </props>
+         </property>
+
+         
+        <property name="mappingResources">
+           <list>
+              <value>/com/donquijote/persistence/Authorities.hbm.xml</value>
+              <value>/com/donquijote/persistence/Cliente.hbm.xml</value>
+              <value>/com/donquijote/persistence/DetalleFactura.hbm.xml</value>
+           </list>
+        </property>
+    </bean>
+    
+    -->
+    <!-- ////////////////////////////////////////////   -->
     
     <!--
         Enable security, let the casAuthenticationEntryPoint handle all intercepted urls.
@@ -89,9 +146,22 @@
     <sec:user-service id="userServices">
         <sec:user name="admin" password="1234" authorities="ROLE_ADMIN, ROLE_VENDEDOR"></sec:user>
         <sec:user name="jlmj" password="1234" authorities="ROLE_VENDEDOR"></sec:user>
-    </sec:user-service>        
+    </sec:user-service>
+
     
+    <!--
+    <bean id="userServices" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <property name="dataSource" ref="seguridadDataSource" />
+        <property name="enableAuthorities" value="true" />
+    </bean>
     
+    <bean id="seguridadDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/Quijote" />
+        <property name="username" value="postgres" />
+        <property name="password" value="estudiante" />
+    </bean>
+    -->
     
     
     <!--

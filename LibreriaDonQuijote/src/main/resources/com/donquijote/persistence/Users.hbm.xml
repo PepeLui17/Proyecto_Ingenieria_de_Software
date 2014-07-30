@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/07/2014 12:46:40 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class name="com.donquijote.persistence.Users" schema="public" table="users">
+    <id name="iduser" type="int">
+      <column name="iduser"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="username" type="string">
+      <column length="50" name="username" not-null="true" unique="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="50" name="password" not-null="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="50" name="nombre" not-null="true"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="50" name="apellido" not-null="true"/>
+    </property>
+    <property name="cedula" type="string">
+      <column length="15" name="cedula" not-null="true" unique="true"/>
+    </property>
+    <property name="fechanacimiento" type="date">
+      <column length="13" name="fechanacimiento" not-null="true"/>
+    </property>
+    <property name="salario" type="double">
+      <column name="salario" not-null="true" precision="17" scale="17"/>
+    </property>
+    <property name="sexo" type="boolean">
+      <column name="sexo" not-null="true"/>
+    </property>
+    <property name="estadoborrado" type="boolean">
+      <column name="estadoborrado" not-null="true"/>
+    </property>
+    <property name="enabled" type="boolean">
+      <column name="enabled" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="facturas" table="factura">
+      <key>
+        <column name="idusuario" not-null="true"/>
+      </key>
+      <one-to-many class="com.donquijote.persistence.Factura"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="authoritieses" table="authorities">
+      <key>
+        <column name="username" not-null="true"/>
+      </key>
+      <one-to-many class="com.donquijote.persistence.Authorities"/>
+    </set>
+  </class>
+</hibernate-mapping>

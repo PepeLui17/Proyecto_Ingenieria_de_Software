@@ -5,11 +5,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Eliminar Cliente</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloBuscar.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <title>Buscar Cliente</title>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
+        <link rel="Stylesheet" href="resources/estiloBuscar.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
 
     <h:body>
@@ -26,23 +26,23 @@
 
             <div id="bloqueSubMenuBuscar">
                 <h:form>
-                    <h:commandButton value="Lista de Clientes" class="btnsSubMenu" action="listaClientes.xhtml">
+                    <h:commandButton value="Lista de Clientes" class="btnsSubMenu" action="/vendedor/listaClientes.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Agregar Cliente" class="btnsSubMenu" action="agregarCliente.xhtml">
+                    <h:commandButton value="Agregar Cliente" class="btnsSubMenu" action="/vendedor/agregarCliente.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Modificar Cliente" class="btnsSubMenu" action="buscarClienteModificar.xhtml">
+                    <h:commandButton value="Modificar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteModificar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Eliminar Cliente" class="btnsSubMenu" action="buscarClienteEliminar.xhtml">
+                    <h:commandButton value="Eliminar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteEliminar.xhtml">
                     </h:commandButton><br/>
                 </h:form>
             </div>
 
             <div id="bloquePrincipal">
 
-                <h1 class="tituloPag">Eliminar Cliente</h1>
+                <h1 class="tituloPag">Modificar Cliente</h1>
                 <br/><br/>
 
                 <h:form >
@@ -52,7 +52,7 @@
                         <h:inputText id="cedula" required="true" size="96" class="input"/>                        
                     </div>
 
-                    <h:commandButton class="btnAceptar" value="Eliminar" >
+                    <h:commandButton class="btnAceptar" value="Buscar Cliente" action="/vendedor/modificarCliente.xhtml">
                     </h:commandButton>
 
                 </h:form>
@@ -63,6 +63,7 @@
         </section>
 
         <footer style='text-align: center'>Todos los derechos reservados</footer>
+        
     </h:body>
 
 </html>

@@ -6,9 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Modificar Cliente</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
 
     <h:body>
@@ -25,16 +25,16 @@
 
             <div id="bloqueSubMenuAgregarCliente">
                 <h:form>
-                    <h:commandButton value="Lista de Clientes" class="btnsSubMenu" action="listaClientes.xhtml">
+                    <h:commandButton value="Lista de Clientes" class="btnsSubMenu" action="/vendedor/listaClientes.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Agregar Cliente" class="btnsSubMenu" action="agregarCliente.xhtml">
+                    <h:commandButton value="Agregar Cliente" class="btnsSubMenu" action="/vendedor/agregarCliente.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Modificar Cliente" class="btnsSubMenu" action="buscarClienteModificar.xhtml">
+                    <h:commandButton value="Modificar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteModificar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Eliminar Cliente" class="btnsSubMenu" action="buscarClienteEliminar.xhtml">
+                    <h:commandButton value="Eliminar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteEliminar.xhtml">
                     </h:commandButton><br/>
                 </h:form>
             </div>

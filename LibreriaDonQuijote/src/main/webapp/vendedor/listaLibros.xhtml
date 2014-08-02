@@ -7,11 +7,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Lista Libros</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloAgregar.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloBotones.css"/>
-        <link rel="Stylesheet" href="resources/css/estiloListados.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
+        <link rel="Stylesheet" href="resources/estiloBotones.css"/>
+        <link rel="Stylesheet" href="resources/estiloListados.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
     <h:body>
         <header>
@@ -26,19 +26,19 @@
 
             <div id="bloqueSubMenuListados">
                 <h:form>
-                    <h:commandButton value="Lista de Libros" class="btnsSubMenu" action="listaLibros.xhtml">
+                    <h:commandButton value="Lista de Libros" class="btnsSubMenu" action="/vendedor/listaLibros.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Agregar Libro" class="btnsSubMenu" action="agregarLibro.xhtml">
+                    <h:commandButton value="Agregar Libro" class="btnsSubMenu" action="/vendedor/agregarLibro.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Modificar Libro" class="btnsSubMenu" action="buscarLibroModificar.xhtml">
+                    <h:commandButton value="Modificar Libro" class="btnsSubMenu" action="/vendedor/buscarLibroModificar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Eliminar Libro" class="btnsSubMenu" action="buscarLibroEliminar.xhtml">
+                    <h:commandButton value="Eliminar Libro" class="btnsSubMenu" action="/vendedor/buscarLibroEliminar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Ingresar libros" class="btnsSubMenu" action="buscarLibroIngresar.xhtml">
+                    <h:commandButton value="Ingresar libros" class="btnsSubMenu" action="/vendedor/buscarLibroIngresar.xhtml">
                     </h:commandButton>
                 </h:form>
             </div>

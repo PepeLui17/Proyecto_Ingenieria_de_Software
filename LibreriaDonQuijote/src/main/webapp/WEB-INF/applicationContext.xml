@@ -88,6 +88,7 @@
         <sec:custom-filter before="CAS_FILTER" ref="casSingleSignOutFilter"/>
         <sec:custom-filter after="CAS_FILTER"  ref="casAuthenticationFilter"/>
         <sec:intercept-url pattern="/administrador/*" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/vendedor/*" access="ROLE_VENDEDOR"/>
         <sec:intercept-url pattern="/*" access="ROLE_VENDEDOR"/>
       
         <sec:logout logout-success-url="https://quijote:8443/cas/logout" invalidate-session="true"/>

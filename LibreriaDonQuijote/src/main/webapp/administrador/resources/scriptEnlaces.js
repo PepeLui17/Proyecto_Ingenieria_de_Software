@@ -27,16 +27,16 @@ function cargarElementos() {
 }
 
 function linkLibros() {
-    location.href = "http://quijote:8081/pruebaCAS/opcionLibros.xhtml";
+    location.href = "http://quijote:8081/pruebaCAS/vendedor/opcionLibros.xhtml";
 }
 function linkEmpleados() {
     location.href = "http://quijote:8081/pruebaCAS/administrador/opcionEmpleados.xhtml";
 }
 function linkClientes() {
-    location.href = "http://quijote:8081/pruebaCAS/opcionClientes.xhtml";
+    location.href = "http://quijote:8081/pruebaCAS/vendedor/opcionClientes.xhtml";
 }
 function linkNuevaVenta() {
-    location.href = "http://quijote:8081/pruebaCAS/opcionNuevaVenta.xhtml";
+    location.href = "http://quijote:8081/pruebaCAS/vendedor/opcionNuevaVenta.xhtml";
 }
 function linkReporteVentas() {
     location.href = "http://quijote:8081/pruebaCAS/administrador/opcionReporteDeVenta.xhtml";

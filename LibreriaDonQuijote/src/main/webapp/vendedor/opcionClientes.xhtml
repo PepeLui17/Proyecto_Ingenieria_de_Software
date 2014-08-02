@@ -4,9 +4,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Libros</title>
-        <link rel="Stylesheet" href="resources/css/estiloIndex.css"/>
-        <script type="text/jscript" src="script/scriptEnlaces.js"></script>
+        <title>Clientes</title>
+        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
+        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
     </h:head>
 
     <h:body>
@@ -23,20 +23,17 @@
 
             <div id="bloqueSubMenu">
                 <h:form>
-                    <h:commandButton value="Lista de Libros" class="btnsSubMenu" action="listaLibros.xhtml">
+                    <h:commandButton value="Lista de Clientes" class="btnsSubMenu" action="/vendedor/listaClientes.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Agregar Libro" class="btnsSubMenu" action="agregarLibro.xhtml">
+                    <h:commandButton value="Agregar Cliente" class="btnsSubMenu" action="/vendedor/agregarCliente.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Modificar Libro" class="btnsSubMenu" action="buscarLibroModificar.xhtml">
+                    <h:commandButton value="Modificar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteModificar.xhtml">
                     </h:commandButton><br/>
 
-                    <h:commandButton value="Eliminar Libro" class="btnsSubMenu" action="buscarLibroEliminar.xhtml">
+                    <h:commandButton value="Eliminar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteEliminar.xhtml">
                     </h:commandButton><br/>
-
-                    <h:commandButton value="Ingresar libros" class="btnsSubMenu" action="buscarLibroIngresar.xhtml">
-                    </h:commandButton>
                 </h:form>
             </div>
 

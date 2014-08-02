@@ -27,148 +27,50 @@
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
        
-    
-         <!-- ////////////////////////////////////////////   -->
-
- 
+     
     <context:annotation-config/>
     <context:component-scan base-package="com.donquijote"/>
     
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-	<property name="url" value="jdbc:postgresql://localhost:5432/Quijote"/>
-	<property name="username" value="postgres"/>
-	<property name="password" value="estudiante"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/Quijote"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="estudiante"/>
     </bean>
     
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource">
-          <ref bean="dataSource"/>
+            <ref bean="dataSource"/>
         </property>
 
         <property name="hibernateProperties">
-           <props>
-             <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-             <prop key="hibernate.show_sql">true</prop>
-           </props>
-         </property>
-
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
          
         <property name="mappingResources">
-           <list>
-              <value>/com/donquijote/persistence/Authorities.hbm.xml</value>
-              <value>/com/donquijote/persistence/Cliente.hbm.xml</value>
-              <value>/com/donquijote/persistence/DetalleFactura.hbm.xml</value>
-              <value>/com/donquijote/persistence/Factura.hbm.xml</value>
-              <value>/com/donquijote/persistence/Libro.hbm.xml</value>
-              <value>/com/donquijote/persistence/Users.hbm.xml</value>
-           </list>
+            <list>
+                <value>/com/donquijote/persistence/Authorities.hbm.xml</value>
+                <value>/com/donquijote/persistence/Cliente.hbm.xml</value>
+                <value>/com/donquijote/persistence/DetalleFactura.hbm.xml</value>
+                <value>/com/donquijote/persistence/Factura.hbm.xml</value>
+                <value>/com/donquijote/persistence/Libro.hbm.xml</value>
+                <value>/com/donquijote/persistence/Users.hbm.xml</value>
+            </list>
         </property>
     </bean>
     
     <!-- DAOS -->
     <bean id="libroDAO" class="com.donquijote.dao.LibroImplDAO">
-   	<property name="sessionFactory" ref="sessionFactory"></property>
+        <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     
     <!-- BOS -->
     <bean id="libroBO" class="com.donquijote.bo.LibroImplBO">
         <property name="libroDAO" ref="libroDAO"></property>
     </bean>
-    
-    <!-- ////////////////////////////////////////////   -->
-    
-    <!--
-        Enable security, let the casAuthenticationEntryPoint handle all intercepted urls.
-        The CAS_FILTER needs to be in the right position within the filter chain.
-    --> 
-    <sec:http entry-point-ref="casAuthenticationEntryPoint" auto-config="true" path-type="ant">
-        
-        <sec:custom-filter before="CAS_FILTER" ref="casSingleSignOutFilter"/>
-        <sec:custom-filter after="CAS_FILTER"  ref="casAuthenticationFilter"/>
-        <sec:intercept-url pattern="/administrador/*" access="ROLE_ADMIN"/>
-        <sec:intercept-url pattern="/vendedor/*" access="ROLE_VENDEDOR"/>
-        <sec:intercept-url pattern="/*" access="ROLE_VENDEDOR"/>
-      
-        <sec:logout logout-success-url="https://quijote:8443/cas/logout" invalidate-session="true"/>
-    </sec:http>
-    
-    
-    <!--
-        Required for the casProcessingFilter, so define it explicitly set and
-        specify an Id Even though the authenticationManager is created by
-        default when namespace based config is used.
-    -->
-    <sec:authentication-manager alias="authenticationManager">
-        <sec:authentication-provider ref="casAuthenticationProvider" />
-    </sec:authentication-manager>
-         
-    
-    <!--
-        This section is used to configure CAS. The service is the
-        actual redirect that will be triggered after the CAS login sequence.
-    -->
-    <bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
-        <property name="service" value="http://quijote:8081/pruebaCAS/j_spring_cas_security_check"/>
-        <property name="sendRenew" value="false"/>
-    </bean>
-    
-    
-    <!--
-        The CAS filter handles the redirect from the CAS server and starts the ticket validation.
-    -->
-    <bean id="casAuthenticationFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter">
-        <property name="authenticationManager" ref="authenticationManager"/>
-    </bean>
-    
-    
-    <!-- 
-        Handles a logout request from the CAS server 
-    -->   	
-    <bean id="casSingleSignOutFilter" class="org.jasig.cas.client.session.SingleSignOutFilter" />
-    
-        
-    <!--
-        The entryPoint intercepts all the CAS authentication requests.
-        It redirects to the CAS loginUrl for the CAS login page.
-    --> 
-    <bean id="casAuthenticationEntryPoint" class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
-        <property name="loginUrl" value="https://quijote:8443/cas/login"/>
-        <property name="serviceProperties" ref="serviceProperties"/>
-    </bean>
-    
-    
-    <!--
-       Handles the CAS ticket processing.
-    -->
-    <bean id="casAuthenticationProvider" class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
-        <property name="userDetailsService" ref="userServices"/>
-        <property name="serviceProperties" ref="serviceProperties"/>
-        <property name="ticketValidator">
-            <bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
-                <constructor-arg index="0" value="https://quijote:8443/cas"/>
-            </bean>
-        </property>
-        <property name="key" value="cas"/>
-    </bean>
-    
-    
-    <!--
-        The users available for this application.
-    -->
-    <sec:user-service id="userServices">
-        <sec:user name="admin" password="1234" authorities="ROLE_ADMIN, ROLE_VENDEDOR"></sec:user>
-        <sec:user name="jlmj" password="1234" authorities="ROLE_VENDEDOR"></sec:user>
-    </sec:user-service>        
-    
-    
-    
-    
-    <!--
-    <bean id="wrappingFilter" class="org.jasig.cas.client.util.HttpServletRequestWrapperFilter" /> 
-    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"/> 
-    -->
-    	
-    
+       
 </beans>

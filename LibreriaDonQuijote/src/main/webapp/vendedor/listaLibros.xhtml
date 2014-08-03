@@ -7,11 +7,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Lista Libros</title>
-        <link rel="Stylesheet" href="resources/estiloIndex.css"/>
-        <link rel="Stylesheet" href="resources/estiloAgregar.css"/>
-        <link rel="Stylesheet" href="resources/estiloBotones.css"/>
-        <link rel="Stylesheet" href="resources/estiloListados.css"/>
-        <script type="text/jscript" src="resources/scriptEnlaces.js"></script>
+        <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloAgregar.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloBotones.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloListados.css"/>
+        <script type="text/jscript" src="../script/scriptEnlaces.js"></script>
     </h:head>
     <h:body>
         <header>
@@ -82,22 +82,62 @@
                                 <h:outputText value="#{libro.stock}" />
                             </p:column>
 
-                            <!--
                             <p:column style="width:4%">
                                 <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="libroDialog.show()" icon="ui-icon-search" title="Ver mas detalles del libro" >
-
+                                    <f:setPropertyActionListener value="#{libro}" target="#{libroBean.selectedLibro}" />
                                 </p:commandButton>                                
                             </p:column>
 
                             <p:column style="width:4%">
                                 <p:commandButton id="btnDelete" update=":formDelete" oncomplete="libroDialogDelete.show()" icon="icon-delete" title="Eliminar" >
-
+                                    <f:setPropertyActionListener value="#{libro}" target="#{libroBean.selectedLibro}" />
                                 </p:commandButton>
                             </p:column>
-                            -->
 
                         </p:dataTable>
                     </h:form>
+
+                    <h:form id="formUpdate">
+                        <p:dialog header="Detalles de Libro" widgetVar="libroDialog" resizable="false" id="dlgLibro"
+                                  showEffect="fade" hideEffect="explode" modal="true">
+
+                            <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;" >
+
+
+                                <h:outputText value="Nombre:" />
+                                <h:outputText value="#{libroBean.selectedLibro.nombre}" style="font-weight:bold"/>
+
+                                <h:outputText value="Autor:" />
+                                <h:outputText value="#{libroBean.selectedLibro.autor}" style="font-weight:bold"/>
+
+                                <h:outputText value="Código ISBN:" />
+                                <h:outputText value="#{libroBean.selectedLibro.codigoISBN}" style="font-weight:bold"/>
+
+                                <h:outputText value="Categoría:" />
+                                <h:outputText value="#{libroBean.selectedLibro.categoria}" style="font-weight:bold"/>
+
+                            </h:panelGrid>
+
+                        </p:dialog>
+
+                    </h:form>
+
+
+                    <h:form id="formDelete">
+
+                        <p:confirmDialog id="confirmDialog" message="¿Está seguro de eliminar?" 
+                                         header="Eliminar Libro" widgetVar="libroDialogDelete" severity="alert" showEffect="fade" hideEffect="explode">
+                            <h:inputHidden value="#{libroBean.selectedLibro.idLibro}"/> 
+
+                            <p:commandButton id="confirm" value="Aceptar"  icon="ui-icon-check" 
+                                             oncomplete="libroDialogDelete.hide()" />
+
+                            <p:commandButton value="Cancelar" icon="ui-icon-close"
+                                             onclick="libroDialogDelete.hide()" type="button"/> 	
+                        </p:confirmDialog>
+
+                    </h:form>
+
 
 
                 </div>

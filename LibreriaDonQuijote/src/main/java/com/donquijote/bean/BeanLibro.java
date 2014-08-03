@@ -30,9 +30,7 @@ public class BeanLibro {
     
     private LibroImplBO libroBO;
     private List<BeanLibro> listaLibros;
-
-    //private List<Libro> libros;
-    //private Libro selectedLibro;
+    private BeanLibro selectedLibro;
     
     public BeanLibro() {
     }
@@ -157,6 +155,14 @@ public class BeanLibro {
     public void setListaLibros(List<BeanLibro> listaLibros) {
         this.listaLibros = listaLibros;
     }
+
+    public BeanLibro getSelectedLibro() {
+        return selectedLibro;
+    }
+
+    public void setSelectedLibro(BeanLibro selectedLibro) {
+        this.selectedLibro = selectedLibro;
+    }    
     
     public String insert() {
         libroBO.insert(this);

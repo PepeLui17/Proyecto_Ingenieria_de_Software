@@ -7,7 +7,10 @@
 package com.donquijote.bean;
 
 import com.donquijote.bo.LibroImplBO;
+import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -166,20 +169,22 @@ public class BeanLibro {
     
     public String insert() {
         libroBO.insert(this);
-        //alumnoBO.insert(this);
-        //getAll();
         return "";
     }
     
-    public String delete() {
-        //alumnoBO.delete(this);
-        //getAll();
+    public String delete(ActionEvent actionEvent) {
+        
+        libroBO.delete(selectedLibro);
+        
+        String msg="Libro eliminado correctamente";        
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
         return "";
     }
     
     public String update() {
-        //lumnoBO.update(this);
-        getAll();
+        libroBO.update(this);
         return "";
     }
     

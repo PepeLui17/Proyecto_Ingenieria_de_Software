@@ -47,10 +47,11 @@
 
                 <h1 class="tituloPag">Lista de Libros</h1>
 
+                <p:growl id="msgs" showDetail="true" sticky="false"  /> 
                 <div id="bloqueListado">
                     <h:form id="formDataTable" >
 
-                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
+                        
                         <p:dataTable id="Libros" var="libro" value="#{libroBean.listaLibros}" style="width:135%;"
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -89,9 +90,16 @@
                             </p:column>
 
                             <p:column style="width:4%">
-                                <p:commandButton id="btnDelete" update=":formDelete" oncomplete="libroDialogDelete.show()" icon="icon-delete" title="Eliminar" >
+                                <p:commandButton id="btnDelete" icon="icon-delete" action="#{libroBean.delete(actionEvent)}" update=":formDataTable, :msgs" >
                                     <f:setPropertyActionListener value="#{libro}" target="#{libroBean.selectedLibro}" />
+                                    <p:confirm header="Eliminar Libro" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
                                 </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+
                             </p:column>
 
                         </p:dataTable>
@@ -121,24 +129,6 @@
                         </p:dialog>
 
                     </h:form>
-
-
-                    <h:form id="formDelete">
-
-                        <p:confirmDialog id="confirmDialog" message="¿Está seguro de eliminar?" 
-                                         header="Eliminar Libro" widgetVar="libroDialogDelete" severity="alert" showEffect="fade" hideEffect="explode">
-                            <h:inputHidden value="#{libroBean.selectedLibro.idLibro}"/> 
-
-                            <p:commandButton id="confirm" value="Aceptar"  icon="ui-icon-check" 
-                                             oncomplete="libroDialogDelete.hide()" />
-
-                            <p:commandButton value="Cancelar" icon="ui-icon-close"
-                                             onclick="libroDialogDelete.hide()" type="button"/> 	
-                        </p:confirmDialog>
-
-                    </h:form>
-
-
 
                 </div>
 

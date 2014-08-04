@@ -24,12 +24,12 @@ public class LibroImplDAO extends HibernateDaoSupport implements LibroInterfaceD
 
     @Override
     public void delete(Libro obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getHibernateTemplate().delete(obj);
     }
 
     @Override
     public void update(Libro obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getHibernateTemplate().merge(obj);
     }
 
     @Override

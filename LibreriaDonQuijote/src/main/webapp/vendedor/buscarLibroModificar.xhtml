@@ -2,10 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Libros</title>
-         <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
+        <title>Buscar Libro</title>
+        <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloAgregar.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloBuscar.css"/>
         <script type="text/jscript" src="../script/scriptEnlaces.js"></script>
     </h:head>
 
@@ -21,7 +24,7 @@
 
         <section>
 
-            <div id="bloqueSubMenu">
+            <div id="bloqueSubMenuBuscar">
                 <h:form>
                     <h:commandButton value="Lista de Libros" class="btnsSubMenu" action="/vendedor/listaLibros.xhtml">
                     </h:commandButton><br/>
@@ -42,12 +45,26 @@
 
             <div id="bloquePrincipal">
 
+                <h1 class="tituloPag">Modificar Libro</h1>
+                <br/><br/>
+
+                <h:form >
+
+                    <ui:include src="/resources/templates/busquedaLibro.xhtml"/>
+
+                    <h:commandButton class="btnAceptar" value="Buscar Libro" action="/vendedor/modificarLibro.xhtml">
+                    </h:commandButton>
+                    
+                </h:form>
+
+
             </div>
 
         </section>
-
-        <footer style='text-align: center'>Todos los derechos reservados</footer>
         
+        <footer style='text-align: center'>Todos los derechos reservados</footer>
+
     </h:body>
+
 </html>
 

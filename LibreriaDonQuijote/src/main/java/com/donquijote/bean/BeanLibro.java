@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.donquijote.bean;
 
 import com.donquijote.bo.LibroImplBO;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -17,7 +17,6 @@ import javax.faces.context.FacesContext;
  * @author José Luis
  */
 public class BeanLibro {
-
     private int idLibro;
     private String nombre;
     private String autor;
@@ -31,15 +30,12 @@ public class BeanLibro {
     private int stock;
     private String descripcion;
     private boolean estadoBorrado;
-
+    
     private LibroImplBO libroBO;
     private List<BeanLibro> listaLibros;
     private BeanLibro selectedLibro;
-
-    private String codIsbnIngresado;
-
+    
     public BeanLibro() {
-        listaLibros = new ArrayList<BeanLibro>();
     }
 
     public int getIdLibro() {
@@ -155,8 +151,8 @@ public class BeanLibro {
     }
 
     public List<BeanLibro> getListaLibros() {
-        listaLibros = libroBO.getAll();
-        return listaLibros;
+        return libroBO.getAll();
+        //return listaLibros;
     }
 
     public void setListaLibros(List<BeanLibro> listaLibros) {
@@ -169,45 +165,39 @@ public class BeanLibro {
 
     public void setSelectedLibro(BeanLibro selectedLibro) {
         this.selectedLibro = selectedLibro;
-    }
-
-    public String getCodIsbnIngresado() {
-        return codIsbnIngresado;
-    }
-
-    public void setCodIsbnIngresado(String codIsbnIngresado) {
-        this.codIsbnIngresado = codIsbnIngresado;
-    }
-
+    }    
+    
     public String insert() {
         libroBO.insert(this);
         return "";
     }
-
+    
     public String delete(ActionEvent actionEvent) {
         
         libroBO.delete(selectedLibro);
-
-        String msg = "Libro eliminado correctamente";
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-
-        return "";
-    }
-
-    public String update(ActionEvent actionEvent) {
-
-        libroBO.update(selectedLibro);
-
-        String msg = "Libro modificado correctamente";
+        
+        String msg="Libro eliminado correctamente";        
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
         return "";
     }
-
+    
+    public String update() {
+        libroBO.update(this);
+        return "";
+    }
+    
+    //@PostConstruct
     public List<BeanLibro> getAll() {
         return libroBO.getAll();
+        //setListaLibros(libroBO.getAll());
+//        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+//        Map<String, Object> sessionMap = externalContext.getSessionMap();
+//        BeanLogin bean = (BeanLogin)sessionMap.get("usuarioLogeado");
+//        setLista(alumnoBO.getAllByFechas(bean));
     }
-
+    
+    
+    
 }

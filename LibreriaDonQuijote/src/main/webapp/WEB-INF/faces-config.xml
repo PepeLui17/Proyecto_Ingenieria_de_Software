@@ -11,7 +11,7 @@
     <managed-bean>
         <managed-bean-name>libroBean</managed-bean-name>
         <managed-bean-class>com.donquijote.bean.BeanLibro</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
         <managed-property>
             <property-name>libroBO</property-name>
             <value>#{libroBO}</value>

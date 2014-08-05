@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ingresar Libros</title>
+        <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloAgregar.css"/>
+        <script type="text/jscript" src="../script/scriptEnlaces.js"></script>
+    </h:head>
+
+    <h:body>
+
+        <header>
+            <ui:include src="/resources/templates/header.xhtml"/>
+        </header>
+
+        <nav>
+            <ui:include src="/resources/templates/nav.xhtml"/>
+        </nav>
+
+        <section>
+
+            <div id="bloqueSubMenuIngresarLibros">
+                <h:form>
+                    <h:commandButton value="Lista de Libros" class="btnsSubMenu" action="/vendedor/listaLibros.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Agregar Libro" class="btnsSubMenu" action="/vendedor/agregarLibro.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Modificar Libro" class="btnsSubMenu" action="/vendedor/buscarLibroModificar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Eliminar Libro" class="btnsSubMenu" action="/vendedor/buscarLibroEliminar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Ingresar libros" class="btnsSubMenu" action="/vendedor/buscarLibroIngresar.xhtml">
+                    </h:commandButton>
+                </h:form>
+            </div>
+
+            <div id="bloquePrincipal">
+
+                <h1 class="tituloPag">Ingresar Libros</h1>
+
+                <h:form enctype="multipart/form-data">
+                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+
+                    <div id="bloqueLabels1">
+                        <br/>
+                        <h:outputLabel for="nombreLibro" value="Nombre Libro:  " class="labels"></h:outputLabel>
+                        <h:outputText id="nombreLibro"   class="labels" value="Harry Potter"/>
+                        <br/><br/><br/>
+                        <h:outputLabel for="autor" value="Autor:  " class="labels"></h:outputLabel>
+                        <h:outputText id="autor"   class="labels" value="J.K Rowling"/>
+                        <br/><br/><br/>
+                        <h:outputLabel for="categoria" value="Cantidad disponible:  " class="labels"></h:outputLabel>
+                        <h:outputText id="categoria"   class="labels" value="8"/>
+                        <br/><br/><br/>
+                        <h:outputLabel for="cantIngresar" value="Ingrese cantidad a ingresar:" class="labels"></h:outputLabel><br/><br/>
+                        <h:inputText  id="cantIngresar" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <br/>
+
+                    </div>
+
+                    
+                    <br/>
+
+                    <h:commandButton class="btnAceptar" value="Ingresar Libros" >
+                    </h:commandButton>
+
+                </h:form>
+
+            </div>
+
+        </section>
+
+        <footer style='text-align: center'>Todos los derechos reservados</footer>
+    </h:body>
+
+</html>
+

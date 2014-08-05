@@ -30,7 +30,16 @@
                     </h:commandButton><br/>
 
                     <h:commandButton value="Agregar Libro" class="btnsSubMenu" action="/vendedor/agregarLibro.xhtml">
-                    </h:commandButton><br/>                    
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Modificar Libro" class="btnsSubMenu" action="/vendedor/buscarLibroModificar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Eliminar Libro" class="btnsSubMenu" action="/vendedor/buscarLibroEliminar.xhtml">
+                    </h:commandButton><br/>
+
+                    <h:commandButton value="Ingresar libros" class="btnsSubMenu" action="/vendedor/buscarLibroIngresar.xhtml">
+                    </h:commandButton>
                 </h:form>
             </div>
 
@@ -75,13 +84,13 @@
                             </p:column>
 
                             <p:column style="width:4%">
-                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="libroDialogUpdate.show()" icon="ui-icon-search" title="Modificar" >
+                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="libroDialog.show()" icon="ui-icon-search" title="Ver mas detalles del libro" >
                                     <f:setPropertyActionListener value="#{libro}" target="#{libroBean.selectedLibro}" />
                                 </p:commandButton>                                
                             </p:column>
 
                             <p:column style="width:4%">
-                                <p:commandButton id="btnDelete" action="#{libroBean.delete(actionEvent)}" update=":formDataTable, :msgs" icon="icon-delete" title="Eliminar">
+                                <p:commandButton id="btnDelete" icon="icon-delete" action="#{libroBean.delete(actionEvent)}" update=":formDataTable, :msgs" >
                                     <f:setPropertyActionListener value="#{libro}" target="#{libroBean.selectedLibro}" />
                                     <p:confirm header="Eliminar Libro" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
                                 </p:commandButton>
@@ -97,52 +106,24 @@
                     </h:form>
 
                     <h:form id="formUpdate">
-                        <p:dialog header="Detalles de Libro" widgetVar="libroDialogUpdate" resizable="false" id="dlgLibroUpdate"
+                        <p:dialog header="Detalles de Libro" widgetVar="libroDialog" resizable="false" id="dlgLibro"
                                   showEffect="fade" hideEffect="explode" modal="true">
 
                             <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;" >
 
 
                                 <h:outputText value="Nombre:" />
-                                <h:inputText value="#{libroBean.selectedLibro.nombre}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                <h:outputText value="#{libroBean.selectedLibro.nombre}" style="font-weight:bold"/>
 
                                 <h:outputText value="Autor:" />
-                                <h:inputText value="#{libroBean.selectedLibro.autor}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                <h:outputText value="#{libroBean.selectedLibro.autor}" style="font-weight:bold"/>
 
                                 <h:outputText value="Código ISBN:" />
-                                <h:inputText value="#{libroBean.selectedLibro.codigoISBN}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="Precio Unitario:" />
-                                <h:inputText value="#{libroBean.selectedLibro.precioUnitario}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="PVP:" />
-                                <h:inputText value="#{libroBean.selectedLibro.pvp}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="Categoría:" />
-                                <h:inputText value="#{libroBean.selectedLibro.categoria}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="Editorial:" />
-                                <h:inputText value="#{libroBean.selectedLibro.editorial}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="Edición:" />
-                                <h:inputText value="#{libroBean.selectedLibro.edicion}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="Año:" />
-                                <h:inputText value="#{libroBean.selectedLibro.anio}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                               
-                                <h:outputText value="Stock:" />
-                                <h:inputText value="#{libroBean.selectedLibro.stock}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
-                                
-                                <h:outputText value="Descripción:" />
-                                <h:inputTextarea id="descripcion" required="true" class="inputArea"  value="#{libroBean.selectedLibro.descripcion}" requiredMessage="Se necesita valor"/>
+                                <h:outputText value="#{libroBean.selectedLibro.codigoISBN}" style="font-weight:bold"/>
 
-                                <f:facet name="footer">
-                                    <br/>
-                                    <p:separator/><br/>
-                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{libroBean.update(actionEvent)}" oncomplete="libroDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
-                                    <p:commandButton id="btnCancelUpdate" value="Cancelar" oncomplete="libroDialogUpdate.hide()" icon="ui-icon-close" update=":formDataTable, :msgs" />
-                                </f:facet>
-                                
+                                <h:outputText value="Categoría:" />
+                                <h:outputText value="#{libroBean.selectedLibro.categoria}" style="font-weight:bold"/>
+
                             </h:panelGrid>
 
                         </p:dialog>

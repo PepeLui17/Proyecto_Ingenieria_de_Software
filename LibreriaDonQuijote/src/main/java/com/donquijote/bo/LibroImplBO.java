@@ -62,7 +62,22 @@ public class LibroImplBO implements LibroInterfaceBO {
 
     @Override
     public void update(BeanLibro obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Libro libro = new Libro();
+        libro.setIdlibro(obj.getIdLibro());
+        libro.setNombre(obj.getNombre());
+        libro.setAutor(obj.getAutor());
+        libro.setCodigoisbn(obj.getCodigoISBN());
+        libro.setPreciounitario(obj.getPrecioUnitario());
+        libro.setPvp(obj.getPvp());
+        libro.setCategoria(obj.getCategoria());
+        libro.setEditorial(obj.getEditorial());
+        libro.setEdicion(obj.getEdicion());
+        libro.setAniopublicacion(obj.getAnio());
+        libro.setStock(obj.getStock());
+        libro.setDescripcion(obj.getDescripcion());
+        libro.setEstadoborrado(false);
+
+        libroDAO.update(libro);
     }
 
     @Override

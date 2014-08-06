@@ -29,22 +29,16 @@
                     </h:commandButton><br/>
 
                     <h:commandButton value="Agregar Cliente" class="btnsSubMenu" action="/vendedor/agregarCliente.xhtml">
-                    </h:commandButton><br/>
-
-                    <h:commandButton value="Modificar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteModificar.xhtml">
-                    </h:commandButton><br/>
-
-                    <h:commandButton value="Eliminar Cliente" class="btnsSubMenu" action="/vendedor/buscarClienteEliminar.xhtml">
-                    </h:commandButton><br/>
+                    </h:commandButton><br/>                    
                 </h:form>
             </div>
 
             <div id="bloquePrincipal">
 
                 <h1 class="tituloPag">Registrar Cliente</h1>
-
-                <h:form enctype="multipart/form-data">
-                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+                
+                <p:growl id="growl" showDetail="true" sticky="false"  /> 
+                <h:form enctype="multipart/form-data">                    
 
                     <div id="bloqueLabels1">
                         <h:outputLabel for="nombres" value="Nombres:" class="labels"></h:outputLabel><br/><br/>

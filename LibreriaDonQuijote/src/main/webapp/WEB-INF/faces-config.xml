@@ -18,5 +18,15 @@
         </managed-property>
     </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>empleadoBean</managed-bean-name>
+        <managed-bean-class>com.donquijote.bean.BeanEmpleado</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+        <managed-property>
+            <property-name>empleadoBO</property-name>
+            <value>#{empleadoBO}</value>
+        </managed-property>
+    </managed-bean>
+    
 </faces-config>
 

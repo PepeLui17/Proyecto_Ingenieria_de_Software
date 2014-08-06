@@ -6,7 +6,7 @@
     <class name="com.donquijote.persistence.Users" table="users" schema="public">
         <id name="iduser" type="int">
             <column name="iduser" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="username" type="string">
             <column name="username" length="50" not-null="true" unique="true" />

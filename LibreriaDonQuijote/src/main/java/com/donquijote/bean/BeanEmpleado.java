@@ -161,9 +161,12 @@ public class BeanEmpleado {
     }
 
     public String insert() {
+        empleadoBO.insert(this);
+        
+        String msg = "Empleado ingresado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
                 
         return "";
     }
-
-
 }

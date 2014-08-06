@@ -19,22 +19,23 @@ public class EmpleadoImplDAO extends HibernateDaoSupport implements EmpleadoInte
 
     @Override
     public void insert(Users obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getHibernateTemplate().save(obj);
     }
 
     @Override
     public void delete(Users obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getHibernateTemplate().delete(obj);
     }
 
     @Override
     public void update(Users obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getHibernateTemplate().merge(obj);
     }
 
     @Override
     public List<Users> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //return (List<Users>) getHibernateTemplate().find("us from Users us, Authorities au where us.username=au.username and au.authority='ROL_VENDEDOR' and us.estadoborrado=false");
+        return (List<Users>) getHibernateTemplate().find("from Users us where us.estadoborrado=false");
     }
     
 }

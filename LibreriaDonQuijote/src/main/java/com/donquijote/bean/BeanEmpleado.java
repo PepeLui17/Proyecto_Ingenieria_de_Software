@@ -163,10 +163,25 @@ public class BeanEmpleado {
     public String insert() {
         empleadoBO.insert(this);
         
+        DesInicializar();
+        
         String msg = "Empleado ingresado correctamente";
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
                 
         return "";
     }
+
+    public void DesInicializar() {
+        this.apellidos = "";
+        this.nombres = "";
+        this.cedula = "";
+        this.fechaNacimiento = null;
+        this.rol = "";
+        this.salario = 0;
+        this.sexo = 0;
+        this.username = "";
+        this.password = "";
+    }
+
 }

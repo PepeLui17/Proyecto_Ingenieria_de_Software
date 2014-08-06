@@ -36,8 +36,6 @@ public class BeanLibro {
     private List<BeanLibro> listaLibros;
     private BeanLibro selectedLibro;
 
-    private String codIsbnIngresado;
-
     public BeanLibro() {
         listaLibros = new ArrayList<BeanLibro>();
     }
@@ -171,16 +169,15 @@ public class BeanLibro {
         this.selectedLibro = selectedLibro;
     }
 
-    public String getCodIsbnIngresado() {
-        return codIsbnIngresado;
-    }
-
-    public void setCodIsbnIngresado(String codIsbnIngresado) {
-        this.codIsbnIngresado = codIsbnIngresado;
-    }
-
     public String insert() {
         libroBO.insert(this);
+        
+        DesInicializar();
+        
+        String msg = "Libro ingresado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
         return "";
     }
 
@@ -204,6 +201,20 @@ public class BeanLibro {
         FacesContext.getCurrentInstance().addMessage(null, message);
         
         return "";
+    }
+    
+    public void DesInicializar(){
+        this.nombre="";
+        this.autor="";
+        this.codigoISBN="";
+        this.precioUnitario=0;
+        this.pvp=0;
+        this.categoria="";
+        this.Editorial="";
+        this.edicion=0;
+        this.anio=0;
+        this.stock=0;
+        this.descripcion="";
     }
 
     public List<BeanLibro> getAll() {

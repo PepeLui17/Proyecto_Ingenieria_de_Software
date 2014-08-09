@@ -43,7 +43,7 @@
                 <p:growl id="msgs" showDetail="true" sticky="false"  /> 
                 <div id="bloqueListado">
                     <h:form id="formDataTable">
-                        
+
                         <p:dataTable id="Empleados" var="empleado" value="#{empleadoBean.listaEmpleados}" style="width:135%;" filteredValue="#{empleadoBean.filteredListaEmpleados}"
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
@@ -67,7 +67,13 @@
                                 <h:outputText value="#{empleado.salario}" />
                             </p:column>
 
-                            <p:column style="width:4%">
+                            <p:column style="width:1%">
+                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialogUpdate.show()" icon="ui-icon-search" title="Modificar" >
+                                    <f:setPropertyActionListener value="#{empleado}" target="#{empleadoBean.selectedEmpleado}" />
+                                </p:commandButton>                                
+                            </p:column>
+
+                            <p:column style="width:1%">
                                 <p:commandButton id="btnDelete" action="#{empleadoBean.delete(actionEvent)}" update=":formDataTable, :msgs" icon="icon-delete" title="Eliminar">
                                     <f:setPropertyActionListener value="#{empleado}" target="#{empleadoBean.selectedEmpleado}" />
                                     <p:confirm header="Eliminar Empleado" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
@@ -83,7 +89,39 @@
                         </p:dataTable>
                     </h:form>
 
-                    
+                    <h:form id="formUpdate">
+                        <p:dialog header="Detalles de Empleado" widgetVar="empleadoDialogUpdate" resizable="false" id="dlgEmpleadoUpdate"
+                                  showEffect="fade" hideEffect="explode" modal="true">
+
+                            <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;" >
+
+
+                                <h:outputText value="Nombre:" />
+                                <h:inputText value="#{empleadoBean.selectedEmpleado.nombres}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                <h:outputText value="Apellido:" />
+                                <h:inputText value="#{empleadoBean.selectedEmpleado.apellidos}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                <h:outputText value="Cedula:" />
+                                <h:inputText value="#{empleadoBean.selectedEmpleado.cedula}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                <h:outputText value="Salario:" />
+                                <h:inputText value="#{empleadoBean.selectedEmpleado.salario}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                <f:facet name="footer">
+                                    <br/>
+                                    <p:separator/><br/>
+                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{empleadoBean.update(actionEvent)}" oncomplete="empleadoDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
+                                    <p:commandButton id="btnCancelUpdate" value="Cancelar" oncomplete="empleadoDialogUpdate.hide()" icon="ui-icon-close" update=":formDataTable, :msgs" />
+                                </f:facet>
+
+                            </h:panelGrid>
+
+                        </p:dialog>
+
+                    </h:form>
+
+
                 </div>
 
 

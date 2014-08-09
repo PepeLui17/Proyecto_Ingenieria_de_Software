@@ -198,6 +198,17 @@ public class BeanEmpleado {
         return "";
     }
     
+    public String update(ActionEvent actionEvent) {
+
+        empleadoBO.update(selectedEmpleado);
+
+        String msg = "Empleado modificado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        return "";
+    }
+    
     public void DesInicializar() {
         this.apellidos = "";
         this.nombres = "";

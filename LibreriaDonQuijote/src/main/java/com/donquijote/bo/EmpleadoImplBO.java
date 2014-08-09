@@ -85,7 +85,27 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
 
     @Override
     public void update(BeanEmpleado obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Users empleado = new Users();
+        
+        empleado.setIduser(obj.getIdEmpleado());
+        empleado.setNombre(obj.getNombres());
+        empleado.setApellido(obj.getApellidos());
+        empleado.setCedula(obj.getCedula());
+        empleado.setFechanacimiento(obj.getFechaNacimiento());
+
+        if (obj.getSexo() == 0) {
+            empleado.setSexo(true);
+        } else {
+            empleado.setSexo(false);
+        }
+
+        empleado.setSalario(obj.getSalario());
+        empleado.setUsername(obj.getUsername());
+        empleado.setPassword(obj.getPassword());
+        empleado.setEstadoborrado(false);
+        empleado.setEnabled(true);
+        
+        empleadoDAO.update(empleado);
     }
 
     @Override

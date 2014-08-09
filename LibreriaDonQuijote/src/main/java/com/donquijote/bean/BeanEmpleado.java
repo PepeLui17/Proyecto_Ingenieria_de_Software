@@ -192,8 +192,10 @@ public class BeanEmpleado {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
-        filteredListaEmpleados=empleadoBO.getAll();
+        
         listaEmpleados=empleadoBO.getAll();
+        listaEmpleados.remove(0);
+        filteredListaEmpleados=listaEmpleados;
 
         return "";
     }

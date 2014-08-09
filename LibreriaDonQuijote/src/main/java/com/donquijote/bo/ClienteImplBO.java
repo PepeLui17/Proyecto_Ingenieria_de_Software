@@ -79,5 +79,13 @@ public class ClienteImplBO implements ClienteInterfaceBO{
         }
         return lista;
     }
+
+    public ClienteImplDAO getClienteDAO() {
+        return clienteDAO;
+    }
+
+    public void setClienteDAO(ClienteImplDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
+    }    
     
 }

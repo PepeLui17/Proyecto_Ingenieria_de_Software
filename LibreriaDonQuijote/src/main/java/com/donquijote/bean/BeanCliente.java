@@ -6,7 +6,11 @@
 
 package com.donquijote.bean;
 
+import com.donquijote.bo.ClienteImplBO;
+import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,7 +27,10 @@ public class BeanCliente {
      private String telefono;
      private boolean estadoborrado;
      
+     private ClienteImplBO clienteBO;
      private List<BeanCliente> listaclientes;
+     private BeanCliente selectedCliente;
+     private List<BeanCliente> filteredListaCliente;
 
     public BeanCliente() {
         
@@ -89,4 +96,75 @@ public class BeanCliente {
     public void prueba(){
         System.out.println(this.getNombre());
     }
+
+    public ClienteImplBO getClienteBO() {
+        return clienteBO;
+    }
+
+    public void setClienteBO(ClienteImplBO clienteBO) {
+        this.clienteBO = clienteBO;
+    }
+
+    public List<BeanCliente> getListaclientes() {
+        listaclientes = clienteBO.getAll();
+        return listaclientes;
+    }
+
+    public void setListaclientes(List<BeanCliente> listaclientes) {
+        this.listaclientes=listaclientes;
+    }
+
+    public BeanCliente getSelectedCliente() {
+        return selectedCliente;
+    }
+
+    public void setSelectedCliente(BeanCliente selectedCliente) {
+        this.selectedCliente = selectedCliente;
+    }
+
+    public List<BeanCliente> getFilteredListaCliente() {
+        return filteredListaCliente;
+    }
+
+    public void setFilteredListaCliente(List<BeanCliente> filteredListaCliente) {
+        this.filteredListaCliente = filteredListaCliente;
+    }    
+    
+    public String insert() {
+        clienteBO.insert(this);
+        
+        String msg = "Cliente ingresado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);       
+        
+        return "";
+    }
+    
+    
+    public String delete(ActionEvent actionEvent) {
+        
+        clienteBO.delete(selectedCliente);
+
+        String msg = "Cliente eliminado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        
+        listaclientes=clienteBO.getAll();
+        filteredListaCliente=listaclientes;
+
+        return "";
+    }
+    
+    public String update(ActionEvent actionEvent) {
+
+        clienteBO.update(selectedCliente);
+
+        String msg = "Cliente modificado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        return "";
+    }
+
 }

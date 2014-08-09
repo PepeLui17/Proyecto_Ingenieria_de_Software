@@ -42,32 +42,32 @@
 
                     <div id="bloqueLabels1">
                         <h:outputLabel for="nombres" value="Nombres:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="nombres" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="nombres" value="#{clienteBean.nombre}" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="apellidos" value="Apellidos:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="apellidos" required="true" size="80" class="input" requiredMessage="Se necesita valor" />
+                        <h:inputText id="apellidos" value="#{clienteBean.apellido}" required="true" size="80" class="input" requiredMessage="Se necesita valor" />
                         <br/>
                         <h:outputLabel for="cedula" value="Cédula/RUC:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="cedulaN" required="true" size="80" class="input"  requiredMessage="Se necesita valor"/>
+                        <h:inputText id="cedulaN" value="#{clienteBean.cedulaRuc}" required="true" size="80" class="input"  requiredMessage="Se necesita valor"/>
                         <br/>                        
 
                     </div>
 
                     <div id="bloqueLabels2">
                         <h:outputLabel for="ciudad" value="Ciudad:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="ciudad" required="true" size="60" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="ciudad" value="#{clienteBean.ciudad}" required="true" size="60" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="direccion" value="Direccion:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="direccion" required="true" size="60" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="direccion" value="#{clienteBean.direccion}" required="true" size="60" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="telefono" value="Teléfono:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="telefono" required="true" size="60" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="telefono" value="#{clienteBean.telefono}" required="true" size="60" class="input" requiredMessage="Se necesita valor"/>
 
 
                     </div>
                     <br/>
 
-                    <h:commandButton class="btnAceptar" value="Agregar Cliente" >
+                    <h:commandButton class="btnAceptar" value="Agregar Cliente" action="#{clienteBean.insert()}" >
                     </h:commandButton>
 
                 </h:form>

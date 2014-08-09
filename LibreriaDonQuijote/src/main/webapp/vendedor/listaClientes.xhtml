@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Lista Clientes</title>
         <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
@@ -40,49 +41,92 @@
                 <h1 class="tituloPag">Lista de Clientes</h1>
 
                 <div id="bloqueListado">
+                    <p:growl id="msgs" showDetail="true" sticky="false"  />
                     <h:form id="formDataTable" >
-
-                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
-                        <p:dataTable id="Clientes" var="cliente" style="width:135%;"
+                         
+                        <p:dataTable id="Clientes" var="cliente" value="#{clienteBean.listaclientes}" filteredValue="#{clienteBean.filteredListaCliente}" style="width:135%;"
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
                             <p:column headerText="Nombre" style="width:5%; font-size: 0.8em" 
-                                       filterMatchMode="contains">
-                                
+                                      filterMatchMode="contains" filterBy="#{cliente.nombre}">
+                                <h:outputText value="#{cliente.nombre}" />                                
                             </p:column>
 
                             <p:column headerText="Apellido" style="width:24%; font-size: 0.8em"
-                                      filterMatchMode="contains">
-                             
+                                      filterMatchMode="contains" filterBy="#{cliente.apellido}">
+                                <h:outputText value="#{cliente.apellido}" /> 
                             </p:column>
 
                             <p:column headerText="Cédula" style="width:24%; font-size: 0.8em"
-                                      filterMatchMode="contains">
-                                
+                                      filterMatchMode="contains" filterBy="#{cliente.cedulaRuc}">
+                                <h:outputText value="#{cliente.cedulaRuc}" /> 
                             </p:column>
 
                             <p:column headerText="Teléfono" style="width:24%; font-size: 0.8em">
-                               
+                                <h:outputText value="#{cliente.telefono}" /> 
                             </p:column>
                            
-
                             <p:column style="width:4%">
-                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="libroDialog.show()" icon="ui-icon-search" title="Ver mas detalles del libro" >
-                                    
+                                <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="clienteDialogUpdate.show()" icon="ui-icon-search" title="Modificar" >
+                                    <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.selectedCliente}" />
                                 </p:commandButton>                                
                             </p:column>
-                            
+
                             <p:column style="width:4%">
-                                <p:commandButton id="btnDelete" update=":formDelete" oncomplete="libroDialogDelete.show()" icon="icon-delete" title="Eliminar" >
-                                  
+                                <p:commandButton id="btnDelete" action="#{clienteBean.delete(actionEvent)}" update=":formDataTable, :msgs" icon="icon-delete" title="Eliminar">
+                                    <f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.selectedCliente}" />
+                                    <p:confirm header="Eliminar Cliente" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
                                 </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+
                             </p:column>
 
                         </p:dataTable>
                     </h:form>
-
                     
+                    <h:form id="formUpdate">
+                        <p:dialog header="Detalles del Cliente" widgetVar="clienteDialogUpdate" resizable="false" id="dlgClienteUpdate"
+                                  showEffect="fade" hideEffect="explode" modal="true">
+
+                            <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;" >
+
+
+                                <h:outputText value="Nombre:" />
+                                <h:inputText value="#{clienteBean.selectedCliente.nombre}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                <h:outputText value="Apellido:" />
+                                <h:inputText value="#{clienteBean.selectedCliente.apellido}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                <h:outputText value="Cédula:" />
+                                <h:inputText value="#{clienteBean.selectedCliente.cedulaRuc}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                
+                                <h:outputText value="Ciudad:" />
+                                <h:inputText value="#{clienteBean.selectedCliente.ciudad}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                
+                                <h:outputText value="Dirección:" />
+                                <h:inputText value="#{clienteBean.selectedCliente.direccion}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                
+                                <h:outputText value="Teléfono:" />
+                                <h:inputText value="#{clienteBean.selectedCliente.telefono}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                
+                                <f:facet name="footer">
+                                    <br/>
+                                    <p:separator/><br/>
+                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{clienteBean.update(actionEvent)}" oncomplete="clienteDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
+                                    <p:commandButton id="btnCancelUpdate" value="Cancelar" oncomplete="clienteDialogUpdate.hide()" icon="ui-icon-close" update=":formDataTable, :msgs" />
+                                </f:facet>
+                                
+                            </h:panelGrid>
+
+                        </p:dialog>
+
+                    </h:form>
+
                 </div>
 
 

@@ -35,6 +35,8 @@ public class BeanLibro {
     private LibroImplBO libroBO;
     private List<BeanLibro> listaLibros;
     private BeanLibro selectedLibro;
+    
+    private List<BeanLibro> filteredListaLibros;
 
     public BeanLibro() {
         listaLibros = new ArrayList<BeanLibro>();
@@ -169,6 +171,15 @@ public class BeanLibro {
         this.selectedLibro = selectedLibro;
     }
 
+    public List<BeanLibro> getFilteredListaLibros() {
+        return filteredListaLibros;
+    }
+
+    public void setFilteredListaLibros(List<BeanLibro> filteredListaLibros) {
+        this.filteredListaLibros = filteredListaLibros;
+    }
+
+        
     public String insert() {
         libroBO.insert(this);
         
@@ -188,6 +199,9 @@ public class BeanLibro {
         String msg = "Libro eliminado correctamente";
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        filteredListaLibros=libroBO.getAll();
+        listaLibros=libroBO.getAll();
 
         return "";
     }

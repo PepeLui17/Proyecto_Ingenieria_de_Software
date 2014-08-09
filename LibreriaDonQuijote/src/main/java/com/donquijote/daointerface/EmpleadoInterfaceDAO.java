@@ -6,6 +6,7 @@
 
 package com.donquijote.daointerface;
 
+import com.donquijote.persistence.Authorities;
 import com.donquijote.persistence.Users;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
  * @author José Luis
  */
 public interface EmpleadoInterfaceDAO {
-    void insert(Users obj);
+    void insertEmpleado(Users obj);
+    void insertAuthority(Authorities obj);
     void delete(Users obj);
     void update(Users obj);
     List<Users> getAll();    

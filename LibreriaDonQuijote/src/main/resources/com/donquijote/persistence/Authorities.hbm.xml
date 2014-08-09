@@ -6,7 +6,7 @@
     <class name="com.donquijote.persistence.Authorities" table="authorities" schema="public">
         <id name="idauthority" type="int">
             <column name="idauthority" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="users" class="com.donquijote.persistence.Users" fetch="select">
             <column name="username" not-null="true" />

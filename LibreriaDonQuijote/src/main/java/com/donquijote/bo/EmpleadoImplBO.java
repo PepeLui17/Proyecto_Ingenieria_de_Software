@@ -10,6 +10,7 @@ import com.donquijote.bean.BeanEmpleado;
 import com.donquijote.bointerface.EmpleadoInterfaceBO;
 import com.donquijote.dao.EmpleadoImplDAO;
 import com.donquijote.persistence.Users;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +41,21 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO{
         empleado.setEstadoborrado(false);
         empleado.setEnabled(true);
         
-        empleadoDAO.insert(empleado);
+        empleadoDAO.insertEmpleado(empleado);
+            
+//        Authorities authority=new Authorities();
+//        
+//                
+//        //Insertando datos a authority
+//        authority.setAuthority("ROL_VENDEDOR");
+//        authority.setUsers(empleado);
+//        authority.setEstadoborrado(false);
+//        
+//        if(empleadoDAO.insertEmpleado(empleado))
+//            empleadoDAO.insertAuthority(authority);
+//        
+////        empleadoDAO.insert(empleado);
+////        empleadoDAO.insertAuthority(authority);
     }
 
     @Override
@@ -55,7 +70,30 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO{
 
     @Override
     public List<BeanEmpleado> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<BeanEmpleado> lista = new ArrayList();
+        for (Users obj : empleadoDAO.getAll()) {
+            BeanEmpleado bean= new BeanEmpleado();
+            
+            bean.setIdEmpleado(obj.getIduser());
+            bean.setNombres(obj.getNombre());
+            bean.setApellidos(obj.getApellido());
+            bean.setCedula(obj.getCedula());
+            bean.setFechaNacimiento(obj.getFechanacimiento());
+            
+            if(obj.isSexo())
+                bean.setSexo(0);
+            else
+                bean.setSexo(1);
+            
+            bean.setSalario(obj.getSalario());            
+            bean.setUsername(obj.getUsername());
+            bean.setPassword(obj.getPassword());
+            bean.setEnabled(obj.isEnabled());            
+            bean.setEstadoBorrado(obj.isEstadoborrado());
+
+            lista.add(bean);
+        }
+        return lista;
     }
 
     public EmpleadoImplDAO getEmpleadoDAO() {

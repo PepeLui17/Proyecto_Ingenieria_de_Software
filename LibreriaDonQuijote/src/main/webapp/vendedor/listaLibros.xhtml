@@ -43,12 +43,12 @@
                     <h:form id="formDataTable" >
 
                         
-                        <p:dataTable id="Libros" var="libro" value="#{libroBean.listaLibros}" style="width:135%;"
+                        <p:dataTable id="Libros" var="libro" value="#{libroBean.listaLibros}" style="width:135%;" filteredValue="#{libroBean.filteredListaLibros}"
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
                             <p:column headerText="Nombre" style="width:5%; font-size: 0.8em" 
-                                      filterBy="#{libro.nombre}" filterMatchMode="contains">
+                                      filterBy="#{libro.nombre}" filterMatchMode="contains" >
                                 <h:outputText value="#{libro.nombre}" />
                             </p:column>
 

@@ -7,6 +7,7 @@
 package com.donquijote.dao;
 
 import com.donquijote.daointerface.EmpleadoInterfaceDAO;
+import com.donquijote.persistence.Authorities;
 import com.donquijote.persistence.Users;
 import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -18,7 +19,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class EmpleadoImplDAO extends HibernateDaoSupport implements EmpleadoInterfaceDAO{
 
     @Override
-    public void insert(Users obj) {
+    public void insertEmpleado(Users obj) {
         getHibernateTemplate().save(obj);
     }
 
@@ -37,5 +38,12 @@ public class EmpleadoImplDAO extends HibernateDaoSupport implements EmpleadoInte
         //return (List<Users>) getHibernateTemplate().find("us from Users us, Authorities au where us.username=au.username and au.authority='ROL_VENDEDOR' and us.estadoborrado=false");
         return (List<Users>) getHibernateTemplate().find("from Users us where us.estadoborrado=false");
     }
+
+    @Override
+    public void insertAuthority(Authorities obj) {
+        getHibernateTemplate().save(obj);
+    }
+
+    
     
 }

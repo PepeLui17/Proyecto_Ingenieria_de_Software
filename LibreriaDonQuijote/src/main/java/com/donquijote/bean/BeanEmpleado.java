@@ -35,6 +35,8 @@ public class BeanEmpleado {
     private List<BeanEmpleado> listaEmpleados;
     private BeanEmpleado selectedEmpleado;
 
+    private List<BeanEmpleado> filteredListaEmpleados;
+    
     public BeanEmpleado() {
         listaEmpleados = new ArrayList<BeanEmpleado>();
     }
@@ -153,6 +155,7 @@ public class BeanEmpleado {
 
     public List<BeanEmpleado> getListaEmpleados() {
         listaEmpleados = empleadoBO.getAll();
+        listaEmpleados.remove(0);
         return listaEmpleados;
     }
 
@@ -160,6 +163,14 @@ public class BeanEmpleado {
         this.listaEmpleados = listaEmpleados;
     }
 
+    public List<BeanEmpleado> getFilteredListaEmpleados() {
+        return filteredListaEmpleados;
+    }
+
+    public void setFilteredListaEmpleados(List<BeanEmpleado> filteredListaEmpleados) {
+        this.filteredListaEmpleados = filteredListaEmpleados;
+    }    
+    
     public String insert() {
         empleadoBO.insert(this);
         
@@ -169,6 +180,9 @@ public class BeanEmpleado {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
                 
+        filteredListaEmpleados=empleadoBO.getAll();
+        listaEmpleados=empleadoBO.getAll();
+        
         return "";
     }
 

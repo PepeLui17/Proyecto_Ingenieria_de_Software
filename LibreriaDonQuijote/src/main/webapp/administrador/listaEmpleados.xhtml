@@ -40,37 +40,34 @@
 
                 <h1 class="tituloPag">Lista de Empleados</h1>
 
+                <p:growl id="msgs" showDetail="true" sticky="false"  /> 
                 <div id="bloqueListado">
                     <h:form id="formDataTable">
-
-                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
-                        <p:dataTable id="Empleados" var="empleado"  style="width:135%;"
+                        
+                        <p:dataTable id="Empleados" var="empleado" value="#{empleadoBean.listaEmpleados}" style="width:135%;" filteredValue="#{empleadoBean.filteredListaEmpleados}"
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                            <p:column  headerText="Id" style="width:5%; font-size: 0.8em" >
-                               
+                            <p:column headerText="Nombre" style="width:5%; font-size: 0.8em" 
+                                      filterBy="#{empleado.nombres}" filterMatchMode="contains">
+                                <h:outputText value="#{empleado.nombres}" />
                             </p:column>
 
-                            <p:column headerText="Nombre" style="width:24%; font-size: 0.8em"
-                                       filterMatchMode="contains">
-                                
+                            <p:column headerText="Apellido" style="width:5%; font-size: 0.8em" 
+                                      filterBy="#{empleado.apellidos}" filterMatchMode="contains">
+                                <h:outputText value="#{empleado.apellidos}" />
                             </p:column>
 
-                            <p:column  headerText="Apellido" style="width:24%; font-size: 0.8em"
-                                      filterMatchMode="contains">
-                               
+                            <p:column headerText="Cedula" style="width:5%; font-size: 0.8em" 
+                                      filterBy="#{empleado.cedula}" filterMatchMode="contains">
+                                <h:outputText value="#{empleado.cedula}" />
                             </p:column>
 
-                            <p:column headerText="Cedula" style="width:24%; font-size: 0.8em"
-                                      filterMatchMode="contains">
-                               
+                            <p:column headerText="Salario" style="width:5%; font-size: 0.8em">
+                                <h:outputText value="#{empleado.salario}" />
                             </p:column>
-
-                            <p:column headerText="Rol" style="width:24%; font-size: 0.8em">
-                                
-                            </p:column>
-
+                            
+                            <!--
                             <p:column style="width:4%">
                                 <p:commandButton   id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialog.show()" icon="ui-icon-search" title="Ver mas detalles del empleado" >
                                     
@@ -82,6 +79,7 @@
                                     
                                 </p:commandButton>
                             </p:column>
+                            -->
 
                         </p:dataTable>
                     </h:form>

@@ -6,6 +6,7 @@
 package com.donquijote.bean;
 
 import com.donquijote.bo.EmpleadoImplBO;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -178,14 +179,25 @@ public class BeanEmpleado {
         
         String msg = "Empleado ingresado correctamente";
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-                
-        filteredListaEmpleados=empleadoBO.getAll();
-        listaEmpleados=empleadoBO.getAll();
+        FacesContext.getCurrentInstance().addMessage(null, message);       
         
         return "";
     }
 
+    public String delete(ActionEvent actionEvent) {
+        
+        empleadoBO.delete(selectedEmpleado);
+
+        String msg = "Empleado eliminado correctamente";
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        filteredListaEmpleados=empleadoBO.getAll();
+        listaEmpleados=empleadoBO.getAll();
+
+        return "";
+    }
+    
     public void DesInicializar() {
         this.apellidos = "";
         this.nombres = "";

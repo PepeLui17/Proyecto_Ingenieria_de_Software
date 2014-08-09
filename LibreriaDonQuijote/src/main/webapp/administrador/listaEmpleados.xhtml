@@ -66,20 +66,19 @@
                             <p:column headerText="Salario" style="width:5%; font-size: 0.8em">
                                 <h:outputText value="#{empleado.salario}" />
                             </p:column>
-                            
-                            <!--
+
                             <p:column style="width:4%">
-                                <p:commandButton   id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialog.show()" icon="ui-icon-search" title="Ver mas detalles del empleado" >
-                                    
+                                <p:commandButton id="btnDelete" action="#{empleadoBean.delete(actionEvent)}" update=":formDataTable, :msgs" icon="icon-delete" title="Eliminar">
+                                    <f:setPropertyActionListener value="#{empleado}" target="#{empleadoBean.selectedEmpleado}" />
+                                    <p:confirm header="Eliminar Empleado" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
                                 </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+
                             </p:column>
-                            
-                            <p:column style="width:4%">
-                                <p:commandButton id="btnDelete" update=":formDelete" oncomplete="empleadoDialogDelete.show()" icon="icon-delete" title="Eliminar" >
-                                    
-                                </p:commandButton>
-                            </p:column>
-                            -->
 
                         </p:dataTable>
                     </h:form>

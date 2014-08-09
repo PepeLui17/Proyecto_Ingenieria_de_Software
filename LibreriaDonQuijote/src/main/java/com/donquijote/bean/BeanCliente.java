@@ -85,4 +85,8 @@ public class BeanCliente {
     public void setEstadoborrado(boolean estadoborrado) {
         this.estadoborrado = estadoborrado;
     }
+    
+    public void prueba(){
+        System.out.println(this.getNombre());
+    }
 }

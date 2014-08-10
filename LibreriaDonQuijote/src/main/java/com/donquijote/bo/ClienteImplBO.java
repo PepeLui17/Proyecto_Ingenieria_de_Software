@@ -37,7 +37,7 @@ public class ClienteImplBO implements ClienteInterfaceBO{
         cliente.setIdcliente(obj.getIdcliente());
         cliente.setNombre(obj.getNombre());
         cliente.setApellido(obj.getApellido());
-        cliente.setCedulaRuc(obj.getCedulaRuc());
+        cliente.setCedulaRuc(obj.getIdcliente()+"");
         cliente.setCiudad(obj.getCiudad());
         cliente.setDireccion(obj.getDireccion());
         cliente.setTelefono(obj.getTelefono());

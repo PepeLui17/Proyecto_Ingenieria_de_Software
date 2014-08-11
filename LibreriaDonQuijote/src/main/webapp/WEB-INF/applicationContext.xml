@@ -36,7 +36,7 @@
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/Quijote"/>
         <property name="username" value="postgres"/>
-        <property name="password" value="microsoft"/>
+        <property name="password" value="estudiante"/>
     </bean>
     
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -76,6 +76,10 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     
+    <bean id="buscarClienteDAO" class="com.donquijote.dao.BuscarClienteImplDAO">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
     <!-- BOS Business Objects-->
     <bean id="libroBO" class="com.donquijote.bo.LibroImplBO">
         <property name="libroDAO" ref="libroDAO"></property>
@@ -87,6 +91,10 @@
     
     <bean id="empleadoBO" class="com.donquijote.bo.EmpleadoImplBO">
         <property name="empleadoDAO" ref="empleadoDAO"></property>
+    </bean>
+    
+    <bean id="buscarClienteBO" class="com.donquijote.bo.BuscarClienteBO">
+        <property name="buscarClienteDAO" ref="buscarClienteDAO"></property>
     </bean>
        
 </beans>

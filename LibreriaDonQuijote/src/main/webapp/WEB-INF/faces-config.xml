@@ -38,5 +38,15 @@
         </managed-property>
     </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>buscarClienteBean</managed-bean-name>
+        <managed-bean-class>com.donquijote.bean.BeanBuscarCliente</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>buscarClienteBO</property-name>
+            <value>#{buscarClienteBO}</value>
+        </managed-property>
+    </managed-bean>
+    
 </faces-config>
 

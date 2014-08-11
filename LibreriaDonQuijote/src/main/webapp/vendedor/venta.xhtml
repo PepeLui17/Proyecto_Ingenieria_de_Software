@@ -35,7 +35,7 @@
                         <div id="bloqueLabels1">
                             <div>
                                 <h:outputLabel for="label1" value="Cliente: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="nombre" value="Juan Piguave" class="labels"></h:outputLabel>
+                                <h:outputLabel for="nombre" value="#{buscarClienteBean.beanCliente.nombre} #{buscarClienteBean.beanCliente.apellido}" class="labels"></h:outputLabel>
                             </div><br></br>
                             <div>
                                 <h:outputLabel for="label2" value="Emisión: " class="labels"></h:outputLabel>
@@ -43,18 +43,18 @@
                             </div><br></br>
                             <div>
                                 <h:outputLabel for="label3" value="Dirección: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="direccion" value="Los Ríos y 9 de Octubre" class="labels"></h:outputLabel>
+                                <h:outputLabel for="direccion" value="#{buscarClienteBean.beanCliente.direccion}" class="labels"></h:outputLabel>
                             </div>
 
                         </div>
                         <div id="bloqueLabels2">
                             <div>
                                 <h:outputLabel for="label4" value="CEDULA/RUC: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="identificacion" value="0000000000001" class="labels"></h:outputLabel>
+                                <h:outputLabel for="identificacion" value="#{buscarClienteBean.beanCliente.cedulaRuc}" class="labels"></h:outputLabel>
                             </div><br></br>
                             <div>
                                 <h:outputLabel for="label5" value="Teléfono: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="telefono" value="04-2345678" class="labels"></h:outputLabel>
+                                <h:outputLabel for="telefono" value="#{buscarClienteBean.beanCliente.telefono}" class="labels"></h:outputLabel>
                             </div>
                         </div>
                         <br/>

@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Nueva Venta</title>
-         <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
         <link rel="Stylesheet" href="../resources/css/estiloAgregar.css"/>
         <script type="text/jscript" src="../script/scriptEnlaces.js"></script>
     </h:head>
@@ -26,29 +26,29 @@
             <div id="bloqueNuevaVenta">
                 <div id="bloqueCentrado">
 
-                <h1 class="tituloPag">Realizar Nueva Venta</h1>
+                    <h1 class="tituloPag">Realizar Nueva Venta</h1>
 
-                <h:form enctype="multipart/form-data">
-                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
+                    <p:growl id="growl" showDetail="true" sticky="false"  />
+                    <h:form enctype="multipart/form-data">                        
 
-                    <div id="bloqueIngresarCedula">
-                        <h:outputLabel for="identificacion" value="Ingrese CEDULA/RUC del cliente" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="identificacion" required="true" size="80"  class="input" requiredMessage="Este campo es necesario"/>
-                        <br/> 
-                        <h:outputLabel for="nameFound" value="" class="labels"></h:outputLabel><br/><br/>
-                        <br/> 
-                    </div>
-                    <br/>
-                    <h:commandButton class="btnAceptar" value="Aceptar" action="venta.xhtml">
-                    </h:commandButton>
-                </h:form>
-            </div>
+                        <div id="bloqueIngresarCedula">
+                            <h:outputLabel for="identificacion" value="Ingrese CEDULA/RUC del cliente" class="labels"></h:outputLabel><br/><br/>
+                            <h:inputText id="identificacion" value="#{buscarClienteBean.cedulaIngresada}" required="true" size="80"  class="input" requiredMessage="Este campo es necesario"/>
+                            <br/> 
+                            <h:outputLabel for="nameFound" value="" class="labels"></h:outputLabel><br/><br/>
+                            <br/> 
+                        </div>
+                        <br/>
+                        <h:commandButton class="btnAceptar" value="Aceptar" action="#{buscarClienteBean.verificarCliente()}">
+                        </h:commandButton>
+                    </h:form>
+                </div>
             </div>
 
         </section>
 
         <footer style='text-align: center'>Todos los derechos reservados</footer>
-        
+
     </h:body>
 </html>
 

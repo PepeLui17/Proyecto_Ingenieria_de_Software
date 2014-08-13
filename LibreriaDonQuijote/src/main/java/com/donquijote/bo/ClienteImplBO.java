@@ -18,7 +18,7 @@ public class ClienteImplBO implements ClienteInterfaceBO{
     private ClienteImplDAO clienteDAO;
     
     @Override
-    public void insert(BeanCliente obj) {
+    public boolean insert(BeanCliente obj) {
         Cliente cliente=new Cliente();
         cliente.setNombre(obj.getNombre());
         cliente.setApellido(obj.getApellido());
@@ -28,7 +28,7 @@ public class ClienteImplBO implements ClienteInterfaceBO{
         cliente.setTelefono(obj.getTelefono());
         cliente.setEstadoborrado(false);
         
-        clienteDAO.insert(cliente);
+        return clienteDAO.insert(cliente);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ClienteImplBO implements ClienteInterfaceBO{
         cliente.setIdcliente(obj.getIdcliente());
         cliente.setNombre(obj.getNombre());
         cliente.setApellido(obj.getApellido());
-        cliente.setCedulaRuc(obj.getIdcliente()+"");
+        cliente.setCedulaRuc(obj.getCedulaRuc());
         cliente.setCiudad(obj.getCiudad());
         cliente.setDireccion(obj.getDireccion());
         cliente.setTelefono(obj.getTelefono());

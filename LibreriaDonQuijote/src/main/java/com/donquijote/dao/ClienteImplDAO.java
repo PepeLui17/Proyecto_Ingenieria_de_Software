@@ -9,6 +9,7 @@ package com.donquijote.dao;
 import com.donquijote.daointerface.ClienteInterfaceDAO;
 import com.donquijote.persistence.Cliente;
 import java.util.List;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -18,8 +19,14 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class ClienteImplDAO extends HibernateDaoSupport implements ClienteInterfaceDAO{
 
     @Override
-    public void insert(Cliente obj) {
-        getHibernateTemplate().save(obj);
+    public boolean insert(Cliente obj) {
+        try{
+            getHibernateTemplate().save(obj);
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override

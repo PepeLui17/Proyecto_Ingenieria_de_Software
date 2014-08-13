@@ -139,14 +139,20 @@ public class BeanCliente {
     
     public String insert() {
         if(this.esCedulaValida()&&this.formatearTelefono()){
-            clienteBO.insert(this);
-            this.DesInicializar();
-            String msg = "Cliente ingresado correctamente";
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            if(clienteBO.insert(this)){                
+                this.DesInicializar();
+                String msg = "Cliente ingresado correctamente";
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }else{
+                this.regresarFormato();
+                String msg = "Datos incorrectos, el Cliente no se ha ingresado";
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }            
         }else{
            if(!this.esCedulaValida()){
-               String msg = "La cedula ingresada es inválida o ya existe ingresada";
+               String msg = "La cedula ingresada es inválida";
                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
                FacesContext.getCurrentInstance().addMessage(null, message);
            }
@@ -195,6 +201,14 @@ public class BeanCliente {
         this.ciudad="";
         this.direccion="";
         this.telefono="";       
+    }
+    
+    public void regresarFormato(){
+        String pr1,pr2;       
+        
+        pr1=this.getTelefono().substring(0,2);
+        pr2=this.getTelefono().substring(3,this.getTelefono().length());
+        this.setTelefono(pr1+pr2);
     }
     
     public boolean formatearTelefono(){

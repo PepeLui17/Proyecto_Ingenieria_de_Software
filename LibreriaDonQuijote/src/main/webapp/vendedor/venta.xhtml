@@ -32,7 +32,7 @@
                     <h:form enctype="multipart/form-data">
                         <p:growl id="growl" showDetail="true" sticky="false"  /> 
 
-                        <div id="bloqueLabels1">
+                        <div id="bloqueLabelventa1">
                             <div>
                                 <h:outputLabel for="label1" value="Cliente: " class="labels"></h:outputLabel>
                                 <h:outputLabel for="nombre" value="#{buscarClienteBean.beanCliente.nombre} #{buscarClienteBean.beanCliente.apellido}" class="labels"></h:outputLabel>
@@ -47,7 +47,7 @@
                             </div>
 
                         </div>
-                        <div id="bloqueLabels2">
+                        <div id="bloqueLabelventa2">
                             <div>
                                 <h:outputLabel for="label4" value="CEDULA/RUC: " class="labels"></h:outputLabel>
                                 <h:outputLabel for="identificacion" value="#{buscarClienteBean.beanCliente.cedulaRuc}" class="labels"></h:outputLabel>
@@ -59,12 +59,14 @@
                         </div>
                         <br/>
                         <br/>
-                        <h:outputLabel for="idProd" value=" Ingresar Producto: " class="labels"></h:outputLabel>
-                        <h:inputText id="idProduct" style="width: 40%;" size="40"  class="input"/>
-                        <h:outputLabel for="cantidad" value="  Cantidad: " class="labels"></h:outputLabel>
-                        <h:inputText id="cantidad" style="width: 5%;" size="5"  class="input"/>
-                                       
-                        <button type="submit"  class="btnAdd">Añadir</button>
+                        <div style="margin-left: 3%;">
+                            <h:outputLabel for="idProd" value=" Ingresar Producto: " class="labels"></h:outputLabel>
+                            <h:inputText id="idProduct" style="width: 40%;" size="40"  class="input"/>
+                            <h:outputLabel for="cantidad" value="  Cantidad: " style="margin-left: 5%;" class="labels"></h:outputLabel>
+                            <h:inputText id="cantidad" style="width: 5%;" size="5"  class="input"/>
+
+                            <button type="submit" style="margin-left: 7%;" class="btnAdd">Añadir</button>
+                        </div>
                         <div id="bloqueListado">
                             <h:form id="formDataTable" >
 

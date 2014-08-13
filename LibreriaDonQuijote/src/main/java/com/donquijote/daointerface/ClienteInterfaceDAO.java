@@ -14,7 +14,7 @@ import java.util.List;
  * @author Marlon Calderon
  */
 public interface ClienteInterfaceDAO {
-    void insert(Cliente obj);
+    boolean insert(Cliente obj);
     void delete(Cliente obj);
     void update(Cliente obj);
     List<Cliente> getAll();

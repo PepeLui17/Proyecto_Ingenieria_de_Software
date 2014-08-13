@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import com.donquijote.bean.BeanCliente;
+import com.donquijote.bo.ClienteImplBO;
 /**
  *
  * @author Marlon Calderon
@@ -67,6 +68,5 @@ public class ClienteTest {
          //System.out.println("P2 "+cb.getTelefono()+cb.getTelefono().length());
          assertEquals(true, cb.formatearTelefono());
          System.out.println(cb.getTelefono());
-     }
-     
+     }     
 }

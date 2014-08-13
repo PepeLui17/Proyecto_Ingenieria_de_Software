@@ -14,7 +14,7 @@ import java.util.List;
  * @author Marlon Calderon
  */
 public interface ClienteInterfaceBO {
-    public void insert(BeanCliente obj);
+    public boolean insert(BeanCliente obj);
     public void delete(BeanCliente obj);
     public void update(BeanCliente obj);
     List<BeanCliente> getAll();

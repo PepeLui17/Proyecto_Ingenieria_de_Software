@@ -26,6 +26,21 @@
     border-radius: 0.4em;
 }
 
+#bloqueLabelventa1{
+    margin-left: 9em;
+    margin-right: 9em;
+    display: inline-block;
+    vertical-align: top;    
+    max-width: 400px;
+}
+
+#bloqueLabelventa2{
+    margin-left: 9em;
+    display: inline-block;
+    vertical-align: top;    
+    min-width: 400px;
+}
+
 #bloqueLabels1{
     margin-left: 9em;
     display: inline-block;

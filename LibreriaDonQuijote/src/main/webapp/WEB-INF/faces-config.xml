@@ -53,6 +53,12 @@
     </managed-bean>
     
     <managed-bean>
+        <managed-bean-name>detalleFacturaBean</managed-bean-name>
+        <managed-bean-class>com.donquijote.bean.BeanDetalleFactura</managed-bean-class>    
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
         <managed-bean-name>libroConverter</managed-bean-name>
         <managed-bean-class>com.donquijote.converter.LibroConverter</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>

@@ -27,12 +27,10 @@
             <div id="bloqueNuevaVenta">
                 <div id="bloqueCentrado">
 
-                    <h1 class="tituloPag">Nueva Factura Librería Don Quijote</h1>
+                    <h1 class="tituloPag">Nueva Factura Librería Don Quijote</h1>                    
 
-                    <h:form enctype="multipart/form-data">
-                        <!--
-                        <p:growl id="growl" showDetail="true" sticky="false"  /> 
-                        -->
+                    <p:growl id="msgs" showDetail="true" sticky="false"  /> 
+                    <h:form id="datosCliente" enctype="multipart/form-data">
                         <div id="bloqueLabelventa1">
                             <div>
                                 <h:outputLabel for="label1" value="Cliente: " class="labels"></h:outputLabel>
@@ -70,35 +68,35 @@
                                                         <h:inputText id="idProduct" style="width: 40%;" size="40"  class="input"/>
                             -->                            
                             <h:outputLabel for="cantidad" value="  Cantidad: " style="margin-left: 5%;" class="labels"></h:outputLabel>
-                            <h:inputText id="cantidad" style="width: 5%;" size="5"  class="input"/>
+                            <h:inputText id="cantidad" value="#{facturaBean.cantidadProductos}" style="width: 5%;" size="5"  class="input"/>
 
-                            <button type="submit" style="margin-left: 7%;" class="btnAdd">Añadir</button>
+                            <p:commandButton id="btnAddDetail" class="btnAdd" value="Añadir" action="#{facturaBean.aniadirDetalleFactura}" update=":datosCliente" />
+                            <!--
+                            <button action="{facturaBean.aniadirDetalleFactura()}"  style="margin-left: 7%;" class="btnAdd">Añadir</button>
+                            --> 
                         </div>
                         <div id="bloqueListado">
                             <h:form id="formDataTable" >
 
-                                <p:growl id="msgs" showDetail="true" sticky="false"  /> 
-                                <p:dataTable id="items" var="libro" style="width:135%;"
+
+                                <p:dataTable id="items" var="detalleFactura" value="#{facturaBean.listaDetallesFactura}" style="width:135%;"
                                              paginator="true" rows="10" paginatorPosition="bottom"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                                    <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em" 
-                                              filterMatchMode="contains">
-
+                                    <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.cantidadProductos}" />
                                     </p:column>
 
-                                    <p:column headerText="Producto" style="width:24%; font-size: 0.8em"
-                                              filterMatchMode="contains">
-
+                                    <p:column headerText="Producto" style="width:24%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.libro.nombre}" />
                                     </p:column>
 
-                                    <p:column headerText="P. Unitario" style="width:24%; font-size: 0.8em"
-                                              filterMatchMode="contains">
-
+                                    <p:column headerText="P. Unitario" style="width:24%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.libro.precioUnitario}" />
                                     </p:column>
 
                                     <p:column headerText="Valor Total" style="width:24%; font-size: 0.8em">
-
+                                        <h:outputText value="#{detalleFactura.libro.precioUnitario*detalleFactura.cantidadProductos}" />
                                     </p:column> 
 
                                 </p:dataTable>
@@ -117,7 +115,7 @@
                                 <h:outputLabel for="labRVT" value="0.00" class="labels"></h:outputLabel><br/>
                             </div>
                         </div>
-                        <button type="submit"  class="btnAceptar">Guardar</button>                    
+                        <button  class="btnAceptar">Guardar</button>                    
                     </h:form>
                 </div>
             </div>

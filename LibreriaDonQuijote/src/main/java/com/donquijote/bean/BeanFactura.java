@@ -28,12 +28,14 @@ public class BeanFactura {
     private BeanLibro selectedLibro;
     
     ///////
-    //private List<BeanDetalleFactura> listaDetallesFactura;
+    private List<BeanDetalleFactura> listaDetallesFactura;
     //private BeanEmpleado userLogged;
-    //private int cantidadProductos;
+    private int cantidadProductos;
     //////    
     
     public BeanFactura() {
+        listLibros= new ArrayList<BeanLibro>();
+        listaDetallesFactura = new ArrayList<BeanDetalleFactura>();
     }
 
     public String getCedulaIngresada() {
@@ -83,8 +85,23 @@ public class BeanFactura {
     public void setSelectedLibro(BeanLibro selectedLibro) {
         this.selectedLibro = selectedLibro;
     }
-    
-    
+
+    public int getCantidadProductos() {
+        return cantidadProductos;
+    }
+
+    public void setCantidadProductos(int cantidadProductos) {
+        this.cantidadProductos = cantidadProductos;
+    }
+
+    public List<BeanDetalleFactura> getListaDetallesFactura() {
+        return listaDetallesFactura;
+    }
+
+    public void setListaDetallesFactura(List<BeanDetalleFactura> listaDetallesFactura) {
+        this.listaDetallesFactura = listaDetallesFactura;
+    }    
+        
     public String verificarCliente() {
 
         try {
@@ -101,6 +118,21 @@ public class BeanFactura {
             return "";
         }
 
+        return "";
+    }
+    
+    public String aniadirDetalleFactura(){
+        BeanDetalleFactura beanDetalle = new BeanDetalleFactura();
+        beanDetalle.setCantidadProductos(cantidadProductos);
+        beanDetalle.setLibro(selectedLibro);
+        beanDetalle.setEstadoBorrado(false);
+        
+        listaDetallesFactura.add(beanDetalle);
+        
+        
+        selectedLibro=null;
+        cantidadProductos=0;
+        
         return "";
     }
 

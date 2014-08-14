@@ -30,79 +30,76 @@
                     <h1 class="tituloPag">Nueva Factura Librería Don Quijote</h1>                    
 
                     <p:growl id="msgs" showDetail="true" sticky="false"  /> 
-                    <h:form id="datosCliente" enctype="multipart/form-data">
-                        <div id="bloqueLabelventa1">
-                            <div>
-                                <h:outputLabel for="label1" value="Cliente: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="nombre" value="#{facturaBean.beanCliente.nombre} #{facturaBean.beanCliente.apellido}" class="labels"></h:outputLabel>
-                            </div><br></br>
-                            <div>
-                                <h:outputLabel for="label2" value="Emisión: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="fecha" value="#{session.lastAccessedTime}" class="labels"><f:convertDateTime pattern="dd/MM/yyyy" type="date" /></h:outputLabel>
-                            </div><br></br>
-                            <div>
-                                <h:outputLabel for="label3" value="Dirección: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="direccion" value="#{facturaBean.beanCliente.direccion}" class="labels"></h:outputLabel>
-                            </div>
 
+                    <div id="bloqueLabelventa1">
+                        <div>
+                            <h:outputLabel for="label1" value="Cliente: " class="labels"></h:outputLabel>
+                            <h:outputLabel for="nombre" value="#{facturaBean.beanCliente.nombre} #{facturaBean.beanCliente.apellido}" class="labels"></h:outputLabel>
+                        </div><br></br>
+                        <div>
+                            <h:outputLabel for="label2" value="Emisión: " class="labels"></h:outputLabel>
+                            <h:outputLabel for="fecha" value="#{session.lastAccessedTime}" class="labels"><f:convertDateTime pattern="dd/MM/yyyy" type="date" /></h:outputLabel>
+                        </div><br></br>
+                        <div>
+                            <h:outputLabel for="label3" value="Dirección: " class="labels"></h:outputLabel>
+                            <h:outputLabel for="direccion" value="#{facturaBean.beanCliente.direccion}" class="labels"></h:outputLabel>
                         </div>
-                        <div id="bloqueLabelventa2">
-                            <div>
-                                <h:outputLabel for="label4" value="CEDULA/RUC: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="identificacion" value="#{facturaBean.beanCliente.cedulaRuc}" class="labels"></h:outputLabel>
-                            </div><br></br>
-                            <div>
-                                <h:outputLabel for="label5" value="Teléfono: " class="labels"></h:outputLabel>
-                                <h:outputLabel for="telefono" value="#{facturaBean.beanCliente.telefono}" class="labels"></h:outputLabel>
-                            </div>
+
+                    </div>
+                    <div id="bloqueLabelventa2">
+                        <div>
+                            <h:outputLabel for="label4" value="CEDULA/RUC: " class="labels"></h:outputLabel>
+                            <h:outputLabel for="identificacion" value="#{facturaBean.beanCliente.cedulaRuc}" class="labels"></h:outputLabel>
+                        </div><br></br>
+                        <div>
+                            <h:outputLabel for="label5" value="Teléfono: " class="labels"></h:outputLabel>
+                            <h:outputLabel for="telefono" value="#{facturaBean.beanCliente.telefono}" class="labels"></h:outputLabel>
                         </div>
-                        <br/>
-                        <br/>
-                        <div style="margin-left: 3%;">
+                    </div>
+                    <br/>
+                    <br/>
+                    <div id="bloqueIngresoProducto" style="margin-left: 3%;">
+                        <h:form id="datosProducto" enctype="multipart/form-data">
                             <h:outputLabel  value=" Ingresar Producto: " class="labels"></h:outputLabel>
 
-                            <p:autoComplete value="#{facturaBean.selectedLibro}" completeMethod="#{facturaBean.completeLibro}"
+                            <p:autoComplete value="#{facturaBean.selectedLibro}" completeMethod="#{facturaBean.completeLibro}" size="40"
                                             var="lib" itemLabel="#{lib.nombre}" itemValue="#{lib}" converter="#{libroConverter}">
                             </p:autoComplete>
-                            <!--
-                                                        <h:inputText id="idProduct" style="width: 40%;" size="40"  class="input"/>
-                            -->                            
+
                             <h:outputLabel for="cantidad" value="  Cantidad: " style="margin-left: 5%;" class="labels"></h:outputLabel>
                             <h:inputText id="cantidad" value="#{facturaBean.cantidadProductos}" style="width: 5%;" size="5"  class="input"/>
 
-                            <p:commandButton id="btnAddDetail" class="btnAdd" value="Añadir" action="#{facturaBean.aniadirDetalleFactura}" update=":datosCliente" />
-                            <!--
-                            <button action="{facturaBean.aniadirDetalleFactura()}"  style="margin-left: 7%;" class="btnAdd">Añadir</button>
-                            --> 
-                        </div>
-                        <div id="bloqueListado">
-                            <h:form id="formDataTable" >
+                            <p:commandButton id="btnAddDetail" class="btnAdd" value="Añadir" action="#{facturaBean.aniadirDetalleFactura}" update=":formDataTable, :datosProducto, :totalFactura, :msgs" />
+                        </h:form>
+                    </div>
+                    <div id="bloqueListado">
+                        <h:form id="formDataTable" >
 
+                            <p:dataTable id="items" var="detalleFactura" value="#{facturaBean.listaDetallesFactura}" style="width:135%;"
+                                         paginator="true" rows="10" paginatorPosition="bottom"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                                <p:dataTable id="items" var="detalleFactura" value="#{facturaBean.listaDetallesFactura}" style="width:135%;"
-                                             paginator="true" rows="10" paginatorPosition="bottom"
-                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                                <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
+                                    <h:outputText value="#{detalleFactura.cantidadProductos}" />
+                                </p:column>
 
-                                    <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
-                                        <h:outputText value="#{detalleFactura.cantidadProductos}" />
-                                    </p:column>
+                                <p:column headerText="Producto" style="width:24%; font-size: 0.8em">
+                                    <h:outputText value="#{detalleFactura.libro.nombre}" />
+                                </p:column>
 
-                                    <p:column headerText="Producto" style="width:24%; font-size: 0.8em">
-                                        <h:outputText value="#{detalleFactura.libro.nombre}" />
-                                    </p:column>
+                                <p:column headerText="P. Unitario" style="width:24%; font-size: 0.8em">
+                                    <h:outputText value="#{detalleFactura.libro.pvp}" />
+                                </p:column>
 
-                                    <p:column headerText="P. Unitario" style="width:24%; font-size: 0.8em">
-                                        <h:outputText value="#{detalleFactura.libro.precioUnitario}" />
-                                    </p:column>
+                                <p:column headerText="Valor Total" style="width:24%; font-size: 0.8em">
+                                    <h:outputText value="#{detalleFactura.libro.pvp*detalleFactura.cantidadProductos}" />
+                                </p:column> 
 
-                                    <p:column headerText="Valor Total" style="width:24%; font-size: 0.8em">
-                                        <h:outputText value="#{detalleFactura.libro.precioUnitario*detalleFactura.cantidadProductos}" />
-                                    </p:column> 
-
-                                </p:dataTable>
-                            </h:form>
-                        </div>
-                        <br/>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                    <br/>
+                    <h:form id="totalFactura" enctype="multipart/form-data">
                         <div id="bloqueValoresVenta" style="text-align: right;      margin-right: 20%;">
                             <div id="bloqueLabels1">
                                 <h:outputLabel for="labSub" value="Subtotal: " class="labels"></h:outputLabel><br/>                 
@@ -110,11 +107,12 @@
                                 <h:outputLabel for="labVT" value="Valor Total: " class="labels"></h:outputLabel><br/>
                             </div>
                             <div id="bloqueLabels1">
-                                <h:outputLabel for="labRSub" value="0.00" class="labels"></h:outputLabel><br/>
-                                <h:outputLabel for="labRIVA" value="0.00" class="labels"></h:outputLabel><br/>                   
-                                <h:outputLabel for="labRVT" value="0.00" class="labels"></h:outputLabel><br/>
+                                <h:outputLabel for="labRSub" value="#{facturaBean.totalFactura}" class="labels"></h:outputLabel><br/>
+                                <h:outputLabel for="labRIVA" value="#{facturaBean.totalFactura*0.12}" class="labels"></h:outputLabel><br/>                   
+                                <h:outputLabel for="labRVT" value="#{facturaBean.totalFactura+(facturaBean.totalFactura*0.12)}" class="labels"></h:outputLabel><br/>
                             </div>
                         </div>
+
                         <button  class="btnAceptar">Guardar</button>                    
                     </h:form>
                 </div>

@@ -20,21 +20,22 @@ public class BeanFactura {
 
     private String cedulaIngresada;
     private BeanCliente beanCliente;
+    private double totalFactura;
 
     private FacturaImplBO facturaBO;
     private LibroImplBO libroBO;
-      
+
     private List<BeanLibro> listLibros;
     private BeanLibro selectedLibro;
-    
+
     ///////
     private List<BeanDetalleFactura> listaDetallesFactura;
     //private BeanEmpleado userLogged;
     private int cantidadProductos;
     //////    
-    
+
     public BeanFactura() {
-        listLibros= new ArrayList<BeanLibro>();
+        listLibros = new ArrayList<BeanLibro>();
         listaDetallesFactura = new ArrayList<BeanDetalleFactura>();
     }
 
@@ -100,8 +101,23 @@ public class BeanFactura {
 
     public void setListaDetallesFactura(List<BeanDetalleFactura> listaDetallesFactura) {
         this.listaDetallesFactura = listaDetallesFactura;
-    }    
-        
+    }
+
+    public double getTotalFactura() {
+
+        this.totalFactura = 0;
+
+        for (BeanDetalleFactura detail : listaDetallesFactura) {
+            this.totalFactura = this.totalFactura + detail.getCantidadProductos() * detail.getLibro().getPvp();
+        }
+
+        return totalFactura;
+    }
+
+    public void setTotalFactura(double totalFactura) {
+        this.totalFactura = totalFactura;
+    }
+
     public String verificarCliente() {
 
         try {
@@ -120,37 +136,44 @@ public class BeanFactura {
 
         return "";
     }
-    
-    public String aniadirDetalleFactura(){
-        BeanDetalleFactura beanDetalle = new BeanDetalleFactura();
-        beanDetalle.setCantidadProductos(cantidadProductos);
-        beanDetalle.setLibro(selectedLibro);
-        beanDetalle.setEstadoBorrado(false);
-        
-        listaDetallesFactura.add(beanDetalle);
-        
-        
-        selectedLibro=null;
-        cantidadProductos=0;
-        
+
+    public String aniadirDetalleFactura() {
+        if (cantidadProductos == 0 && selectedLibro != null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al ingresar cantidad", "Ingrese una cantidad valida");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else if (selectedLibro != null && cantidadProductos > selectedLibro.getStock()) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al ingresar cantidad", "La cantidad ingresada supera el stock disponible");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else if (selectedLibro != null) {
+            BeanDetalleFactura beanDetalle = new BeanDetalleFactura();
+            beanDetalle.setCantidadProductos(cantidadProductos);
+            beanDetalle.setLibro(selectedLibro);
+            beanDetalle.setEstadoBorrado(false);
+
+            listaDetallesFactura.add(beanDetalle);
+            selectedLibro = null;
+        }
+
+        cantidadProductos = 0;
+
         return "";
     }
 
     //Método para obtener sugerencias de libros cada vez que se busque un 
     //libro para agregarlo a la facctura
-    public List<BeanLibro> completeLibro(String query){
+    public List<BeanLibro> completeLibro(String query) {
         List<BeanLibro> suggestions = new ArrayList<BeanLibro>();
-        listLibros=libroBO.getAll();
-        
+        listLibros = libroBO.getAll();
+
         for (BeanLibro libro : listLibros) {
             //if (libro.getNombre().startsWith(query)) {
             if (libro.getNombre().toLowerCase().contains(query)) {
                 suggestions.add(libro);
             }
         }
-        
+
         return suggestions;
-        
+
     }
-    
+
 }

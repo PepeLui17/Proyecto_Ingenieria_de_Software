@@ -33,13 +33,13 @@
 
                         <div id="bloqueIngresarCedula">
                             <h:outputLabel for="identificacion" value="Ingrese CEDULA/RUC del cliente" class="labels"></h:outputLabel><br/><br/>
-                            <h:inputText id="identificacion" value="#{buscarClienteBean.cedulaIngresada}" required="true" size="80"  class="input" requiredMessage="Este campo es necesario"/>
+                            <h:inputText id="identificacion" value="#{facturaBean.cedulaIngresada}" required="true" size="80"  class="input" requiredMessage="Este campo es necesario"/>
                             <br/> 
                             <h:outputLabel for="nameFound" value="" class="labels"></h:outputLabel><br/><br/>
                             <br/> 
                         </div>
                         <br/>
-                        <h:commandButton class="btnAceptar" value="Aceptar" action="#{buscarClienteBean.verificarCliente()}">
+                        <h:commandButton class="btnAceptar" value="Aceptar" action="#{facturaBean.verificarCliente()}">
                         </h:commandButton>
                     </h:form>
                 </div>

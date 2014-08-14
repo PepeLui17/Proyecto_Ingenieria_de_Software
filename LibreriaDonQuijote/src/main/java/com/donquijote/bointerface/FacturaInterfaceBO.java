@@ -12,8 +12,7 @@ import com.donquijote.bean.BeanCliente;
  *
  * @author José Luis
  */
-public interface BuscarClienteInterfaceBO{
+public interface FacturaInterfaceBO{
     
     BeanCliente buscarCliente(String cedula);
-    
 }

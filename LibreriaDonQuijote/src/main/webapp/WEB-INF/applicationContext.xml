@@ -76,7 +76,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     
-    <bean id="buscarClienteDAO" class="com.donquijote.dao.BuscarClienteImplDAO">
+    <bean id="facturaDAO" class="com.donquijote.dao.FacturaImplDAO">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     
@@ -93,8 +93,8 @@
         <property name="empleadoDAO" ref="empleadoDAO"></property>
     </bean>
     
-    <bean id="buscarClienteBO" class="com.donquijote.bo.BuscarClienteBO">
-        <property name="buscarClienteDAO" ref="buscarClienteDAO"></property>
+    <bean id="facturaBO" class="com.donquijote.bo.FacturaImplBO">
+        <property name="facturaDAO" ref="facturaDAO"></property>
     </bean>
        
 </beans>

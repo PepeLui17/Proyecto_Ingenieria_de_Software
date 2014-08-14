@@ -7,35 +7,34 @@
 package com.donquijote.bo;
 
 import com.donquijote.bean.BeanCliente;
-import com.donquijote.bointerface.BuscarClienteInterfaceBO;
-import com.donquijote.dao.BuscarClienteImplDAO;
+import com.donquijote.bean.BeanLibro;
+import com.donquijote.bointerface.FacturaInterfaceBO;
+import com.donquijote.dao.FacturaImplDAO;
 import com.donquijote.persistence.Cliente;
+import com.donquijote.persistence.Libro;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author José Luis
  */
-public class BuscarClienteBO implements BuscarClienteInterfaceBO{
-    private BuscarClienteImplDAO buscarClienteDAO;
+public class FacturaImplBO implements FacturaInterfaceBO{
+    private FacturaImplDAO facturaDAO;
 
-//    @Override
-//    public Users buscarCliente(String cedula) {
-//        return buscarClienteDAO.findClientByCedula(cedula);
-//    }
-
-    public BuscarClienteImplDAO getBuscarClienteDAO() {
-        return buscarClienteDAO;
+    public FacturaImplDAO getFacturaDAO() {
+        return facturaDAO;
     }
 
-    public void setBuscarClienteDAO(BuscarClienteImplDAO buscarClienteDAO) {
-        this.buscarClienteDAO = buscarClienteDAO;
-    }    
+    public void setFacturaDAO(FacturaImplDAO facturaDAO) {
+        this.facturaDAO = facturaDAO;
+    }
 
     @Override
     public BeanCliente buscarCliente(String cedula) {
         BeanCliente beanCliente=new BeanCliente();
         System.out.println("-----------------aaa");
-        Cliente obj=buscarClienteDAO.findClientByCedula(cedula);
+        Cliente obj=facturaDAO.findClientByCedula(cedula);
         System.out.println("-----------------bbb");
         if(obj!=null){
             System.out.println("-----------------ccc");
@@ -51,6 +50,5 @@ public class BuscarClienteBO implements BuscarClienteInterfaceBO{
         System.out.println("-----------------ddd");
         return beanCliente;
         
-    }
-    
+    }    
 }

@@ -5,8 +5,9 @@
  */
 package com.donquijote.dao;
 
-import com.donquijote.daointerface.BuscarClienteInterfaceDAO;
+import com.donquijote.daointerface.FacturaInterfaceDAO;
 import com.donquijote.persistence.Cliente;
+import com.donquijote.persistence.Libro;
 import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -14,7 +15,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  *
  * @author José Luis
  */
-public class BuscarClienteImplDAO extends HibernateDaoSupport implements BuscarClienteInterfaceDAO {
+public class FacturaImplDAO extends HibernateDaoSupport implements FacturaInterfaceDAO {
 
     @Override
     public Cliente findClientByCedula(String cedula) {

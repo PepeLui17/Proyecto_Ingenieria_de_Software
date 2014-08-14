@@ -39,12 +39,26 @@
     </managed-bean>
     
     <managed-bean>
-        <managed-bean-name>buscarClienteBean</managed-bean-name>
-        <managed-bean-class>com.donquijote.bean.BeanBuscarCliente</managed-bean-class>
+        <managed-bean-name>facturaBean</managed-bean-name>
+        <managed-bean-class>com.donquijote.bean.BeanFactura</managed-bean-class>    
         <managed-bean-scope>session</managed-bean-scope>
         <managed-property>
-            <property-name>buscarClienteBO</property-name>
-            <value>#{buscarClienteBO}</value>
+            <property-name>facturaBO</property-name>
+            <value>#{facturaBO}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>libroBO</property-name>
+            <value>#{libroBO}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>libroConverter</managed-bean-name>
+        <managed-bean-class>com.donquijote.converter.LibroConverter</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+        <managed-property>
+            <property-name>libroBO</property-name>
+            <value>#{libroBO}</value>
         </managed-property>
     </managed-bean>
     

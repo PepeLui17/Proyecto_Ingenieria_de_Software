@@ -12,6 +12,6 @@ import com.donquijote.persistence.Cliente;
  *
  * @author José Luis
  */
-public interface BuscarClienteInterfaceDAO {
+public interface FacturaInterfaceDAO {
     Cliente findClientByCedula(String cedula);
 }

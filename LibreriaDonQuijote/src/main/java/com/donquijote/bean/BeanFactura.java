@@ -7,6 +7,7 @@ package com.donquijote.bean;
 
 import com.donquijote.bo.FacturaImplBO;
 import com.donquijote.bo.LibroImplBO;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -30,13 +31,16 @@ public class BeanFactura {
 
     ///////
     private List<BeanDetalleFactura> listaDetallesFactura;
+    private BeanDetalleFactura selectedDetalleFactura;
     //private BeanEmpleado userLogged;
     private int cantidadProductos;
+    private int posDetail;
     //////    
 
     public BeanFactura() {
         listLibros = new ArrayList<BeanLibro>();
         listaDetallesFactura = new ArrayList<BeanDetalleFactura>();
+        posDetail = 0;
     }
 
     public String getCedulaIngresada() {
@@ -103,6 +107,22 @@ public class BeanFactura {
         this.listaDetallesFactura = listaDetallesFactura;
     }
 
+    public BeanDetalleFactura getSelectedDetalleFactura() {
+        return selectedDetalleFactura;
+    }
+
+    public void setSelectedDetalleFactura(BeanDetalleFactura selectedDetalleFactura) {
+        this.selectedDetalleFactura = selectedDetalleFactura;
+    }
+
+    public int getPosDetail() {
+        return posDetail;
+    }
+
+    public void setPosDetail(int posDetail) {
+        this.posDetail = posDetail;
+    }
+
     public double getTotalFactura() {
 
         this.totalFactura = 0;
@@ -138,7 +158,14 @@ public class BeanFactura {
     }
 
     public String aniadirDetalleFactura() {
-        if (cantidadProductos == 0 && selectedLibro != null) {
+        if (beanCliente == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al iniciar facturación", "Ingrese primero cedula del cliente para iniciar facturación, dirijase a la pestaña 'Nueva Venta' ");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            selectedLibro = null;
+        } else if (selectedLibro != null && libroEstaEnFactura(selectedLibro.getNombre())) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al ingresar libro", "El libro ya se encuentra en la factura");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else if (selectedLibro != null && cantidadProductos <= 0) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al ingresar cantidad", "Ingrese una cantidad valida");
             FacesContext.getCurrentInstance().addMessage(null, message);
         } else if (selectedLibro != null && cantidadProductos > selectedLibro.getStock()) {
@@ -150,6 +177,9 @@ public class BeanFactura {
             beanDetalle.setLibro(selectedLibro);
             beanDetalle.setEstadoBorrado(false);
 
+            beanDetalle.setPosicion(posDetail);
+
+            posDetail++;
             listaDetallesFactura.add(beanDetalle);
             selectedLibro = null;
         }
@@ -157,6 +187,17 @@ public class BeanFactura {
         cantidadProductos = 0;
 
         return "";
+    }
+
+    public boolean libroEstaEnFactura(String nombreLibro) {
+
+        for (BeanDetalleFactura bean : listaDetallesFactura) {
+            if (bean.getLibro().getNombre().equals(nombreLibro)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     //Método para obtener sugerencias de libros cada vez que se busque un 
@@ -173,7 +214,42 @@ public class BeanFactura {
         }
 
         return suggestions;
+    }
 
+    public String deleteDetailFromList(ActionEvent actionEvent) {
+        int index = 0;
+        for (BeanDetalleFactura detalleF : listaDetallesFactura) {
+            if (detalleF.getPosicion() == selectedDetalleFactura.getPosicion()) {
+                listaDetallesFactura.remove(index);
+                return "";
+            }
+            index++;
+        }
+
+        return "";
+    }
+
+    public String updateDetailFromList(ActionEvent actionEvent) {
+        int index = 0;
+        for (BeanDetalleFactura detalleF : listaDetallesFactura) {
+            if (detalleF.getPosicion() == selectedDetalleFactura.getPosicion()) {
+                if (selectedDetalleFactura.getCantidadACambiar() <= 0) {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al modificar cantidad", "Ingrese una cantidad valida");
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                } else if (selectedDetalleFactura.getCantidadACambiar() > selectedDetalleFactura.getLibro().getStock()) {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al modificar cantidad", "La cantidad ingresada supera el stock disponible");
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                } else {
+                    System.out.println("" + index);
+                    BeanDetalleFactura bean = listaDetallesFactura.get(index);
+                    bean.setCantidadProductos(selectedDetalleFactura.getCantidadACambiar());
+                }
+
+            }
+            index++;
+        }
+
+        return "";
     }
 
 }

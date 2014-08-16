@@ -17,6 +17,9 @@ public class BeanDetalleFactura {
     private BeanLibro libro;
     private int cantidadProductos;
     private boolean estadoBorrado;
+    
+    private int posicion;
+    private int cantidadModificada;
 
     public int getIdDetalleFactura() {
         return idDetalleFactura;
@@ -57,7 +60,26 @@ public class BeanDetalleFactura {
     public void setEstadoBorrado(boolean estadoBorrado) {
         this.estadoBorrado = estadoBorrado;
     }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+
+    public int getCantidadModificada() {
+        cantidadModificada = cantidadProductos;
+        return cantidadModificada;//Se cambio el retorno a cantidadProductos
+    }
+
+    public void setCantidadModificada(int cantidadModificada) {
+        this.cantidadModificada = cantidadModificada;
+    }
     
-    
+    public int getCantidadACambiar(){
+        return cantidadModificada;
+    }
     
 }

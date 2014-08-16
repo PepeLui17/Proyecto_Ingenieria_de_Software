@@ -139,7 +139,7 @@
                                 <f:facet name="footer">
                                     <br/>
                                     <p:separator/><br/>
-                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{libroBean.update(actionEvent)}" oncomplete="libroDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
+                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" action="#{libroBean.update(actionEvent)}" oncomplete="libroDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
                                     <p:commandButton id="btnCancelUpdate" value="Cancelar" oncomplete="libroDialogUpdate.hide()" icon="ui-icon-close" update=":formDataTable, :msgs" />
                                 </f:facet>
                                 

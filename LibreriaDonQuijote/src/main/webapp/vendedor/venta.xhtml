@@ -8,6 +8,7 @@
     <h:head>
         <title>Nueva Venta</title>
         <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
+        <link rel="Stylesheet" href="../resources/css/estiloBotones.css"/>
         <link rel="Stylesheet" href="../resources/css/estiloAgregar.css"/>
         <script type="text/jscript" src="../script/scriptEnlaces.js"></script>
     </h:head>
@@ -95,7 +96,48 @@
                                     <h:outputText value="#{detalleFactura.libro.pvp*detalleFactura.cantidadProductos}" />
                                 </p:column> 
 
+                                <p:column style="width:4%">
+                                    <p:commandButton id="btnUpdate" update=":formUpdateDetailFactura" oncomplete="detailDialogUpdate.show()" icon="ui-icon-search" title="Modificar Cantidad" >
+                                        <f:setPropertyActionListener value="#{detalleFactura}" target="#{facturaBean.selectedDetalleFactura}" />
+                                    </p:commandButton>                                
+                                </p:column>
+
+                                <p:column style="width:4%">
+                                    <p:commandButton id="btnDelete" action="#{facturaBean.deleteDetailFromList(actionEvent)}" update=":formDataTable, :datosProducto, :totalFactura, :msgs" icon="icon-delete" title="Eliminar">
+                                        <f:setPropertyActionListener value="#{detalleFactura}" target="#{facturaBean.selectedDetalleFactura}" />
+                                        <p:confirm header="Eliminar detalle de factura" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
+                                    </p:commandButton>
+
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
+
+                                </p:column>
+
                             </p:dataTable>
+                        </h:form>
+
+                        <h:form id="formUpdateDetailFactura">
+                            <p:dialog header="Modificar cantidad de libro" widgetVar="detailDialogUpdate" resizable="false" id="dlgDetailUpdate"
+                                      showEffect="fade" hideEffect="explode" modal="true">
+
+                                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;" >
+
+                                    <h:outputText value="Cantidad:" />
+                                    <h:inputText value="#{facturaBean.selectedDetalleFactura.cantidadModificada}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+
+                                    <f:facet name="footer">
+                                        <br/>
+                                        <p:separator/><br/>
+                                        <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{facturaBean.updateDetailFromList(actionEvent)}" oncomplete="detailDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :datosProducto, :totalFactura, :msgs" />
+                                        <p:commandButton id="btnCancelUpdate" value="Cancelar" oncomplete="detailDialogUpdate.hide()" icon="ui-icon-close" update=":formDataTable, :datosProducto, :totalFactura, :msgs" />
+                                    </f:facet>
+
+                                </h:panelGrid>
+
+                            </p:dialog>
+
                         </h:form>
                     </div>
                     <br/>

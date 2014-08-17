@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author José Luis
  */
-public interface EmpleadoInterfaceDAO {
+public interface UsuarioInterfaceDAO {
     void insertEmpleado(Usuario obj);
     void delete(Usuario obj);
     void update(Usuario obj);

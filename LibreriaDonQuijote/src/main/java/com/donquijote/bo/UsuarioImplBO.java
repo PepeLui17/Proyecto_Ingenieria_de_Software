@@ -5,9 +5,10 @@
  */
 package com.donquijote.bo;
 
-import com.donquijote.bean.BeanEmpleado;
-import com.donquijote.bointerface.EmpleadoInterfaceBO;
-import com.donquijote.dao.EmpleadoImplDAO;
+import com.donquijote.bean.BeanUsuario;
+import com.donquijote.bointerface.UsuarioInterfaceBO;
+import com.donquijote.dao.UsuarioImplDAO;
+import com.donquijote.persistence.Rol;
 import com.donquijote.persistence.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,23 +17,29 @@ import java.util.List;
  *
  * @author José Luis
  */
-public class EmpleadoImplBO implements EmpleadoInterfaceBO {
+public class UsuarioImplBO implements UsuarioInterfaceBO {
 
-    private EmpleadoImplDAO empleadoDAO;
+    private UsuarioImplDAO usuarioDAO;
 
     @Override
-    public void insert(BeanEmpleado obj) {
+    public void insert(BeanUsuario obj) {
         Usuario empleado = new Usuario();
-
+        
+        Rol rolEmpleado = new Rol();
+        rolEmpleado.setIdrol(2);
+        rolEmpleado.setNombrerol("vendedor");
+        rolEmpleado.setEstadoborrado(false);
+        
+        empleado.setRol(rolEmpleado);
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
         empleado.setCedula(obj.getCedula());
         empleado.setFechanacimiento(obj.getFechaNacimiento());
 
         if (obj.getSexo() == 0) {
-            empleado.setSexo(true);
-        } else {
             empleado.setSexo(false);
+        } else {
+            empleado.setSexo(true);
         }
 
         empleado.setSalario(obj.getSalario());
@@ -41,26 +48,19 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
         empleado.setEstadoborrado(false);
         empleado.setEnabled(true);
 
-        empleadoDAO.insertEmpleado(empleado);
-
-//        Authorities authority=new Authorities();
-//        
-//                
-//        //Insertando datos a authority
-//        authority.setAuthority("ROL_VENDEDOR");
-//        authority.setUsers(empleado);
-//        authority.setEstadoborrado(false);
-//        
-//        if(empleadoDAO.insertEmpleado(empleado))
-//            empleadoDAO.insertAuthority(authority);
-//        
-////        empleadoDAO.insert(empleado);
-////        empleadoDAO.insertAuthority(authority);
+        usuarioDAO.insertEmpleado(empleado);
     }
 
     @Override
-    public void delete(BeanEmpleado obj) {
+    public void delete(BeanUsuario obj) {
         Usuario empleado = new Usuario();
+        
+        Rol rolEmpleado = new Rol();
+        rolEmpleado.setIdrol(2);
+        rolEmpleado.setNombrerol("vendedor");
+        rolEmpleado.setEstadoborrado(false);
+        
+        empleado.setRol(rolEmpleado);
         
         empleado.setIdusuario(obj.getIdEmpleado());
         empleado.setNombre(obj.getNombres());
@@ -69,9 +69,9 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
         empleado.setFechanacimiento(obj.getFechaNacimiento());
 
         if (obj.getSexo() == 0) {
-            empleado.setSexo(true);
-        } else {
             empleado.setSexo(false);
+        } else {
+            empleado.setSexo(true);
         }
 
         empleado.setSalario(obj.getSalario());
@@ -80,12 +80,19 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
         empleado.setEstadoborrado(true);
         empleado.setEnabled(false);
         
-        empleadoDAO.update(empleado);
+        usuarioDAO.update(empleado);
     }
 
     @Override
-    public void update(BeanEmpleado obj) {
+    public void update(BeanUsuario obj) {
         Usuario empleado = new Usuario();
+        
+        Rol rolEmpleado = new Rol();
+        rolEmpleado.setIdrol(2);
+        rolEmpleado.setNombrerol("vendedor");
+        rolEmpleado.setEstadoborrado(false);
+        
+        empleado.setRol(rolEmpleado);
         
         empleado.setIdusuario(obj.getIdEmpleado());
         empleado.setNombre(obj.getNombres());
@@ -94,9 +101,9 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
         empleado.setFechanacimiento(obj.getFechaNacimiento());
 
         if (obj.getSexo() == 0) {
-            empleado.setSexo(true);
-        } else {
             empleado.setSexo(false);
+        } else {
+            empleado.setSexo(true);
         }
 
         empleado.setSalario(obj.getSalario());
@@ -105,14 +112,14 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
         empleado.setEstadoborrado(false);
         empleado.setEnabled(true);
         
-        empleadoDAO.update(empleado);
+        usuarioDAO.update(empleado);
     }
 
     @Override
-    public List<BeanEmpleado> getAll() {
-        List<BeanEmpleado> lista = new ArrayList();
-        for (Usuario obj : empleadoDAO.getAll()) {
-            BeanEmpleado bean = new BeanEmpleado();
+    public List<BeanUsuario> getAll() {
+        List<BeanUsuario> lista = new ArrayList();
+        for (Usuario obj : usuarioDAO.getAll()) {
+            BeanUsuario bean = new BeanUsuario();
 
             bean.setIdEmpleado(obj.getIdusuario());
             bean.setNombres(obj.getNombre());
@@ -121,9 +128,9 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
             bean.setFechaNacimiento(obj.getFechanacimiento());
 
             if (obj.isSexo()) {
-                bean.setSexo(0);
-            } else {
                 bean.setSexo(1);
+            } else {
+                bean.setSexo(0);
             }
 
             bean.setSalario(obj.getSalario());
@@ -137,12 +144,26 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
         return lista;
     }
 
-    public EmpleadoImplDAO getEmpleadoDAO() {
-        return empleadoDAO;
+    public UsuarioImplDAO getUsuarioDAO() {
+        return usuarioDAO;
     }
 
-    public void setEmpleadoDAO(EmpleadoImplDAO empleadoDAO) {
-        this.empleadoDAO = empleadoDAO;
+    public void setUsuarioDAO(UsuarioImplDAO usuarioDAO) {
+        this.usuarioDAO = usuarioDAO;
     }
+
+    @Override
+    public BeanUsuario getUsuarioByUsername(String username) {
+        Usuario obj=usuarioDAO.getUsuarioByUsername(username);
+        
+        BeanUsuario bean= new BeanUsuario();
+        bean.setNombres(obj.getNombre());
+        bean.setApellidos(obj.getApellido());
+        bean.setRol(obj.getRol().getNombrerol());
+        
+        return bean;
+    }
+
+    
 
 }

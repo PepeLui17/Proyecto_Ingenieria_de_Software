@@ -44,38 +44,38 @@
                 <div id="bloqueListado">
                     <h:form id="formDataTable">
 
-                        <p:dataTable id="Empleados" var="empleado" value="#{empleadoBean.listaEmpleados}" style="width:135%;" filteredValue="#{empleadoBean.filteredListaEmpleados}"
+                        <p:dataTable id="Empleados" var="usuario" value="#{usuarioBean.listaEmpleados}" style="width:135%;" filteredValue="#{usuarioBean.filteredListaEmpleados}"
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
                             <p:column headerText="Nombre" style="width:5%; font-size: 0.8em" 
-                                      filterBy="#{empleado.nombres}" filterMatchMode="contains">
-                                <h:outputText value="#{empleado.nombres}" />
+                                      filterBy="#{usuario.nombres}" filterMatchMode="contains">
+                                <h:outputText value="#{usuario.nombres}" />
                             </p:column>
 
                             <p:column headerText="Apellido" style="width:5%; font-size: 0.8em" 
-                                      filterBy="#{empleado.apellidos}" filterMatchMode="contains">
-                                <h:outputText value="#{empleado.apellidos}" />
+                                      filterBy="#{usuario.apellidos}" filterMatchMode="contains">
+                                <h:outputText value="#{usuario.apellidos}" />
                             </p:column>
 
                             <p:column headerText="Cedula" style="width:5%; font-size: 0.8em" 
-                                      filterBy="#{empleado.cedula}" filterMatchMode="contains">
-                                <h:outputText value="#{empleado.cedula}" />
+                                      filterBy="#{usuario.cedula}" filterMatchMode="contains">
+                                <h:outputText value="#{usuario.cedula}" />
                             </p:column>
 
                             <p:column headerText="Salario" style="width:5%; font-size: 0.8em">
-                                <h:outputText value="#{empleado.salario}" />
+                                <h:outputText value="#{usuario.salario}" />
                             </p:column>
 
                             <p:column style="width:1%">
                                 <p:commandButton id="btnUpdate" update=":formUpdate" oncomplete="empleadoDialogUpdate.show()" icon="ui-icon-search" title="Modificar" >
-                                    <f:setPropertyActionListener value="#{empleado}" target="#{empleadoBean.selectedEmpleado}" />
+                                    <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.selectedEmpleado}" />
                                 </p:commandButton>                                
                             </p:column>
 
                             <p:column style="width:1%">
-                                <p:commandButton id="btnDelete" action="#{empleadoBean.delete(actionEvent)}" update=":formDataTable, :msgs" icon="icon-delete" title="Eliminar">
-                                    <f:setPropertyActionListener value="#{empleado}" target="#{empleadoBean.selectedEmpleado}" />
+                                <p:commandButton id="btnDelete" action="#{usuarioBean.delete(actionEvent)}" update=":formDataTable, :msgs" icon="icon-delete" title="Eliminar">
+                                    <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.selectedEmpleado}" />
                                     <p:confirm header="Eliminar Empleado" message="¿Está seguro de eliminar?"  icon="ui-icon-alert" />
                                 </p:commandButton>
 
@@ -97,21 +97,21 @@
 
 
                                 <h:outputText value="Nombre:" />
-                                <h:inputText value="#{empleadoBean.selectedEmpleado.nombres}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                <h:inputText value="#{usuarioBean.selectedEmpleado.nombres}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
 
                                 <h:outputText value="Apellido:" />
-                                <h:inputText value="#{empleadoBean.selectedEmpleado.apellidos}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                <h:inputText value="#{usuarioBean.selectedEmpleado.apellidos}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
 
                                 <h:outputText value="Cedula:" />
-                                <h:inputText value="#{empleadoBean.selectedEmpleado.cedula}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                <h:inputText value="#{usuarioBean.selectedEmpleado.cedula}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
 
                                 <h:outputText value="Salario:" />
-                                <h:inputText value="#{empleadoBean.selectedEmpleado.salario}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
+                                <h:inputText value="#{usuarioBean.selectedEmpleado.salario}" style="font-weight:bold" requiredMessage="Se necesita valor"/>
 
                                 <f:facet name="footer">
                                     <br/>
                                     <p:separator/><br/>
-                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{empleadoBean.update(actionEvent)}" oncomplete="empleadoDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
+                                    <p:commandButton id="btnConfirmUpdate" value="Guardar Cambios" actionListener="#{usuarioBean.update(actionEvent)}" oncomplete="empleadoDialogUpdate.hide()" icon="ui-icon-check" update=":formDataTable, :msgs" />
                                     <p:commandButton id="btnCancelUpdate" value="Cancelar" oncomplete="empleadoDialogUpdate.hide()" icon="ui-icon-close" update=":formDataTable, :msgs" />
                                 </f:facet>
 

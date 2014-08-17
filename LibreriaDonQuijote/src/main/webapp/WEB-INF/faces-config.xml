@@ -29,12 +29,24 @@
     </managed-bean>
     
     <managed-bean>
-        <managed-bean-name>empleadoBean</managed-bean-name>
-        <managed-bean-class>com.donquijote.bean.BeanEmpleado</managed-bean-class>
+        <managed-bean-name>usuarioBean</managed-bean-name>
+        <managed-bean-class>com.donquijote.bean.BeanUsuario</managed-bean-class>
+    
         <managed-bean-scope>view</managed-bean-scope>
         <managed-property>
-            <property-name>empleadoBO</property-name>
-            <value>#{empleadoBO}</value>
+            <property-name>usuarioBO</property-name>
+            <value>#{usuarioBO}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>loginBean</managed-bean-name>
+        <managed-bean-class>com.donquijote.bean.BeanLogin</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>usuarioBO</property-name>
+            <value>#{usuarioBO}</value>
         </managed-property>
     </managed-bean>
     

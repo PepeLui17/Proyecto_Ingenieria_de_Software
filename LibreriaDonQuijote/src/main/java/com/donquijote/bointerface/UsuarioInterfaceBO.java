@@ -6,17 +6,17 @@
 
 package com.donquijote.bointerface;
 
-import com.donquijote.bean.BeanEmpleado;
+import com.donquijote.bean.BeanUsuario;
 import java.util.List;
 
 /**
  *
  * @author José Luis
  */
-public interface EmpleadoInterfaceBO {
-    void insert(BeanEmpleado obj);
-    void delete(BeanEmpleado obj);
-    void update(BeanEmpleado obj);
-    List<BeanEmpleado> getAll();
-    
+public interface UsuarioInterfaceBO {
+    void insert(BeanUsuario obj);
+    void delete(BeanUsuario obj);
+    void update(BeanUsuario obj);
+    List<BeanUsuario> getAll();
+    BeanUsuario getUsuarioByUsername(String username);
 }

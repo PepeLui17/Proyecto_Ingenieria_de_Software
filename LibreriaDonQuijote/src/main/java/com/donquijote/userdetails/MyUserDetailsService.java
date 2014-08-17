@@ -5,7 +5,7 @@
  */
 package com.donquijote.userdetails;
 
-import com.donquijote.dao.EmpleadoImplDAO;
+import com.donquijote.dao.UsuarioImplDAO;
 import com.donquijote.persistence.Usuario;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,13 +23,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    private EmpleadoImplDAO empleadoDAO;
+    private UsuarioImplDAO usuarioDAO;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario user;
         try {
-            user = empleadoDAO.getUsuarioByUsername(username);
+            user = usuarioDAO.getUsuarioByUsername(username);
             if (user == null) {
                 throw new UsernameNotFoundException("user name not found");
             }
@@ -65,12 +65,12 @@ public class MyUserDetailsService implements UserDetailsService {
         return springUser;
     }
 
-    public EmpleadoImplDAO getEmpleadoDAO() {
-        return empleadoDAO;
+    public UsuarioImplDAO getUsuarioDAO() {
+        return usuarioDAO;
     }
 
-    public void setEmpleadoDAO(EmpleadoImplDAO empleadoDAO) {
-        this.empleadoDAO = empleadoDAO;
-    }
+    public void setUsuarioDAO(UsuarioImplDAO usuarioDAO) {
+        this.usuarioDAO = usuarioDAO;
+    }    
 
 }

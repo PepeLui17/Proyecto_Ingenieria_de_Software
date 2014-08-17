@@ -44,39 +44,39 @@
 
                     <div id="bloqueLabels1">
                         <h:outputLabel for="nombres" value="Nombres:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="nombres" value="#{empleadoBean.nombres}" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="nombres" value="#{usuarioBean.nombres}" required="true" size="80"  class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="apellidos" value="Apellidos:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="apellidos" value="#{empleadoBean.apellidos}" required="true" size="80"  class="input" requiredMessage="Se necesita valor" />
+                        <h:inputText id="apellidos" value="#{usuarioBean.apellidos}" required="true" size="80"  class="input" requiredMessage="Se necesita valor" />
                         <br/>
                         <h:outputLabel for="cedula" value="Cédula:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="cedula" value="#{empleadoBean.cedula}" required="true" size="80"  class="input" requiredMessage="Se necesita valor" />
+                        <h:inputText id="cedula" value="#{usuarioBean.cedula}" required="true" size="80"  class="input" requiredMessage="Se necesita valor" />
                         <br/>                        
                         <h:outputLabel for="fechaNac" value="Fecha Nacimiento:" class="labels"></h:outputLabel><br/><br/>
-                        <p:calendar id="fechaNac" value="#{empleadoBean.fechaNacimiento}" showOn="button" required="true" requiredMessage="Se necesita valor"/>                        
+                        <p:calendar id="fechaNac" value="#{usuarioBean.fechaNacimiento}" showOn="button" required="true" requiredMessage="Se necesita valor"/>                        
 
                     </div>
 
                     <div id="bloqueLabels2">
                         <h:outputLabel for="selectSexo" value="Género:" class="labels"></h:outputLabel><br/><br/>
-                        <p:selectOneMenu id="selectSexo" value="#{empleadoBean.sexo}">  
+                        <p:selectOneMenu id="selectSexo" value="#{usuarioBean.sexo}">  
                             <f:selectItem itemLabel="Masculino" itemValue="0" />  
                             <f:selectItem itemLabel="Femenino" itemValue="1" />    
                         </p:selectOneMenu>                        
                         <br/>
                         <h:outputLabel for="salario" value="Salario mensual:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText label="Salario" id="salario" value="#{empleadoBean.salario}" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText label="Salario" id="salario" value="#{usuarioBean.salario}" required="true" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="username" value="Usuario:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="username" value="#{empleadoBean.username}" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="username" value="#{usuarioBean.username}" required="true" class="input" requiredMessage="Se necesita valor"/>
                         <br/>
                         <h:outputLabel for="contrasenia" value="Contraseña:" class="labels"></h:outputLabel><br/><br/>
-                        <h:inputText id="contrasenia" value="#{empleadoBean.password}" required="true" class="input" requiredMessage="Se necesita valor"/>
+                        <h:inputText id="contrasenia" value="#{usuarioBean.password}" required="true" class="input" requiredMessage="Se necesita valor"/>
 
                     </div>
                     <br/>
 
-                    <h:commandButton class="btnAceptar" value="Agregar Empleado" action="#{empleadoBean.insert()}">
+                    <h:commandButton class="btnAceptar" value="Agregar Empleado" action="#{usuarioBean.insert()}">
                     </h:commandButton>
 
                 </h:form>

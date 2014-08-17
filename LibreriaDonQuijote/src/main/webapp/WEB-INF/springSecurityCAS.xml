@@ -91,7 +91,7 @@
         The users available for this application.
     -->
     <bean id="authService" class="com.donquijote.userdetails.MyUserDetailsService">
-        <property name="empleadoDAO" ref="empleadoDAO"></property>
+        <property name="usuarioDAO" ref="usuarioDAO"></property>
     </bean>
     
     <!--

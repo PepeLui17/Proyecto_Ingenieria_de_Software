@@ -5,7 +5,7 @@
  */
 package com.donquijote.dao;
 
-import com.donquijote.daointerface.EmpleadoInterfaceDAO;
+import com.donquijote.daointerface.UsuarioInterfaceDAO;
 import com.donquijote.persistence.Rol;
 import com.donquijote.persistence.Usuario;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  *
  * @author José Luis
  */
-public class EmpleadoImplDAO extends HibernateDaoSupport implements EmpleadoInterfaceDAO {
+public class UsuarioImplDAO extends HibernateDaoSupport implements UsuarioInterfaceDAO {
 
     @Override
     public void insertEmpleado(Usuario obj) {
@@ -35,7 +35,7 @@ public class EmpleadoImplDAO extends HibernateDaoSupport implements EmpleadoInte
     @Override
     public List<Usuario> getAll() {
         //return (List<Users>) getHibernateTemplate().find("us from Users us, Authorities au where us.username=au.username and au.authority='ROL_VENDEDOR' and us.estadoborrado=false");
-        return (List<Usuario>) getHibernateTemplate().find("from Usuario us where us.estadoborrado=false");
+        return (List<Usuario>) getHibernateTemplate().find("SELECT u FROM Usuario as u LEFT JOIN FETCH u.rol where u.estadoborrado=false and u.rol.nombrerol='vendedor'");
     }
 
     @Override

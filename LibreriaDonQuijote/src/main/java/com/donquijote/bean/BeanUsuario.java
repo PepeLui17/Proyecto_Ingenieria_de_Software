@@ -5,7 +5,7 @@
  */
 package com.donquijote.bean;
 
-import com.donquijote.bo.EmpleadoImplBO;
+import com.donquijote.bo.UsuarioImplBO;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +17,7 @@ import javax.faces.context.FacesContext;
  *
  * @author José Luis
  */
-public class BeanEmpleado {
+public class BeanUsuario {
 
     private int idEmpleado;
     private String nombres;
@@ -32,14 +32,14 @@ public class BeanEmpleado {
     private boolean estadoBorrado;
     private boolean enabled;
 
-    private EmpleadoImplBO empleadoBO;
-    private List<BeanEmpleado> listaEmpleados;
-    private BeanEmpleado selectedEmpleado;
+    private UsuarioImplBO usuarioBO;
+    private List<BeanUsuario> listaEmpleados;
+    private BeanUsuario selectedEmpleado;
 
-    private List<BeanEmpleado> filteredListaEmpleados;
+    private List<BeanUsuario> filteredListaEmpleados;
     
-    public BeanEmpleado() {
-        listaEmpleados = new ArrayList<BeanEmpleado>();
+    public BeanUsuario() {
+        listaEmpleados = new ArrayList<BeanUsuario>();
     }
 
     public int getIdEmpleado() {
@@ -138,42 +138,41 @@ public class BeanEmpleado {
         this.enabled = enabled;
     }
 
-    public BeanEmpleado getSelectedEmpleado() {
+    public BeanUsuario getSelectedEmpleado() {
         return selectedEmpleado;
     }
 
-    public void setSelectedEmpleado(BeanEmpleado selectedEmpleado) {
+    public void setSelectedEmpleado(BeanUsuario selectedEmpleado) {
         this.selectedEmpleado = selectedEmpleado;
     }
 
-    public EmpleadoImplBO getEmpleadoBO() {
-        return empleadoBO;
+    public UsuarioImplBO getUsuarioBO() {
+        return usuarioBO;
     }
 
-    public void setEmpleadoBO(EmpleadoImplBO empleadoBO) {
-        this.empleadoBO = empleadoBO;
+    public void setUsuarioBO(UsuarioImplBO usuarioBO) {
+        this.usuarioBO = usuarioBO;
     }
 
-    public List<BeanEmpleado> getListaEmpleados() {
-        listaEmpleados = empleadoBO.getAll();
-        listaEmpleados.remove(0);
+    public List<BeanUsuario> getListaEmpleados() {
+        listaEmpleados = usuarioBO.getAll();
         return listaEmpleados;
     }
 
-    public void setListaEmpleados(List<BeanEmpleado> listaEmpleados) {
+    public void setListaEmpleados(List<BeanUsuario> listaEmpleados) {
         this.listaEmpleados = listaEmpleados;
     }
 
-    public List<BeanEmpleado> getFilteredListaEmpleados() {
+    public List<BeanUsuario> getFilteredListaEmpleados() {
         return filteredListaEmpleados;
     }
 
-    public void setFilteredListaEmpleados(List<BeanEmpleado> filteredListaEmpleados) {
+    public void setFilteredListaEmpleados(List<BeanUsuario> filteredListaEmpleados) {
         this.filteredListaEmpleados = filteredListaEmpleados;
     }    
     
     public String insert() {
-        empleadoBO.insert(this);
+        usuarioBO.insert(this);
         
         DesInicializar();
         
@@ -186,15 +185,14 @@ public class BeanEmpleado {
 
     public String delete(ActionEvent actionEvent) {
         
-        empleadoBO.delete(selectedEmpleado);
+        usuarioBO.delete(selectedEmpleado);
 
         String msg = "Empleado eliminado correctamente";
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
         
-        listaEmpleados=empleadoBO.getAll();
-        listaEmpleados.remove(0);
+        listaEmpleados=usuarioBO.getAll();
         filteredListaEmpleados=listaEmpleados;
 
         return "";
@@ -202,7 +200,7 @@ public class BeanEmpleado {
     
     public String update(ActionEvent actionEvent) {
 
-        empleadoBO.update(selectedEmpleado);
+        usuarioBO.update(selectedEmpleado);
 
         String msg = "Empleado modificado correctamente";
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);

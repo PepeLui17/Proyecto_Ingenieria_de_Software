@@ -20,11 +20,11 @@ public class FacturaImplDAO extends HibernateDaoSupport implements FacturaInterf
     @Override
     public Cliente findClientByCedula(String cedula) {
         System.out.println("-----------------");
-        List<Cliente> listUsuarios = (List<Cliente>) getHibernateTemplate().find("from Cliente cli where cli.estadoborrado=false and cli.cedulaRuc='" + cedula+"'");
+        List<Cliente> listClientes = (List<Cliente>) getHibernateTemplate().find("from Cliente cli where cli.estadoborrado=false and cli.cedulaRuc='" + cedula+"'");
         System.out.println("-----------------");
-        System.out.println("Cliente: " + listUsuarios.get(0).getNombre());
-        if (!listUsuarios.isEmpty()) {
-            return listUsuarios.get(0);
+        System.out.println("Cliente: " + listClientes.get(0).getNombre());
+        if (!listClientes.isEmpty()) {
+            return listClientes.get(0);
         }
 
         return null;

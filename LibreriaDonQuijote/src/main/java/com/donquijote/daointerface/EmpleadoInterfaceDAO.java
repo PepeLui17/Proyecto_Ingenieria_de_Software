@@ -18,4 +18,5 @@ public interface EmpleadoInterfaceDAO {
     void delete(Usuario obj);
     void update(Usuario obj);
     List<Usuario> getAll();    
+    Usuario getUsuarioByUsername(String username);
 }

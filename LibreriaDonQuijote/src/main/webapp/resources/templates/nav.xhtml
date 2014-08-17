@@ -17,7 +17,7 @@
             <li id="btnReporteVentas" class="items"><b>Reporte de Ventas</b></li>
         </c:if>
 
-        <c:if test="#{loginBean.esVendedor(request.getUserPrincipal().getName()) == true}">
+        <c:if test="#{loginBean.esAdministrador(request.getUserPrincipal().getName()) == false}">
             <li id="btnLibros" class="items"><b>Libros</b></li>
 
             <li id="btnClientes" class="items"><b>Clientes</b></li>

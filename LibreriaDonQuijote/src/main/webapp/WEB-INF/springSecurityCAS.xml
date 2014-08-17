@@ -73,7 +73,10 @@
        Handles the CAS ticket processing.
     -->
     <bean id="casAuthenticationProvider" class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+        <!--
         <property name="userDetailsService" ref="userServices"/>
+        -->
+        <property name="userDetailsService" ref="authService"/>
         <property name="serviceProperties" ref="serviceProperties"/>
         <property name="ticketValidator">
             <bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
@@ -87,10 +90,16 @@
     <!--
         The users available for this application.
     -->
+    <bean id="authService" class="com.donquijote.userdetails.MyUserDetailsService">
+        <property name="empleadoDAO" ref="empleadoDAO"></property>
+    </bean>
+    
+    <!--
     <sec:user-service id="userServices">
         <sec:user name="admin" password="1234" authorities="ROLE_ADMIN, ROLE_VENDEDOR"></sec:user>
         <sec:user name="jlmj" password="1234" authorities="ROLE_VENDEDOR"></sec:user>
     </sec:user-service>      
+    -->
         
 </beans>
 

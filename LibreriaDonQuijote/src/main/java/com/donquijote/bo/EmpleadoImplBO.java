@@ -8,7 +8,7 @@ package com.donquijote.bo;
 import com.donquijote.bean.BeanEmpleado;
 import com.donquijote.bointerface.EmpleadoInterfaceBO;
 import com.donquijote.dao.EmpleadoImplDAO;
-import com.donquijote.persistence.Users;
+import com.donquijote.persistence.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
 
     @Override
     public void insert(BeanEmpleado obj) {
-        Users empleado = new Users();
+        Usuario empleado = new Usuario();
 
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
@@ -60,9 +60,9 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
 
     @Override
     public void delete(BeanEmpleado obj) {
-        Users empleado = new Users();
+        Usuario empleado = new Usuario();
         
-        empleado.setIduser(obj.getIdEmpleado());
+        empleado.setIdusuario(obj.getIdEmpleado());
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
         empleado.setCedula(obj.getCedula());
@@ -85,9 +85,9 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
 
     @Override
     public void update(BeanEmpleado obj) {
-        Users empleado = new Users();
+        Usuario empleado = new Usuario();
         
-        empleado.setIduser(obj.getIdEmpleado());
+        empleado.setIdusuario(obj.getIdEmpleado());
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
         empleado.setCedula(obj.getCedula());
@@ -111,10 +111,10 @@ public class EmpleadoImplBO implements EmpleadoInterfaceBO {
     @Override
     public List<BeanEmpleado> getAll() {
         List<BeanEmpleado> lista = new ArrayList();
-        for (Users obj : empleadoDAO.getAll()) {
+        for (Usuario obj : empleadoDAO.getAll()) {
             BeanEmpleado bean = new BeanEmpleado();
 
-            bean.setIdEmpleado(obj.getIduser());
+            bean.setIdEmpleado(obj.getIdusuario());
             bean.setNombres(obj.getNombre());
             bean.setApellidos(obj.getApellido());
             bean.setCedula(obj.getCedula());

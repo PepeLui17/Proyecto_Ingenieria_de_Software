@@ -52,13 +52,13 @@
         </property>
          
         <property name="mappingResources">
-            <list>
-                <value>/com/donquijote/persistence/Authorities.hbm.xml</value>
+            <list>                
                 <value>/com/donquijote/persistence/Cliente.hbm.xml</value>
                 <value>/com/donquijote/persistence/DetalleFactura.hbm.xml</value>
                 <value>/com/donquijote/persistence/Factura.hbm.xml</value>
                 <value>/com/donquijote/persistence/Libro.hbm.xml</value>
-                <value>/com/donquijote/persistence/Users.hbm.xml</value>
+                <value>/com/donquijote/persistence/Rol.hbm.xml</value>
+                <value>/com/donquijote/persistence/Usuario.hbm.xml</value>
             </list>
         </property>
     </bean>

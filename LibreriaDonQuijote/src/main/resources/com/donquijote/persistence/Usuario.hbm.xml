@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/07/2014 10:56:36 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 16/08/2014 08:36:46 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="com.donquijote.persistence.Users" table="users" schema="public">
-        <id name="iduser" type="int">
-            <column name="iduser" />
+    <class name="com.donquijote.persistence.Usuario" table="usuario" schema="public">
+        <id name="idusuario" type="int">
+            <column name="idusuario" />
             <generator class="identity" />
         </id>
+        <many-to-one name="rol" class="com.donquijote.persistence.Rol" fetch="select">
+            <column name="idrol" not-null="true" />
+        </many-to-one>
         <property name="username" type="string">
             <column name="username" length="50" not-null="true" unique="true" />
         </property>
@@ -43,12 +46,6 @@
                 <column name="idusuario" not-null="true" />
             </key>
             <one-to-many class="com.donquijote.persistence.Factura" />
-        </set>
-        <set name="authoritieses" table="authorities" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="username" not-null="true" />
-            </key>
-            <one-to-many class="com.donquijote.persistence.Authorities" />
         </set>
     </class>
 </hibernate-mapping>

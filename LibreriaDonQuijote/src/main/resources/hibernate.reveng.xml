@@ -2,10 +2,10 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="Quijote" match-schema="public"/>
-  <table-filter match-name="libro"/>
-  <table-filter match-name="factura"/>
-  <table-filter match-name="cliente"/>
-  <table-filter match-name="authorities"/>
-  <table-filter match-name="users"/>
   <table-filter match-name="detalle_factura"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="factura"/>
+  <table-filter match-name="libro"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="usuario"/>
 </hibernate-reverse-engineering>

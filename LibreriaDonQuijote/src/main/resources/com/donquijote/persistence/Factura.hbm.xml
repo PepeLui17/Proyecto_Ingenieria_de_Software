@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/07/2014 10:56:36 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 16/08/2014 08:36:46 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="com.donquijote.persistence.Factura" table="factura" schema="public">
         <id name="idfactura" type="int">
             <column name="idfactura" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="users" class="com.donquijote.persistence.Users" fetch="select">
+        <many-to-one name="usuario" class="com.donquijote.persistence.Usuario" fetch="select">
             <column name="idusuario" not-null="true" />
         </many-to-one>
         <many-to-one name="cliente" class="com.donquijote.persistence.Cliente" fetch="select">

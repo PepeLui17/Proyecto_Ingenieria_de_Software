@@ -1,5 +1,5 @@
 package com.donquijote.persistence;
-// Generated 29/07/2014 10:56:33 PM by Hibernate Tools 3.6.0
+// Generated 16/08/2014 08:36:45 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Factura  implements java.io.Serializable {
 
 
      private int idfactura;
-     private Users users;
+     private Usuario usuario;
      private Cliente cliente;
      private String numerofactura;
      private double iva;
@@ -25,18 +25,18 @@ public class Factura  implements java.io.Serializable {
     }
 
 	
-    public Factura(int idfactura, Users users, Cliente cliente, String numerofactura, double iva, Date fechacompra, boolean estadoborrado) {
+    public Factura(int idfactura, Usuario usuario, Cliente cliente, String numerofactura, double iva, Date fechacompra, boolean estadoborrado) {
         this.idfactura = idfactura;
-        this.users = users;
+        this.usuario = usuario;
         this.cliente = cliente;
         this.numerofactura = numerofactura;
         this.iva = iva;
         this.fechacompra = fechacompra;
         this.estadoborrado = estadoborrado;
     }
-    public Factura(int idfactura, Users users, Cliente cliente, String numerofactura, double iva, Date fechacompra, boolean estadoborrado, Set detalleFacturas) {
+    public Factura(int idfactura, Usuario usuario, Cliente cliente, String numerofactura, double iva, Date fechacompra, boolean estadoborrado, Set detalleFacturas) {
        this.idfactura = idfactura;
-       this.users = users;
+       this.usuario = usuario;
        this.cliente = cliente;
        this.numerofactura = numerofactura;
        this.iva = iva;
@@ -52,12 +52,12 @@ public class Factura  implements java.io.Serializable {
     public void setIdfactura(int idfactura) {
         this.idfactura = idfactura;
     }
-    public Users getUsers() {
-        return this.users;
+    public Usuario getUsuario() {
+        return this.usuario;
     }
     
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     public Cliente getCliente() {
         return this.cliente;

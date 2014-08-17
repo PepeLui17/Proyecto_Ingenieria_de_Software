@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/08/2014 08:36:46 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.donquijote.persistence.Rol" table="rol" schema="public">
+        <id name="idrol" type="int">
+            <column name="idrol" />
+            <generator class="identity" />
+        </id>
+        <property name="nombrerol" type="string">
+            <column name="nombrerol" length="50" not-null="true" />
+        </property>
+        <property name="estadoborrado" type="boolean">
+            <column name="estadoborrado" not-null="true" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idrol" not-null="true" />
+            </key>
+            <one-to-many class="com.donquijote.persistence.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

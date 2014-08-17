@@ -1,4 +1,4 @@
-﻿CREATE TABLE Libro
+CREATE TABLE Libro
 (
   idLibro serial NOT NULL,
   nombre character varying(50) NOT NULL,
@@ -33,10 +33,16 @@ CREATE TABLE Cliente
   CONSTRAINT cliente_cedula_ruc_key UNIQUE (cedula_ruc)
 );
 
+create table Rol (
+    idRol serial not null primary key,
+    nombreRol varchar(50) not null,
+    estadoBorrado boolean not null
+) ;
 
-CREATE TABLE users
+CREATE TABLE Usuario
 (
-    idUser serial NOT NULL PRIMARY KEY,
+    idUsuario serial NOT NULL PRIMARY KEY,
+	idRol serial NOT NULL,
     username varchar(50) unique not null,
     password varchar(50) not null,
     nombre character varying(50) NOT NULL,
@@ -46,19 +52,11 @@ CREATE TABLE users
     salario double precision NOT NULL,
     sexo boolean NOT NULL,
     estadoBorrado boolean NOT NULL,
-    enabled boolean not null 
+    enabled boolean not null,
+	CONSTRAINT usuario_idRol_fkey FOREIGN KEY (idRol)
+      REFERENCES rol(idRol) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-
-create table authorities (
-    idAuthority serial not null primary key,
-    username varchar(50) not null,
-    authority varchar(50) not null,
-    estadoBorrado boolean not null,
-    constraint fk_authorities_users foreign key(username) references users(username) 
-) ;
-
-create unique index ix_auth_username on authorities(username,authority);
-
 
 CREATE TABLE Factura
 (
@@ -73,7 +71,7 @@ CREATE TABLE Factura
       REFERENCES cliente(idCliente) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT factura_idUsuario_fkey FOREIGN KEY (idUsuario)
-      REFERENCES users(idUser) MATCH SIMPLE
+      REFERENCES usuario(idUsuario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 

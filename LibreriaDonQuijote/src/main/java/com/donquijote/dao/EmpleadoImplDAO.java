@@ -7,8 +7,7 @@
 package com.donquijote.dao;
 
 import com.donquijote.daointerface.EmpleadoInterfaceDAO;
-import com.donquijote.persistence.Authorities;
-import com.donquijote.persistence.Users;
+import com.donquijote.persistence.Usuario;
 import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -19,31 +18,25 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class EmpleadoImplDAO extends HibernateDaoSupport implements EmpleadoInterfaceDAO{
 
     @Override
-    public void insertEmpleado(Users obj) {
+    public void insertEmpleado(Usuario obj) {
         getHibernateTemplate().save(obj);
     }
 
     @Override
-    public void delete(Users obj) {
+    public void delete(Usuario obj) {
         getHibernateTemplate().delete(obj);
     }
 
     @Override
-    public void update(Users obj) {
+    public void update(Usuario obj) {
         getHibernateTemplate().merge(obj);
     }
 
     @Override
-    public List<Users> getAll() {
+    public List<Usuario> getAll() {
         //return (List<Users>) getHibernateTemplate().find("us from Users us, Authorities au where us.username=au.username and au.authority='ROL_VENDEDOR' and us.estadoborrado=false");
-        return (List<Users>) getHibernateTemplate().find("from Users us where us.estadoborrado=false");
+        return (List<Usuario>) getHibernateTemplate().find("from Usuario us where us.estadoborrado=false");
     }
-
-    @Override
-    public void insertAuthority(Authorities obj) {
-        getHibernateTemplate().save(obj);
-    }
-
     
     
 }

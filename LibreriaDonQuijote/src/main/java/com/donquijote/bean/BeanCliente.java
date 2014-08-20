@@ -184,12 +184,27 @@ public class BeanCliente {
     }
     
     public String update(ActionEvent actionEvent) {
-
-        clienteBO.update(selectedCliente);
-
-        String msg = "Cliente modificado correctamente";
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        selectedCliente.regresarFormato();
+        if(selectedCliente.esCedulaValida()&&selectedCliente.formatearTelefono()){
+            
+            clienteBO.update(selectedCliente);
+            String msg = "Cliente modificado correctamente";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            
+               
+        }else{
+            if(!selectedCliente.esCedulaValida()){
+               String msg = "La cedula ingresada es inválida";
+               FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+               FacesContext.getCurrentInstance().addMessage(null, message);
+           }
+           if(!selectedCliente.formatearTelefono()){
+               String msg = "El teléfono ingresado no tiene formato correcto";
+               FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+               FacesContext.getCurrentInstance().addMessage(null, message);
+           }
+        }
         
         return "";
     }

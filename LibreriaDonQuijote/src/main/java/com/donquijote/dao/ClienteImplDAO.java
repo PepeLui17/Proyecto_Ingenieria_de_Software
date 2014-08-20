@@ -35,8 +35,14 @@ public class ClienteImplDAO extends HibernateDaoSupport implements ClienteInterf
     }
 
     @Override
-    public void update(Cliente obj) {
-        getHibernateTemplate().update(obj);
+    public boolean update(Cliente obj) {
+        try{
+            getHibernateTemplate().update(obj);
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override

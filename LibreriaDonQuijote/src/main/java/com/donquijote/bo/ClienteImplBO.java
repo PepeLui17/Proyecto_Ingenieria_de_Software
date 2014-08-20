@@ -47,7 +47,7 @@ public class ClienteImplBO implements ClienteInterfaceBO{
     }
 
     @Override
-    public void update(BeanCliente obj) {
+    public boolean update(BeanCliente obj) {
         Cliente cliente=new Cliente();
         cliente.setIdcliente(obj.getIdcliente());
         cliente.setNombre(obj.getNombre());
@@ -58,7 +58,7 @@ public class ClienteImplBO implements ClienteInterfaceBO{
         cliente.setTelefono(obj.getTelefono());
         cliente.setEstadoborrado(false);
         
-        clienteDAO.update(cliente);
+        return clienteDAO.update(cliente);
     }
 
     @Override

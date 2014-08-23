@@ -155,7 +155,11 @@
                             </div>
                         </div>
 
-                        <button  class="btnAceptar">Guardar</button>                    
+                        
+
+                        <h:commandButton value="Guardar" class="btnAceptar" action="#{facturaBean.saveFactura(request.getUserPrincipal().getName())}">
+                        </h:commandButton>
+
                     </h:form>
                 </div>
             </div>

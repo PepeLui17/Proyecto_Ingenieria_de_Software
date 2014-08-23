@@ -18,5 +18,5 @@ public interface LibroInterfaceDAO {
     void delete(Libro obj);
     void update(Libro obj);
     List<Libro> getAll();
-    
+    Libro findLibroById(int idLibro);
 }

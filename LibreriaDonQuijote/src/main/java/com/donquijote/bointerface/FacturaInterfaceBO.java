@@ -7,12 +7,13 @@
 package com.donquijote.bointerface;
 
 import com.donquijote.bean.BeanCliente;
+import com.donquijote.bean.BeanFactura;
 
 /**
  *
  * @author José Luis
  */
 public interface FacturaInterfaceBO{
-    
+    public void saveFactura(BeanFactura obj);
     BeanCliente buscarCliente(String cedula);
 }

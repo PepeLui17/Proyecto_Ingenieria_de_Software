@@ -95,6 +95,8 @@
     
     <bean id="facturaBO" class="com.donquijote.bo.FacturaImplBO">
         <property name="facturaDAO" ref="facturaDAO"></property>
+        <property name="usuarioDAO" ref="usuarioDAO"></property>
+        <property name="libroDAO" ref="libroDAO"></property>
     </bean>
        
 </beans>

@@ -36,5 +36,16 @@ public class LibroImplDAO extends HibernateDaoSupport implements LibroInterfaceD
     public List<Libro> getAll() {
         return (List<Libro>) getHibernateTemplate().find("from Libro lib where lib.estadoborrado=false");
     }
+
+    @Override
+    public Libro findLibroById(int idLibro) {
+        List<Libro> listLibros = (List<Libro>) getHibernateTemplate().find("from Libro lib where lib.estadoborrado=false and lib.idlibro=" + idLibro);
+
+        if (!listLibros.isEmpty()) {
+            return listLibros.get(0);
+        }
+
+        return null;
+    }
     
 }

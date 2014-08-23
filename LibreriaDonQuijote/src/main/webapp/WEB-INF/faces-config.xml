@@ -62,6 +62,10 @@
             <property-name>libroBO</property-name>
             <value>#{libroBO}</value>
         </managed-property>
+        <managed-property>
+            <property-name>usuarioBO</property-name>
+            <value>#{usuarioBO}</value>
+        </managed-property>
     </managed-bean>
     
     <managed-bean>

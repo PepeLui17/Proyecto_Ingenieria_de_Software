@@ -7,7 +7,8 @@ package com.donquijote.dao;
 
 import com.donquijote.daointerface.FacturaInterfaceDAO;
 import com.donquijote.persistence.Cliente;
-import com.donquijote.persistence.Libro;
+import com.donquijote.persistence.DetalleFactura;
+import com.donquijote.persistence.Factura;
 import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -19,15 +20,34 @@ public class FacturaImplDAO extends HibernateDaoSupport implements FacturaInterf
 
     @Override
     public Cliente findClientByCedula(String cedula) {
-        System.out.println("-----------------");
         List<Cliente> listClientes = (List<Cliente>) getHibernateTemplate().find("from Cliente cli where cli.estadoborrado=false and cli.cedulaRuc='" + cedula+"'");
-        System.out.println("-----------------");
-        System.out.println("Cliente: " + listClientes.get(0).getNombre());
+
         if (!listClientes.isEmpty()) {
             return listClientes.get(0);
         }
 
         return null;
+    }
+
+    @Override
+    public void saveFactura(Factura obj) {
+        getHibernateTemplate().save(obj);
+    }
+
+    @Override
+    public Factura obtainLastFactura() {
+        List<Factura> listFacturas = (List<Factura>) getHibernateTemplate().find("from Factura f where f.estadoborrado=false");
+
+        if (!listFacturas.isEmpty()) {
+            return listFacturas.get(listFacturas.size()-1);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void saveDetalleFactura(DetalleFactura obj) {
+        getHibernateTemplate().save(obj);
     }
 
 }

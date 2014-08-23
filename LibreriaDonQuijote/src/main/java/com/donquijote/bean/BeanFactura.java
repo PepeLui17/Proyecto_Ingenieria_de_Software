@@ -7,6 +7,7 @@ package com.donquijote.bean;
 
 import com.donquijote.bo.FacturaImplBO;
 import com.donquijote.bo.LibroImplBO;
+import com.donquijote.bo.UsuarioImplBO;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class BeanFactura {
 
     private FacturaImplBO facturaBO;
     private LibroImplBO libroBO;
+    private UsuarioImplBO usuarioBO;
 
     private List<BeanLibro> listLibros;
     private BeanLibro selectedLibro;
@@ -32,7 +34,7 @@ public class BeanFactura {
     ///////
     private List<BeanDetalleFactura> listaDetallesFactura;
     private BeanDetalleFactura selectedDetalleFactura;
-    //private BeanEmpleado userLogged;
+    private BeanUsuario userLogged;
     private int cantidadProductos;
     private int posDetail;
     //////    
@@ -121,6 +123,22 @@ public class BeanFactura {
 
     public void setPosDetail(int posDetail) {
         this.posDetail = posDetail;
+    }
+
+    public UsuarioImplBO getUsuarioBO() {
+        return usuarioBO;
+    }
+
+    public void setUsuarioBO(UsuarioImplBO usuarioBO) {
+        this.usuarioBO = usuarioBO;
+    }       
+
+    public BeanUsuario getUserLogged() {
+        return userLogged;
+    }
+
+    public void setUserLogged(BeanUsuario userLogged) {
+        this.userLogged = userLogged;
     }
 
     public double getTotalFactura() {
@@ -250,6 +268,11 @@ public class BeanFactura {
         }
 
         return "";
+    }
+    
+    public void saveFactura(String username){
+        userLogged=usuarioBO.getUsuarioByUsername(username);
+        facturaBO.saveFactura(this);        
     }
 
 }

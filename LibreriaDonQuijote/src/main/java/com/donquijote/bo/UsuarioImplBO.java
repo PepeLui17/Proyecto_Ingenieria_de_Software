@@ -24,12 +24,12 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
     @Override
     public void insert(BeanUsuario obj) {
         Usuario empleado = new Usuario();
-        
+
         Rol rolEmpleado = new Rol();
         rolEmpleado.setIdrol(2);
         rolEmpleado.setNombrerol("vendedor");
         rolEmpleado.setEstadoborrado(false);
-        
+
         empleado.setRol(rolEmpleado);
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
@@ -54,14 +54,14 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
     @Override
     public void delete(BeanUsuario obj) {
         Usuario empleado = new Usuario();
-        
+
         Rol rolEmpleado = new Rol();
         rolEmpleado.setIdrol(2);
         rolEmpleado.setNombrerol("vendedor");
         rolEmpleado.setEstadoborrado(false);
-        
+
         empleado.setRol(rolEmpleado);
-        
+
         empleado.setIdusuario(obj.getIdEmpleado());
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
@@ -79,21 +79,21 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
         empleado.setPassword(obj.getPassword());
         empleado.setEstadoborrado(true);
         empleado.setEnabled(false);
-        
+
         usuarioDAO.update(empleado);
     }
 
     @Override
     public void update(BeanUsuario obj) {
         Usuario empleado = new Usuario();
-        
+
         Rol rolEmpleado = new Rol();
         rolEmpleado.setIdrol(2);
         rolEmpleado.setNombrerol("vendedor");
         rolEmpleado.setEstadoborrado(false);
-        
+
         empleado.setRol(rolEmpleado);
-        
+
         empleado.setIdusuario(obj.getIdEmpleado());
         empleado.setNombre(obj.getNombres());
         empleado.setApellido(obj.getApellidos());
@@ -111,7 +111,7 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
         empleado.setPassword(obj.getPassword());
         empleado.setEstadoborrado(false);
         empleado.setEnabled(true);
-        
+
         usuarioDAO.update(empleado);
     }
 
@@ -154,16 +154,30 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
 
     @Override
     public BeanUsuario getUsuarioByUsername(String username) {
-        Usuario obj=usuarioDAO.getUsuarioByUsername(username);
-        
-        BeanUsuario bean= new BeanUsuario();
+        Usuario obj = usuarioDAO.getUsuarioByUsername(username);
+
+        BeanUsuario bean = new BeanUsuario();
+        bean.setIdEmpleado(obj.getIdusuario());
         bean.setNombres(obj.getNombre());
         bean.setApellidos(obj.getApellido());
-        bean.setRol(obj.getRol().getNombrerol());
+        bean.setUsername(obj.getUsername());
+        bean.setPassword(obj.getPassword());
+        bean.setSalario(obj.getSalario());
+        bean.setCedula(obj.getCedula());
+        bean.setFechaNacimiento(obj.getFechanacimiento());
+
+        if (obj.isSexo()) {
+            bean.setSexo(1);
+        } else {
+            bean.setSexo(0);
+        }
         
+        bean.setEstadoBorrado(obj.isEstadoborrado());
+        bean.setEnabled(obj.isEnabled());
+
+        bean.setRol(obj.getRol().getNombrerol());
+
         return bean;
     }
-
-    
 
 }

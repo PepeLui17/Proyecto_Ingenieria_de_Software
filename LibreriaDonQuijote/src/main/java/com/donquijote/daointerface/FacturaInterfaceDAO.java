@@ -7,11 +7,16 @@
 package com.donquijote.daointerface;
 
 import com.donquijote.persistence.Cliente;
+import com.donquijote.persistence.DetalleFactura;
+import com.donquijote.persistence.Factura;
 
 /**
  *
  * @author José Luis
  */
 public interface FacturaInterfaceDAO {
+    void saveFactura(Factura obj);
+    void saveDetalleFactura(DetalleFactura obj);
     Cliente findClientByCedula(String cedula);
+    Factura obtainLastFactura();
 }

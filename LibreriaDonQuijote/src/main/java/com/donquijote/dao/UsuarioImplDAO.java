@@ -42,7 +42,6 @@ public class UsuarioImplDAO extends HibernateDaoSupport implements UsuarioInterf
     public Usuario getUsuarioByUsername(String username) {
         
         List<Usuario> listUsuarios = (List<Usuario>) getHibernateTemplate().find("select u from Usuario as u LEFT JOIN FETCH u.rol where u.estadoborrado=false and u.username='" + username + "'");
-
         if (!listUsuarios.isEmpty()) {
             return listUsuarios.get(0);
         }

@@ -16,4 +16,5 @@ import com.donquijote.bean.BeanFactura;
 public interface FacturaInterfaceBO{
     public void saveFactura(BeanFactura obj);
     BeanCliente buscarCliente(String cedula);
+    public String ultimoNumeroFactura();
 }

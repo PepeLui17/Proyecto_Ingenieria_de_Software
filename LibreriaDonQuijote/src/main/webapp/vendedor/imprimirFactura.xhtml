@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="Factura: #{facturaBean.impFactura.numeroFactura}" /><br/>
+        <h:outputText value="Cliente: #{facturaBean.impFactura.nombreCliente}" /><br/><br/>
+        <h:panelGrid id="display" columns="4" cellpadding="4" style="margin:0 auto;" >    
+            <h:outputLabel value="R.U.C/C.I.: " />
+            <h:outputText value="#{facturaBean.impFactura.cedula}" />            
+            <h:outputLabel value="Fecha: " />
+            <h:outputLabel value="#{session.lastAccessedTime}" ><f:convertDateTime pattern="dd/MM/yyyy" type="date" /></h:outputLabel>
+        
+            <h:outputLabel value="Direccion: " />
+            <h:outputText value="#{facturaBean.impFactura.direccion}" />
+            <h:outputLabel value="Telefono: " />
+            <h:outputText value="#{facturaBean.impFactura.telefono}" />  
+        </h:panelGrid>
+        <br/>
+
+        <h:form id="formDataTable" >
+
+            <p:dataTable id="Libros" var="detalles" value="#{facturaBean.impFactura.listDetallesFactura}" style="width:70%;">
+
+                <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
+                    <h:outputText value="#{detalles.cantidad}" />
+                </p:column>
+
+                <p:column headerText="CONCEPTO" style="width:24%; font-size: 0.8em">
+                    <h:outputText value="#{detalles.nombreProducto}" />
+                </p:column>
+
+                <p:column headerText="P. Unitario" style="width:5%; font-size: 0.8em">
+                    <h:outputText value="#{detalles.precioUnitario}" />
+                </p:column>
+
+                <p:column headerText="V. Total" style="width:5%; font-size: 0.8em">
+                    <h:outputText value="#{detalles.valorTotal}" />
+                </p:column>                
+
+            </p:dataTable>
+        </h:form>
+
+        <br/><br/>
+
+        <h:outputText value="Subtotal: #{facturaBean.impFactura.totalFactura}" /><br/>
+        <h:outputText value="I.V.A. 12%: #{facturaBean.impFactura.totalFactura*0.12}" /><br/>
+        <h:outputText value="Valor total: #{facturaBean.impFactura.totalFactura+(facturaBean.impFactura.totalFactura*0.1)}" />
+
+    </h:body>
+</html>
+

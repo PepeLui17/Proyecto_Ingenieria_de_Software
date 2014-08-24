@@ -120,4 +120,9 @@ public class FacturaImplBO implements FacturaInterfaceBO {
         }
 
     }
+
+    @Override
+    public String ultimoNumeroFactura() {
+        return facturaDAO.obtainLastFactura().getNumerofactura();
+    }
 }

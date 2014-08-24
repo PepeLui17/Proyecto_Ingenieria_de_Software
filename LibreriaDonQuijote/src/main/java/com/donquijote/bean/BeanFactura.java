@@ -8,8 +8,11 @@ package com.donquijote.bean;
 import com.donquijote.bo.FacturaImplBO;
 import com.donquijote.bo.LibroImplBO;
 import com.donquijote.bo.UsuarioImplBO;
+import com.donquijote.imprimir.ImprimirDetalleFactura;
+import com.donquijote.imprimir.ImprimirFactura;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -37,6 +40,8 @@ public class BeanFactura {
     private BeanUsuario userLogged;
     private int cantidadProductos;
     private int posDetail;
+
+    private ImprimirFactura impFactura;
     //////    
 
     public BeanFactura() {
@@ -131,7 +136,7 @@ public class BeanFactura {
 
     public void setUsuarioBO(UsuarioImplBO usuarioBO) {
         this.usuarioBO = usuarioBO;
-    }       
+    }
 
     public BeanUsuario getUserLogged() {
         return userLogged;
@@ -139,6 +144,14 @@ public class BeanFactura {
 
     public void setUserLogged(BeanUsuario userLogged) {
         this.userLogged = userLogged;
+    }
+
+    public ImprimirFactura getImpFactura() {
+        return impFactura;
+    }
+
+    public void setImpFactura(ImprimirFactura impFactura) {
+        this.impFactura = impFactura;
     }
 
     public double getTotalFactura() {
@@ -269,10 +282,82 @@ public class BeanFactura {
 
         return "";
     }
-    
-    public void saveFactura(String username){
-        userLogged=usuarioBO.getUsuarioByUsername(username);
-        facturaBO.saveFactura(this);        
+
+    public String saveFactura(String username) {
+        if (beanCliente == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar factura", "Ingrese primero cedula del cliente para iniciar facturación, dirijase a la pestaña 'Nueva Venta' ");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else if (listaDetallesFactura.size() == 0) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar factura", "No ha ingresado productos a la factura");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+
+            userLogged = usuarioBO.getUsuarioByUsername(username);
+            facturaBO.saveFactura(this);
+
+            this.llenarImpFactura();
+            this.DesInicializar();
+            return "/vendedor/imprimirFactura.xhtml";
+        }
+
+        return "";
+
+    }
+
+    public String imprimirProforma() {
+        if (beanCliente == null) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar factura", "Ingrese primero cedula del cliente para iniciar facturación, dirijase a la pestaña 'Nueva Venta' ");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else if (listaDetallesFactura.size() == 0) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al guardar factura", "No ha ingresado productos a la factura");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            this.llenarImpFactura();
+            this.DesInicializar();
+            return "/vendedor/imprimirFactura.xhtml";
+        }
+        return "";
+    }
+
+    public void llenarImpFactura() {
+        impFactura = new ImprimirFactura();
+
+        impFactura.setNumeroFactura(facturaBO.ultimoNumeroFactura());
+        impFactura.setNombreCliente(beanCliente.getNombre() + " " + beanCliente.getApellido());
+        impFactura.setCedula(beanCliente.getCedulaRuc());
+        impFactura.setDireccion(beanCliente.getDireccion());
+        Date fecha = new Date();
+        impFactura.setFecha(fecha);
+        impFactura.setTelefono(beanCliente.getTelefono());
+        impFactura.setTotalFactura(totalFactura);
+
+        List<ImprimirDetalleFactura> ListImpDetalles = new ArrayList<ImprimirDetalleFactura>();
+        for (BeanDetalleFactura detallesFact : listaDetallesFactura) {
+            ImprimirDetalleFactura impDetalle = new ImprimirDetalleFactura();
+
+            impDetalle.setCantidad(detallesFact.getCantidadProductos());
+            impDetalle.setNombreProducto(detallesFact.getLibro().getNombre());
+            impDetalle.setPrecioUnitario(detallesFact.getLibro().getPvp());
+            impDetalle.setValorTotal(detallesFact.getCantidadProductos() * detallesFact.getLibro().getPvp());
+
+            ListImpDetalles.add(impDetalle);
+        }
+
+        impFactura.setListDetallesFactura(ListImpDetalles);
+
+    }
+
+    public void DesInicializar() {
+        cedulaIngresada = "";
+        beanCliente = null;
+        totalFactura = 0;
+        listLibros = new ArrayList<BeanLibro>();
+        selectedLibro = null;
+        listaDetallesFactura = new ArrayList<BeanDetalleFactura>();
+        selectedDetalleFactura = null;
+        cantidadProductos = 0;
+        posDetail = 0;
+
     }
 
 }

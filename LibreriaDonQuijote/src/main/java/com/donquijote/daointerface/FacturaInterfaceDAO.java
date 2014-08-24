@@ -9,6 +9,8 @@ package com.donquijote.daointerface;
 import com.donquijote.persistence.Cliente;
 import com.donquijote.persistence.DetalleFactura;
 import com.donquijote.persistence.Factura;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,4 +21,5 @@ public interface FacturaInterfaceDAO {
     void saveDetalleFactura(DetalleFactura obj);
     Cliente findClientByCedula(String cedula);
     Factura obtainLastFactura();
+    List<Factura> getFacturasByFecha(Date fechaInicio, Date fechaFin);
 }

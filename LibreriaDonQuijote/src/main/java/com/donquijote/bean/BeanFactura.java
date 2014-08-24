@@ -37,13 +37,19 @@ public class BeanFactura {
     ///////
     private List<BeanDetalleFactura> listaDetallesFactura;
     private BeanDetalleFactura selectedDetalleFactura;
-    private BeanUsuario userLogged;
+    private BeanUsuario beanUsuario;
     private int cantidadProductos;
     private int posDetail;
 
-    private ImprimirFactura impFactura;
+    private ImprimirFactura impFactura; 
+    
+    private int idFactura;
+    private String numeroFactura;
+    private double IVA;
+    private Date fechaCompra;
+    private boolean estadoBorrado;
+    
     //////    
-
     public BeanFactura() {
         listLibros = new ArrayList<BeanLibro>();
         listaDetallesFactura = new ArrayList<BeanDetalleFactura>();
@@ -138,12 +144,52 @@ public class BeanFactura {
         this.usuarioBO = usuarioBO;
     }
 
-    public BeanUsuario getUserLogged() {
-        return userLogged;
+    public BeanUsuario getBeanUsuario() {
+        return beanUsuario;
     }
 
-    public void setUserLogged(BeanUsuario userLogged) {
-        this.userLogged = userLogged;
+    public void setBeanUsuario(BeanUsuario beanUsuario) {
+        this.beanUsuario = beanUsuario;
+    }
+
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public String getNumeroFactura() {
+        return numeroFactura;
+    }
+
+    public void setNumeroFactura(String numeroFactura) {
+        this.numeroFactura = numeroFactura;
+    }
+
+    public double getIVA() {
+        return IVA;
+    }
+
+    public void setIVA(double IVA) {
+        this.IVA = IVA;
+    }
+
+    public Date getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public void setFechaCompra(Date fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public boolean isEstadoBorrado() {
+        return estadoBorrado;
+    }
+
+    public void setEstadoBorrado(boolean estadoBorrado) {
+        this.estadoBorrado = estadoBorrado;
     }
 
     public ImprimirFactura getImpFactura() {
@@ -292,7 +338,7 @@ public class BeanFactura {
             FacesContext.getCurrentInstance().addMessage(null, message);
         } else {
 
-            userLogged = usuarioBO.getUsuarioByUsername(username);
+            beanUsuario = usuarioBO.getUsuarioByUsername(username);
             facturaBO.saveFactura(this);
 
             this.llenarImpFactura();

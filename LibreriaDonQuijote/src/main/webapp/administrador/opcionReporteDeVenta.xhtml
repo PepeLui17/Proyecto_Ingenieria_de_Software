@@ -23,19 +23,19 @@
 
         <section>
 
+            <p:growl id="msgs" showDetail="true" sticky="false"  /> 
             <div id="bloqueSubMenuReporteVenta">
-                
+
                 <h:form enctype="multipart/form-data">
-                    <p:growl id="growl" showDetail="true" sticky="false"  /> 
                     <br/>
                     <h:outputLabel for="fechaIni" value="Fecha Inicial:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
-                        <p:calendar id="popupButtonCalI" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/>                      
+                    <p:calendar id="popupButtonCalI" value="#{consultaReporteBean.fechaInicio}" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/>                      
                     <br/><br/>
                     <h:outputLabel for="fechaFin" value="Fecha Final:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
-                        <p:calendar id="popupButtonCalF" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/> 
-                 <br/><br/>
-                    <h:commandButton value="Consultar" style="margin-left: 30%;">
-                    </h:commandButton>
+                    <p:calendar id="popupButtonCalF" value="#{consultaReporteBean.fechaFin}" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/> 
+                    <br/><br/>
+                    <p:commandButton value="Consultar" action="#{consultaReporteBean.consultarReporte()}" update=":formDataTable, :msgs" style="margin-left: 30%;">
+                    </p:commandButton>
 
                 </h:form>                
             </div>
@@ -43,37 +43,29 @@
             <div id="bloquePrincipal">
                 <div id="bloqueListadoReporte">
                     <br/><br/><br/><br/>
-                <h:form id="formDataTable" >
+                    <h:form id="formDataTable" >
 
-                        <p:growl id="msgs" showDetail="true" sticky="false"  /> 
-                        <p:dataTable id="items" var="libro" style="width:135%;"
+
+                        <p:dataTable id="Facturas" var="factura" value="#{consultaReporteBean.listFacturas}" style="width:135%;" 
                                      paginator="true" rows="10" paginatorPosition="bottom"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-                            <p:column headerText="Fecha de Venta" style="width:15%; font-size: 0.8em" 
-                                       filterMatchMode="contains">
-                                
+                            <p:column headerText="Fecha" style="width:10%; font-size: 0.8em" >
+                                <h:outputText value="#{factura.fechaCompra}" />
                             </p:column>
 
-                            <p:column headerText="No. Factura" style="width:15%; font-size: 0.8em"
-                                      filterMatchMode="contains">
-                             
+                            <p:column headerText="Numero Factura" style="width:24%; font-size: 0.8em"
+                                      filterBy="#{factura.numeroFactura}" filterMatchMode="contains">
+                                <h:outputText value="#{factura.numeroFactura}" />
                             </p:column>
 
-                            <p:column headerText="Vendedor" style="width:25%; font-size: 0.8em"
-                                      filterMatchMode="contains">
-                                
+                            <p:column headerText="Cliente" style="width:24%; font-size: 0.8em">
+                                <h:outputText value="#{factura.beanCliente.nombre} #{factura.beanCliente.apellido}"/>
                             </p:column>
 
-                            <p:column headerText="Cliente" style="width:25%; font-size: 0.8em">
-                               
+                            <p:column headerText="Vendedor" style="width:24%; font-size: 0.8em">
+                                <h:outputText value="#{factura.beanUsuario.nombres} #{factura.beanUsuario.apellidos}" />
                             </p:column>
-                            
-                            <p:column headerText="Total Venta" style="width:25%; font-size: 0.8em">
-                               
-                            </p:column>
-
-
                         </p:dataTable>
                     </h:form>
                 </div>
@@ -82,7 +74,7 @@
         </section>
 
         <footer style='text-align: center'>Todos los derechos reservados</footer>
-        
+
     </h:body>
 </html>
 

@@ -9,6 +9,7 @@ import com.donquijote.bean.BeanCliente;
 import com.donquijote.bean.BeanDetalleFactura;
 import com.donquijote.bean.BeanFactura;
 import com.donquijote.bean.BeanLibro;
+import com.donquijote.bean.BeanUsuario;
 import com.donquijote.bointerface.FacturaInterfaceBO;
 import com.donquijote.dao.FacturaImplDAO;
 import com.donquijote.dao.LibroImplDAO;
@@ -76,7 +77,7 @@ public class FacturaImplBO implements FacturaInterfaceBO {
 
     @Override
     public void saveFactura(BeanFactura obj) {
-        Usuario user = usuarioDAO.getUsuarioByUsername(obj.getUserLogged().getUsername());
+        Usuario user = usuarioDAO.getUsuarioByUsername(obj.getBeanUsuario().getUsername());
         Cliente client = facturaDAO.findClientByCedula(obj.getBeanCliente().getCedulaRuc());
 
         Factura factura = new Factura();
@@ -124,5 +125,36 @@ public class FacturaImplBO implements FacturaInterfaceBO {
     @Override
     public String ultimoNumeroFactura() {
         return facturaDAO.obtainLastFactura().getNumerofactura();
+    }
+
+    @Override
+    public List<BeanFactura> getFacturasByFecha(Date fechaInicio, Date fechaFin) {
+        List<BeanFactura> lista = new ArrayList<BeanFactura>();
+        
+        for(Factura obj: facturaDAO.getFacturasByFecha(fechaInicio, fechaFin)){
+            BeanFactura bean=new BeanFactura();
+            bean.setIdFactura(obj.getIdfactura());
+            bean.setNumeroFactura(obj.getNumerofactura());
+            bean.setIVA(obj.getIva());
+            bean.setFechaCompra(obj.getFechacompra());
+            bean.setEstadoBorrado(obj.isEstadoborrado());
+            
+            BeanUsuario bUsuario=new BeanUsuario();
+            bUsuario.setNombres(obj.getUsuario().getNombre());
+            bUsuario.setApellidos(obj.getUsuario().getApellido());
+            
+            
+            BeanCliente bCliente = new BeanCliente();
+            bCliente.setNombre(obj.getCliente().getNombre());
+            bCliente.setApellido(obj.getCliente().getApellido());
+            bCliente.setCedulaRuc(obj.getCliente().getCedulaRuc());
+            
+            bean.setBeanUsuario(bUsuario);
+            bean.setBeanCliente(bCliente);
+            
+            lista.add(bean);                    
+        }
+        
+        return lista;
     }
 }

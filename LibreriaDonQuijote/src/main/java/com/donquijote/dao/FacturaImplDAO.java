@@ -64,4 +64,12 @@ public class FacturaImplDAO extends HibernateDaoSupport implements FacturaInterf
         return lista;
     }
 
+    @Override
+    public List<DetalleFactura> getDetallesByIdFactura(int idFactura) {
+        List<DetalleFactura> lista = (List<DetalleFactura>) getHibernateTemplate().find("SELECT det FROM DetalleFactura as det LEFT JOIN FETCH det.factura LEFT JOIN FETCH det.libro WHERE det.estadoborrado=false and det.factura.idfactura="+idFactura);
+        System.out.println("libro: "+lista.get(0).getLibro().getNombre());
+        System.out.println("FACTURA: "+lista.get(0).getFactura().getIdfactura());
+        return lista;
+    }
+
 }

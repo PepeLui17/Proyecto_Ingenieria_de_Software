@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Reporte de Ventas</title>
         <link rel="Stylesheet" href="../resources/css/estiloIndex.css"/>
@@ -66,8 +67,46 @@
                             <p:column headerText="Vendedor" style="width:24%; font-size: 0.8em">
                                 <h:outputText value="#{factura.beanUsuario.nombres} #{factura.beanUsuario.apellidos}" />
                             </p:column>
+
+                            <p:column style="width:4%">
+                                <p:commandButton id="btnDetails" update=":formDetails" oncomplete="facturaDialogDetails.show()" icon="ui-icon-search" title="Ver detalles" >
+                                    <f:setPropertyActionListener value="#{factura}" target="#{consultaReporteBean.selectedFactura}" />
+                                </p:commandButton>                                
+                            </p:column>
+                            
                         </p:dataTable>
                     </h:form>
+
+                    <h:form id="formDetails">
+                        <p:dialog header="Detalles de Factura" widgetVar="facturaDialogDetails" resizable="false" id="dlgFacturaDetails"
+                                  showEffect="fade" hideEffect="explode" modal="true">
+                                <p:dataTable id="DetallesFactura" var="detalleFactura" value="#{consultaReporteBean.listDetallesFactura}" style="width:135%;" 
+                                             paginator="true" rows="10" paginatorPosition="bottom"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                    <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.cantidadProductos}" />
+                                    </p:column>
+
+                                    <p:column headerText="Producto" style="width:24%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.libro.nombre}" />
+                                    </p:column>
+
+                                    <p:column headerText="P. Unitario" style="width:24%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.libro.pvp}" />
+                                    </p:column>
+
+                                    <p:column headerText="V. total" style="width:24%; font-size: 0.8em">
+                                        <h:outputText value="#{detalleFactura.libro.pvp*detalleFactura.cantidadProductos}" />
+                                    </p:column>
+
+                                </p:dataTable>
+
+
+                        </p:dialog>
+
+                    </h:form>
+
                 </div>
             </div>
 

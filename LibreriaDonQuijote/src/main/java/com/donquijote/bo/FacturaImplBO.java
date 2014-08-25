@@ -157,4 +157,26 @@ public class FacturaImplBO implements FacturaInterfaceBO {
         
         return lista;
     }
+
+    @Override
+    public List<BeanDetalleFactura> getDetallesByIdFactura(int idFactura) {
+        List<BeanDetalleFactura> lista=new ArrayList<BeanDetalleFactura>();
+        
+        for(DetalleFactura obj: facturaDAO.getDetallesByIdFactura(idFactura)){
+            BeanDetalleFactura bean = new BeanDetalleFactura();
+            bean.setCantidadProductos(obj.getCantidad());
+            
+            BeanLibro bLibro= new BeanLibro();
+            bLibro.setNombre(obj.getLibro().getNombre());
+            bLibro.setPvp(obj.getLibro().getPvp());
+            bLibro.setCodigoISBN(obj.getLibro().getCodigoisbn());
+            
+            bean.setLibro(bLibro);
+            
+            lista.add(bean);
+            
+        }
+        
+        return lista;
+    }
 }

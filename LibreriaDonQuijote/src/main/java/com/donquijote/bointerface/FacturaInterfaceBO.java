@@ -7,6 +7,7 @@
 package com.donquijote.bointerface;
 
 import com.donquijote.bean.BeanCliente;
+import com.donquijote.bean.BeanDetalleFactura;
 import com.donquijote.bean.BeanFactura;
 import java.util.Date;
 import java.util.List;
@@ -20,4 +21,5 @@ public interface FacturaInterfaceBO{
     BeanCliente buscarCliente(String cedula);
     public String ultimoNumeroFactura();
     public List<BeanFactura> getFacturasByFecha(Date fechaInicio, Date fechaFin);
+    public List<BeanDetalleFactura> getDetallesByIdFactura(int idFactura);
 }

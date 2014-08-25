@@ -22,4 +22,5 @@ public interface FacturaInterfaceDAO {
     Cliente findClientByCedula(String cedula);
     Factura obtainLastFactura();
     List<Factura> getFacturasByFecha(Date fechaInicio, Date fechaFin);
+    List<DetalleFactura> getDetallesByIdFactura(int idFactura);
 }

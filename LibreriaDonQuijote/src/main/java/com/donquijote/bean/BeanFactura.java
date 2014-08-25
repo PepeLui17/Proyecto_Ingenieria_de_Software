@@ -41,14 +41,14 @@ public class BeanFactura {
     private int cantidadProductos;
     private int posDetail;
 
-    private ImprimirFactura impFactura; 
-    
+    private ImprimirFactura impFactura;
+
     private int idFactura;
     private String numeroFactura;
     private double IVA;
     private Date fechaCompra;
     private boolean estadoBorrado;
-    
+
     //////    
     public BeanFactura() {
         listLibros = new ArrayList<BeanLibro>();
@@ -405,5 +405,6 @@ public class BeanFactura {
         posDetail = 0;
 
     }
+
 
 }

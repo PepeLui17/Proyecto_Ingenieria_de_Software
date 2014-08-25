@@ -70,7 +70,7 @@
                             <p:outputLabel for="cantidad" value="  Cantidad: " style="margin-left: 5%;" class="labels"></p:outputLabel>
                             <p:inputText id="cantidad" value="#{facturaBean.cantidadProductos}" style="width: 5%;" size="5"  class="input"/>
 
-                            <p:commandButton id="btnAddDetail" class="btnAdd" value="Añadir" action="#{facturaBean.aniadirDetalleFactura}" update=":formDataTable, :datosProducto, :totalFactura, :msgs" />
+                            <p:commandButton id="btnAddDetail" class="btnAdd" value="Añadir" action="#{facturaBean.aniadirDetalleFactura}" update=":formDataTable, :datosProducto, :totalFactura, :msgs" style="margin-left: 3%;"/>
                         </h:form>
                     </div>
                     <div id="bloqueListado">
@@ -155,8 +155,9 @@
                             </div>
                         </div>
 
-                        <p:commandButton value="Finalizar" class="btnAceptar"  oncomplete="dlg1.show()">
-                        </p:commandButton>                       
+                        <p:commandButton value="Finalizar" class="btnAceptar"  oncomplete="dlg1.show()" >
+                        </p:commandButton>  
+
 
                     </h:form>
 

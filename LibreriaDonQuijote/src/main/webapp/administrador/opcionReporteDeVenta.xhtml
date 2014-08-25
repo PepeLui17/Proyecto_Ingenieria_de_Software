@@ -29,10 +29,10 @@
 
                 <h:form enctype="multipart/form-data">
                     <br/>
-                    <h:outputLabel for="fechaIni" value="Fecha Inicial:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
+                    <p:outputLabel id="fechaIni" value="Fecha Inicial:" class="labels" style="margin-left: 10%;"></p:outputLabel><br/><br/>
                     <p:calendar id="popupButtonCalI" value="#{consultaReporteBean.fechaInicio}" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/>                      
-                    <br/><br/>
-                    <h:outputLabel for="fechaFin" value="Fecha Final:" class="labels" style="margin-left: 10%;"></h:outputLabel><br/><br/>
+                    <br/><br/><br/>
+                    <p:outputLabel id="fechaFin" value="Fecha Final:" class="labels" style="margin-left: 10%;"></p:outputLabel><br/><br/>
                     <p:calendar id="popupButtonCalF" value="#{consultaReporteBean.fechaFin}" showOn="button" required="true" requiredMessage="Se necesita valor" style="margin-left: 2%;"/> 
                     <br/><br/>
                     <p:commandButton value="Consultar" action="#{consultaReporteBean.consultarReporte()}" update=":formDataTable, :msgs" style="margin-left: 30%;">

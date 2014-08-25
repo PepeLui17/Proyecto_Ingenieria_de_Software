@@ -144,6 +144,7 @@ public class BeanCliente {
                 String msg = "Cliente ingresado correctamente";
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
                 FacesContext.getCurrentInstance().addMessage(null, message);
+                return "/vendedor/listaClientes.xhtml";
             }else{
                 this.regresarFormato();
                 String msg = "Datos incorrectos, el Cliente no se ha ingresado";

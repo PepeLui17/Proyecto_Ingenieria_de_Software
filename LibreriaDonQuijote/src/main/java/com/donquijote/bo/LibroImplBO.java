@@ -21,7 +21,7 @@ public class LibroImplBO implements LibroInterfaceBO {
     private LibroImplDAO libroDAO;
 
     @Override
-    public void insert(BeanLibro obj) {
+    public boolean insert(BeanLibro obj) {
         Libro libro = new Libro();
         libro.setNombre(obj.getNombre());
         libro.setAutor(obj.getAutor());
@@ -36,7 +36,7 @@ public class LibroImplBO implements LibroInterfaceBO {
         libro.setDescripcion(obj.getDescripcion());
         libro.setEstadoborrado(false);
 
-        libroDAO.insert(libro);
+        return libroDAO.insert(libro);
 
     }
 
@@ -61,7 +61,7 @@ public class LibroImplBO implements LibroInterfaceBO {
     }
 
     @Override
-    public void update(BeanLibro obj) {
+    public boolean update(BeanLibro obj) {
         Libro libro = new Libro();
         libro.setIdlibro(obj.getIdLibro());
         libro.setNombre(obj.getNombre());
@@ -77,7 +77,7 @@ public class LibroImplBO implements LibroInterfaceBO {
         libro.setDescripcion(obj.getDescripcion());
         libro.setEstadoborrado(false);
 
-        libroDAO.update(libro);
+        return libroDAO.update(libro);
     }
 
     @Override

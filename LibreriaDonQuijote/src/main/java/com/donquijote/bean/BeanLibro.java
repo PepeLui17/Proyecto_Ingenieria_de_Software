@@ -181,13 +181,17 @@ public class BeanLibro {
 
         
     public String insert() {
-        libroBO.insert(this);
-        
-        DesInicializar();
-        
-        String msg = "Libro ingresado correctamente";
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        if(this.verificarLibroInsert()&&libroBO.insert(this)){
+            DesInicializar();
+
+            String msg = "Libro ingresado correctamente";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }else{
+            String msg = "El libro no se puede ingresar, verifique que los datos sean correctos";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
         
         return "";
     }
@@ -207,12 +211,15 @@ public class BeanLibro {
     }
 
     public String update(ActionEvent actionEvent) {
-
-        libroBO.update(selectedLibro);
-
-        String msg = "Libro modificado correctamente";
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        if(selectedLibro.verificarLibroInsert()&&libroBO.update(selectedLibro)){            
+            String msg = "Libro modificado correctamente";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }else{
+            String msg = "El libro no se puede modificar, verifique que los datos sean correctos";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
         
         return "";
     }
@@ -233,6 +240,16 @@ public class BeanLibro {
 
     public List<BeanLibro> getAll() {
         return libroBO.getAll();
+    }
+    
+    public boolean verificarLibroInsert(){
+        int longitudCodISBN=this.getCodigoISBN().length();
+        int anioPublicacion=this.anio;
+        boolean valorFinal=true;
+        if(longitudCodISBN!=10 || this.precioUnitario >= this.pvp || this.edicion <= 0 || (anioPublicacion < 1000 || anioPublicacion > 3000) || this.stock < 0){
+            valorFinal=false;
+        }
+        return valorFinal;
     }
 
 }

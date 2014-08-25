@@ -18,8 +18,13 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class LibroImplDAO extends HibernateDaoSupport implements LibroInterfaceDAO{
 
     @Override
-    public void insert(Libro obj) {
-        getHibernateTemplate().save(obj);
+    public boolean insert(Libro obj) {
+        try{
+            getHibernateTemplate().save(obj);
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -28,8 +33,13 @@ public class LibroImplDAO extends HibernateDaoSupport implements LibroInterfaceD
     }
 
     @Override
-    public void update(Libro obj) {
-        getHibernateTemplate().merge(obj);
+    public boolean update(Libro obj) {
+        try{
+            getHibernateTemplate().merge(obj);
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 
     @Override

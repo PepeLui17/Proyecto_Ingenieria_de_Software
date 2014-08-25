@@ -14,9 +14,9 @@ import java.util.List;
  * @author José Luis
  */
 public interface LibroInterfaceBO {
-    void insert(BeanLibro obj);
+   boolean insert(BeanLibro obj);
     void delete(BeanLibro obj);
-    void update(BeanLibro obj);
+    boolean update(BeanLibro obj);
     List<BeanLibro> getAll();
     
 }

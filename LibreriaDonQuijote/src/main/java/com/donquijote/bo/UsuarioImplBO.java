@@ -22,7 +22,7 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
     private UsuarioImplDAO usuarioDAO;
 
     @Override
-    public void insert(BeanUsuario obj) {
+    public boolean insert(BeanUsuario obj) {
         Usuario empleado = new Usuario();
 
         Rol rolEmpleado = new Rol();
@@ -48,7 +48,7 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
         empleado.setEstadoborrado(false);
         empleado.setEnabled(true);
 
-        usuarioDAO.insertEmpleado(empleado);
+        return usuarioDAO.insertEmpleado(empleado);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
     }
 
     @Override
-    public void update(BeanUsuario obj) {
+    public boolean update(BeanUsuario obj) {
         Usuario empleado = new Usuario();
 
         Rol rolEmpleado = new Rol();
@@ -112,7 +112,7 @@ public class UsuarioImplBO implements UsuarioInterfaceBO {
         empleado.setEstadoborrado(false);
         empleado.setEnabled(true);
 
-        usuarioDAO.update(empleado);
+        return usuarioDAO.update(empleado);
     }
 
     @Override

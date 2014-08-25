@@ -14,9 +14,9 @@ import java.util.List;
  * @author José Luis
  */
 public interface LibroInterfaceDAO {
-    void insert(Libro obj);
+    boolean insert(Libro obj);
     void delete(Libro obj);
-    void update(Libro obj);
+    boolean update(Libro obj);
     List<Libro> getAll();
     Libro findLibroById(int idLibro);
 }

@@ -14,9 +14,9 @@ import java.util.List;
  * @author José Luis
  */
 public interface UsuarioInterfaceBO {
-    void insert(BeanUsuario obj);
+    boolean insert(BeanUsuario obj);
     void delete(BeanUsuario obj);
-    void update(BeanUsuario obj);
+    boolean update(BeanUsuario obj);
     List<BeanUsuario> getAll();
     BeanUsuario getUsuarioByUsername(String username);
 }

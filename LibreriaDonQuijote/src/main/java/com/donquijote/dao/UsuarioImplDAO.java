@@ -18,8 +18,13 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class UsuarioImplDAO extends HibernateDaoSupport implements UsuarioInterfaceDAO {
 
     @Override
-    public void insertEmpleado(Usuario obj) {
-        getHibernateTemplate().save(obj);
+    public boolean insertEmpleado(Usuario obj) {
+        try{
+            getHibernateTemplate().save(obj);
+        }catch(Exception e){
+            return false;
+        }        
+        return true;
     }
 
     @Override
@@ -28,8 +33,13 @@ public class UsuarioImplDAO extends HibernateDaoSupport implements UsuarioInterf
     }
 
     @Override
-    public void update(Usuario obj) {
-        getHibernateTemplate().merge(obj);
+    public boolean update(Usuario obj) {
+        try{
+            getHibernateTemplate().merge(obj);
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 
     @Override

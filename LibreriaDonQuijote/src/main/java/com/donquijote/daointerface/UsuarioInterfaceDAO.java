@@ -14,9 +14,9 @@ import java.util.List;
  * @author José Luis
  */
 public interface UsuarioInterfaceDAO {
-    void insertEmpleado(Usuario obj);
+    boolean insertEmpleado(Usuario obj);
     void delete(Usuario obj);
-    void update(Usuario obj);
+    boolean update(Usuario obj);
     List<Usuario> getAll();    
     Usuario getUsuarioByUsername(String username);
 }

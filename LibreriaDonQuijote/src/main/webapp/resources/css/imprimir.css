@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 24, 2014, 6:17:04 PM
+    Author     : Marlon Calderon
+*/
+
+#encabezado{
+    //width: 50%;
+    border: solid 1px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: larger;    
+}
+#dcIzq{
+    float: left;
+    width: 58%;
+    border: solid 1px;
+    border-radius: 15px;
+}
+#dcDer{
+    float: left;
+    width: 38.7%;
+    border: solid 1px;
+    border-radius: 15px;
+    margin-left: 2%;
+}
+#firmas{
+    float: left;
+    width: 75%;
+}
+#totales{
+    float: left;
+    width: 25%;
+}

@@ -360,7 +360,7 @@ public class BeanFactura {
         } else {
             this.llenarImpFactura();
             this.DesInicializar();
-            return "/vendedor/imprimirFactura.xhtml";
+            return "/vendedor/imprimirProforma.xhtml";
         }
         return "";
     }

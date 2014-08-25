@@ -216,19 +216,19 @@ public class BeanFactura {
     }
 
     public String verificarCliente() {
-
         try {
-            System.out.println("entro al try");
             beanCliente = facturaBO.buscarCliente(cedulaIngresada);
-            System.out.println("siguiente linea try");
             if (beanCliente.getNombre() != null) {
                 return "/vendedor/venta.xhtml";
+            } else {
+                String msg = "El cliente no existe";
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
+                FacesContext.getCurrentInstance().addMessage(null, message);
             }
         } catch (Exception e) {
             String msg = "El cliente no existe";
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
             FacesContext.getCurrentInstance().addMessage(null, message);
-            return "";
         }
 
         return "";
@@ -405,6 +405,5 @@ public class BeanFactura {
         posDetail = 0;
 
     }
-
 
 }

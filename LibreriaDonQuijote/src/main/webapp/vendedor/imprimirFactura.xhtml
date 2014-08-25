@@ -5,52 +5,76 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Factura</title>
+        <link rel="Stylesheet" href="../resources/css/imprimir.css"/>
     </h:head>
     <h:body>
-        <h:outputText value="Factura: #{facturaBean.impFactura.numeroFactura}" /><br/>
-        <h:outputText value="Cliente: #{facturaBean.impFactura.nombreCliente}" /><br/><br/>
-        <h:panelGrid id="display" columns="4" cellpadding="4" style="margin:0 auto;" >    
-            <h:outputLabel value="R.U.C/C.I.: " />
-            <h:outputText value="#{facturaBean.impFactura.cedula}" />            
-            <h:outputLabel value="Fecha: " />
-            <h:outputLabel value="#{session.lastAccessedTime}" ><f:convertDateTime pattern="dd/MM/yyyy" type="date" /></h:outputLabel>
-        
-            <h:outputLabel value="Direccion: " />
-            <h:outputText value="#{facturaBean.impFactura.direccion}" />
-            <h:outputLabel value="Telefono: " />
-            <h:outputText value="#{facturaBean.impFactura.telefono}" />  
-        </h:panelGrid>
+        <div id="encabezado">
+            <h:outputText value="Librería Don Quijote" /><br/>
+            <h:outputText value="Dirección: Juan José Loayza y Gonsalez Suarez Telefono: 07 2976222" /><br/>
+            <h:outputText value="PIÑAS-ECUADOR" /><br/><br/>
+            <div style="margin-left: 5%; text-align: left;">
+                <h:outputText value="R.U.C.: 1100445814001" /><br/> 
+                <h:outputText value="N. Aut. SRI.: 1113287698" /> 
+            </div>
+            <div style="margin-top: -3%; margin-right: 5%; text-align: right;">
+                <h:outputText value="FACTURA" /><br/>
+                <h:outputText value="#{facturaBean.impFactura.numeroFactura}" />
+            </div>
+        </div>
         <br/>
-
-        <h:form id="formDataTable" >
-
-            <p:dataTable id="Libros" var="detalles" value="#{facturaBean.impFactura.listDetallesFactura}" style="width:70%;">
-
-                <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
-                    <h:outputText value="#{detalles.cantidad}" />
-                </p:column>
-
-                <p:column headerText="CONCEPTO" style="width:24%; font-size: 0.8em">
-                    <h:outputText value="#{detalles.nombreProducto}" />
-                </p:column>
-
-                <p:column headerText="P. Unitario" style="width:5%; font-size: 0.8em">
-                    <h:outputText value="#{detalles.precioUnitario}" />
-                </p:column>
-
-                <p:column headerText="V. Total" style="width:5%; font-size: 0.8em">
-                    <h:outputText value="#{detalles.valorTotal}" />
-                </p:column>                
-
-            </p:dataTable>
-        </h:form>
+        <div id="datosCliente">
+            <div id="dcIzq">
+                <div style="margin-left: 2%;">
+                    <h:outputText value="Cliente: #{facturaBean.impFactura.nombreCliente}" /><br/>  
+                    <h:outputLabel value="R.U.C/C.I.: #{facturaBean.impFactura.cedula}" /><br/>
+                    <h:outputLabel value="Fecha: "/>
+                    <h:outputLabel value="#{session.lastAccessedTime}" ><f:convertDateTime pattern="dd/MM/yyyy" type="date" /></h:outputLabel>
+                </div>
+            </div>
+            <div id="dcDer">
+                <div style="margin-left: 2%;">
+                    <h:outputLabel value="Direccion: #{facturaBean.impFactura.direccion}" /><br/>
+                    <h:outputLabel value="Telefono: #{facturaBean.impFactura.telefono}" /><br/>
+                    <h:outputLabel style="visibility: hidden;" value="a" />
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div style="margin-top: 7%;">
+            <h:form id="formDataTable" >
+                <p:dataTable id="Libros" var="detalles" value="#{facturaBean.impFactura.listDetallesFactura}" style="width:100%;">
+                    <p:column headerText="Cantidad" style="width:5%; font-size: 0.8em">
+                        <h:outputText value="#{detalles.cantidad}" />
+                    </p:column>
+                    <p:column headerText="CONCEPTO" style="width:24%; font-size: 0.8em">
+                        <h:outputText value="#{detalles.nombreProducto}" />
+                    </p:column>
+                    <p:column headerText="P. Unitario" style="width:5%; font-size: 0.8em">
+                        <h:outputText value="#{detalles.precioUnitario}" />
+                    </p:column>
+                    <p:column headerText="V. Total" style="width:5%; font-size: 0.8em">
+                        <h:outputText value="#{detalles.valorTotal}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
 
         <br/><br/>
-
-        <h:outputText value="Subtotal: #{facturaBean.impFactura.totalFactura}" /><br/>
-        <h:outputText value="I.V.A. 12%: #{facturaBean.impFactura.totalFactura*0.12}" /><br/>
-        <h:outputText value="Valor total: #{facturaBean.impFactura.totalFactura+(facturaBean.impFactura.totalFactura*0.1)}" />
+        <div id="talon">
+            <div id="firmas">
+                <br/><br/>
+                <h:outputText style="margin-left: 5%;" value="___________________" />
+                <h:outputText style="margin-left: 5%;" value="___________________" /><br/>
+                <h:outputText style="margin-left: 10%;" value="Recibí Conforme" /> 
+                <h:outputText style="margin-left: 10%;" value="Entregué Conforme" />
+            </div>
+            <div id="totales">
+                <h:outputText value="Subtotal: #{facturaBean.impFactura.totalFactura}" /><br/>
+                <h:outputText value="I.V.A. 12%: 0" /><br/>
+                <h:outputText value="Valor total: #{facturaBean.impFactura.totalFactura}" />
+            </div>
+        </div>
 
     </h:body>
 </html>

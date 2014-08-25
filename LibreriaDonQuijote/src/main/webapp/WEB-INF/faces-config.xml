@@ -77,7 +77,7 @@
     <managed-bean>
         <managed-bean-name>consultaReporteBean</managed-bean-name>
         <managed-bean-class>com.donquijote.bean.BeanConsultaReporte</managed-bean-class>    
-        <managed-bean-scope>session</managed-bean-scope>        
+        <managed-bean-scope>view</managed-bean-scope>        
         <managed-property>
             <property-name>facturaBO</property-name>
             <value>#{facturaBO}</value>

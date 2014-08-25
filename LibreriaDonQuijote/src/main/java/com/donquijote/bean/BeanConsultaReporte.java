@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -18,11 +20,12 @@ import java.util.List;
 public class BeanConsultaReporte {
 
     private Date fechaInicio, fechaFin;
-
+    private double totalFactura;
     private List<BeanDetalleFactura> listDetallesFactura;
 
     private List<BeanFactura> listFacturas;
     private BeanFactura selectedFactura;
+    private List<BeanFactura> filteredListFacturas;
 
     private FacturaImplBO facturaBO;
 
@@ -47,11 +50,21 @@ public class BeanConsultaReporte {
         this.fechaFin = fechaFin;
     }
 
+    public double getTotalFactura() {
+        totalFactura = 0;
+        for (BeanDetalleFactura beanDetalle : listDetallesFactura) {
+            totalFactura = totalFactura + beanDetalle.getCantidadProductos() * beanDetalle.getLibro().getPvp();
+        }
+        return totalFactura;
+    }
+
+    public void setTotalFactura(double totalFactura) {
+        this.totalFactura = totalFactura;
+    }
+
     public List<BeanDetalleFactura> getListDetallesFactura() {
-        if (selectedFactura !=null) {
-            System.out.println("entroo: "+selectedFactura.getNumeroFactura());
+        if (selectedFactura != null) {
             listDetallesFactura = facturaBO.getDetallesByIdFactura(selectedFactura.getIdFactura());
-            System.out.println("tamaño: "+listDetallesFactura.size());
         }
         return listDetallesFactura;
     }
@@ -61,12 +74,19 @@ public class BeanConsultaReporte {
     }
 
     public List<BeanFactura> getListFacturas() {
-        //listFacturas = facturaBO.getFacturasByFecha(fechaInicio, fechaFin);
         return listFacturas;
     }
 
     public void setListFacturas(List<BeanFactura> listFacturas) {
         this.listFacturas = listFacturas;
+    }
+
+    public List<BeanFactura> getFilteredListFacturas() {
+        return filteredListFacturas;
+    }
+
+    public void setFilteredListFacturas(List<BeanFactura> filteredListFacturas) {
+        this.filteredListFacturas = filteredListFacturas;
     }
 
     public FacturaImplBO getFacturaBO() {
@@ -78,7 +98,17 @@ public class BeanConsultaReporte {
     }
 
     public String consultarReporte() {
-        listFacturas = facturaBO.getFacturasByFecha(fechaInicio, fechaFin);
+        try {
+            listFacturas = facturaBO.getFacturasByFecha(fechaInicio, fechaFin);
+            if (listFacturas.size() == 0) {
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje de información", "No se encontraron ventas en la fechas seleccionadas");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }
+        } catch (Exception e) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de ingreso de datos", "Una de las fechas ingresadas no es valida");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            listFacturas = new ArrayList<BeanFactura>();
+        }
         return "";
     }
 
@@ -88,17 +118,6 @@ public class BeanConsultaReporte {
 
     public void setSelectedFactura(BeanFactura selectedFactura) {
         this.selectedFactura = selectedFactura;
-    }
-
-    public List<BeanDetalleFactura> obtenerDetallesFactura() {
-        List<BeanDetalleFactura> lista = new ArrayList<BeanDetalleFactura>();
-        lista = facturaBO.getDetallesByIdFactura(selectedFactura.getIdFactura());
-
-        return lista;
-    }
-
-    public String delete(ActionEvent actionEvent) {
-        return "";
     }
 
 }

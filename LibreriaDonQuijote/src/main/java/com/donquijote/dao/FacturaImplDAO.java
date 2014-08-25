@@ -53,22 +53,13 @@ public class FacturaImplDAO extends HibernateDaoSupport implements FacturaInterf
 
     @Override
     public List<Factura> getFacturasByFecha(Date fechaInicio, Date fechaFin) {
-        //List<Factura> lista = (List<Factura>) getHibernateTemplate().find("from Factura f where f.estadoborrado=false and f.fechacompra between " + fechaInicio + " and " + fechaFin);
-        //List<Factura> lista = (List<Factura>) getHibernateTemplate().find("SELECT f FROM Factura as f LEFT JOIN FETCH f.usuario WHERE f.estadoborrado=false AND f.fechacompra BETWEEN " + fechaInicio + " AND " + fechaFin);
-        //List<Factura> lista = (List<Factura>) getHibernateTemplate().find("SELECT f FROM Factura as f LEFT JOIN FETCH f.cliente WHERE f.estadoborrado=false AND f.fechacompra BETWEEN " + fechaInicio + " AND " + fechaFin);
         List<Factura> lista = (List<Factura>) getHibernateTemplate().find("SELECT f FROM Factura as f LEFT JOIN FETCH f.usuario LEFT JOIN FETCH f.cliente WHERE f.estadoborrado=false AND f.fechacompra BETWEEN '" + fechaInicio + "' AND '" + fechaFin+"'");
-        System.out.println("---------------------------");
-        System.out.println("Tamaño: "+lista.size());
-        System.out.println("Usuario: "+lista.get(0).getUsuario().getUsername());
-        System.out.println("Cliente: "+lista.get(0).getCliente().getNombre());
         return lista;
     }
 
     @Override
     public List<DetalleFactura> getDetallesByIdFactura(int idFactura) {
         List<DetalleFactura> lista = (List<DetalleFactura>) getHibernateTemplate().find("SELECT det FROM DetalleFactura as det LEFT JOIN FETCH det.factura LEFT JOIN FETCH det.libro WHERE det.estadoborrado=false and det.factura.idfactura="+idFactura);
-        System.out.println("libro: "+lista.get(0).getLibro().getNombre());
-        System.out.println("FACTURA: "+lista.get(0).getFactura().getIdfactura());
         return lista;
     }
 

@@ -61,7 +61,7 @@
                     <br/>
                     <div id="bloqueIngresoProducto" style="margin-left: 3%;">
                         <h:form id="datosProducto" enctype="multipart/form-data">
-                            <h:outputLabel  value=" Ingresar Producto: " class="labels"></h:outputLabel>
+                            <p:outputLabel  value=" Ingresar Producto: " class="labels"></p:outputLabel>
 
                             <p:autoComplete value="#{facturaBean.selectedLibro}" completeMethod="#{facturaBean.completeLibro}" size="40"
                                             var="lib" itemLabel="#{lib.nombre}" itemValue="#{lib}" converter="#{libroConverter}">
@@ -150,8 +150,8 @@
                             </div>
                             <div id="bloqueLabels1">
                                 <p:outputLabel id="labRSub" value="#{facturaBean.totalFactura}" class="labels"></p:outputLabel><br/>
-                                <p:outputLabel id="labRIVA" value="#{facturaBean.totalFactura*0.12}" class="labels"></p:outputLabel><br/>                   
-                                <p:outputLabel id="labRVT" value="#{facturaBean.totalFactura+(facturaBean.totalFactura*0.12)}" class="labels"></p:outputLabel><br/>
+                                <p:outputLabel id="labRIVA" value="0" class="labels"></p:outputLabel><br/>                   
+                                <p:outputLabel id="labRVT" value="#{facturaBean.totalFactura}" class="labels"></p:outputLabel><br/>
                             </div>
                         </div>
 

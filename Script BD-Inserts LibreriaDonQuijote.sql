@@ -102,7 +102,10 @@ values ('vendedor',False);
 insert into usuario (idrol, username, password, nombre, apellido, cedula, fechanacimiento, salario, sexo, estadoborrado, enabled)
 values (1, 'Administrador', 'ACM1234', 'Quijote', 'ACM', '0000000000', '2014-08-29', 0.00, False, False, True); --date se inserta asi año-mes-dia y double precision asi n1.n2
 insert into usuario (idrol, username, password, nombre, apellido, cedula, fechanacimiento, salario, sexo, estadoborrado, enabled)
-values (1, 'Vendedor', '12345', 'Quijote', 'ACM', '9999999999', '2014-08-29', 0.00, False, False, True); --date se inserta asi año-mes-dia y double precision asi n1.n2
+values (2, 'Vendedor', '12345', 'Quijote', 'ACM', '9999999999', '2014-08-29', 0.00, False, False, True); --date se inserta asi año-mes-dia y double precision asi n1.n2
+insert into usuario (idrol, username, password, nombre, apellido, cedula, fechanacimiento, salario, sexo, estadoborrado, enabled)
+values (2, 'jlmonar', 'pepemonar', 'Jose', 'Monar', '1207104116', '1991-08-31', 0.00, False, False, True);
+
 --Libro--
 insert into libro (nombre, autor, codigoisbn, preciounitario, pvp, categoria, editorial, edicion, aniopublicacion, stock, descripcion, estadoborrado)
 values ('Don Quijote de la Mancha', 'Miguel de Cervantes Saavedra', '9788499892429', 17.20, 23.50, 'Literatura', 'DEBOLSILLO', 1, 1605, 30, 'Don Quijote de la Mancha es una novela escrita por el español Miguel de Cervantes Saavedra. Es una de las obras más destacadas de la literatura española y la literatura universal, y una de las más traducidas.', False);

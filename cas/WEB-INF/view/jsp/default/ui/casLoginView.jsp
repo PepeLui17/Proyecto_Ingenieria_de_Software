@@ -32,14 +32,16 @@
     <p>You are currently accessing CAS over a non-secure connection.  Single Sign On WILL NOT WORK.  In order to have single sign on work, you MUST log in over HTTPS.</p>
 </div>
 </c:if>
-
+  <div id="logotipo">
+		<img src='<c:url value="/images/logAp.png"/>' alt='Logo Don Quijote' style='position: absolute; width: 10%; height: 30%; margin-left: 25%; margin-top: 2%;'/>
+  </div>
   <div class="box fl-panel" id="login">
 			<form:form method="post" id="fm1" cssClass="fm-v clearfix" commandName="${commandName}" htmlEscape="true">
                   <form:errors path="*" id="msg" cssClass="errors" element="div" />
                 <!-- <spring:message code="screen.welcome.welcome" /> -->
-                    <h2><spring:message code="screen.welcome.instructions" /></h2>
+                    <h2><spring:message text="Introduzca su Usuario y Contraseña."/></h2>
                     <div class="row fl-controls-left">
-                        <label for="username" class="fl-label"><spring:message code="screen.welcome.label.netid" /></label>
+                        <label for="username" class="fl-label"><span class="accesskey">U</span><spring:message text="suario" /></label>
 						<c:if test="${not empty sessionScope.openIdLocalId}">
 						<strong>${sessionScope.openIdLocalId}</strong>
 						<input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
